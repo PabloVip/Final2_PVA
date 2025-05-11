@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Descripción");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Marca");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Precio");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Descripción");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Marca");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Precio");
             this.labelCatalogo = new System.Windows.Forms.Label();
             this.cbCatalogo = new System.Windows.Forms.ComboBox();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -61,9 +61,9 @@
             // 
             this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem4,
+            listViewItem5,
+            listViewItem6});
             this.listView1.Location = new System.Drawing.Point(170, 276);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(547, 227);
@@ -93,6 +93,7 @@
             this.Controls.Add(this.labelCatalogo);
             this.Name = "FormularioKits";
             this.Text = "FormularioKits";
+            this.Load += new System.EventHandler(this.FormularioKits_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

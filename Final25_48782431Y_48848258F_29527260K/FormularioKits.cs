@@ -21,5 +21,10 @@ namespace Final25_48782431Y_48848258F_29527260K
         {
             this.Close();
         }
+
+        private void FormularioKits_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
