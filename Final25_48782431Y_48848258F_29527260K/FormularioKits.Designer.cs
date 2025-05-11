@@ -63,7 +63,7 @@
             this.labelBusqueda.AutoSize = true;
             this.labelBusqueda.Location = new System.Drawing.Point(82, 603);
             this.labelBusqueda.Name = "labelBusqueda";
-            this.labelBusqueda.Size = new System.Drawing.Size(564, 50);
+            this.labelBusqueda.Size = new System.Drawing.Size(282, 25);
             this.labelBusqueda.TabIndex = 2;
             this.labelBusqueda.Text = "Búsqueda de kit por nombre";
             // 
@@ -72,7 +72,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(447, 513);
+            this.ClientSize = new System.Drawing.Size(906, 1022);
             this.Controls.Add(this.labelBusqueda);
             this.Controls.Add(this.labelCatalogo);
             this.Controls.Add(this.GridKits);
