@@ -20,6 +20,11 @@ namespace Final25_48782431Y_48848258F_29527260K
             InitializeComponent();
         }
 
-
+        private void btn_login_Click(object sender, EventArgs e)
+        {
+            FormPrincipal nuevoFormulario = new FormPrincipal();
+            nuevoFormulario.Show();
+            
+        }
     }
 }

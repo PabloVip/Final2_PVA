@@ -44,6 +44,7 @@
             this.btn_login.TabIndex = 0;
             this.btn_login.Text = "LOGIN";
             this.btn_login.UseVisualStyleBackColor = true;
+            this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
             // 
             // tb_usuario
             // 
@@ -88,6 +89,7 @@
             this.Controls.Add(this.tb_usuario);
             this.Controls.Add(this.btn_login);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();

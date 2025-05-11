@@ -16,5 +16,11 @@ namespace Final25_48782431Y_48848258F_29527260K
         {
             InitializeComponent();
         }
+
+        private void btn_vercatalogo_Click(object sender, EventArgs e)
+        {
+            FormularioKits nuevoFormulario = new FormularioKits();
+            nuevoFormulario.Show();
+        }
     }
 }

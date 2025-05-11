@@ -35,39 +35,44 @@
             // 
             // btn_vercatalogo
             // 
-            this.btn_vercatalogo.Location = new System.Drawing.Point(404, 247);
+            this.btn_vercatalogo.Location = new System.Drawing.Point(269, 161);
+            this.btn_vercatalogo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_vercatalogo.Name = "btn_vercatalogo";
-            this.btn_vercatalogo.Size = new System.Drawing.Size(307, 102);
+            this.btn_vercatalogo.Size = new System.Drawing.Size(205, 66);
             this.btn_vercatalogo.TabIndex = 0;
             this.btn_vercatalogo.Text = "Consulta nuestro cátalogo";
             this.btn_vercatalogo.UseVisualStyleBackColor = true;
+            this.btn_vercatalogo.Click += new System.EventHandler(this.btn_vercatalogo_Click);
             // 
             // btn_crearkit
             // 
-            this.btn_crearkit.Location = new System.Drawing.Point(404, 393);
+            this.btn_crearkit.Location = new System.Drawing.Point(269, 255);
+            this.btn_crearkit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_crearkit.Name = "btn_crearkit";
-            this.btn_crearkit.Size = new System.Drawing.Size(307, 97);
+            this.btn_crearkit.Size = new System.Drawing.Size(205, 63);
             this.btn_crearkit.TabIndex = 1;
             this.btn_crearkit.Text = "Crea tu propio kit";
             this.btn_crearkit.UseVisualStyleBackColor = true;
             // 
             // btncerrarsesion
             // 
-            this.btncerrarsesion.Location = new System.Drawing.Point(1008, 771);
+            this.btncerrarsesion.Location = new System.Drawing.Point(672, 501);
+            this.btncerrarsesion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btncerrarsesion.Name = "btncerrarsesion";
-            this.btncerrarsesion.Size = new System.Drawing.Size(121, 61);
+            this.btncerrarsesion.Size = new System.Drawing.Size(81, 40);
             this.btncerrarsesion.TabIndex = 2;
             this.btncerrarsesion.Text = "Cerrar sesion";
             this.btncerrarsesion.UseVisualStyleBackColor = true;
             // 
             // FormPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1169, 883);
+            this.ClientSize = new System.Drawing.Size(779, 574);
             this.Controls.Add(this.btncerrarsesion);
             this.Controls.Add(this.btn_crearkit);
             this.Controls.Add(this.btn_vercatalogo);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormPrincipal";
             this.Text = "FormPrincipal";
             this.ResumeLayout(false);
