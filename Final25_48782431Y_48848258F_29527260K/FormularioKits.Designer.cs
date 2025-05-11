@@ -28,24 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.GridKits = new System.Windows.Forms.DataGridView();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Descripción");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Precio");
             this.labelCatalogo = new System.Windows.Forms.Label();
-            this.labelBusqueda = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.GridKits)).BeginInit();
+            this.cbCatalogo = new System.Windows.Forms.ComboBox();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
-            // 
-            // GridKits
-            // 
-            this.GridKits.AllowUserToAddRows = false;
-            this.GridKits.AllowUserToDeleteRows = false;
-            this.GridKits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridKits.Location = new System.Drawing.Point(64, 134);
-            this.GridKits.Name = "GridKits";
-            this.GridKits.ReadOnly = true;
-            this.GridKits.RowHeadersWidth = 82;
-            this.GridKits.RowTemplate.Height = 33;
-            this.GridKits.Size = new System.Drawing.Size(764, 417);
-            this.GridKits.TabIndex = 0;
             // 
             // labelCatalogo
             // 
@@ -58,36 +46,45 @@
             this.labelCatalogo.TabIndex = 1;
             this.labelCatalogo.Text = "CATÁLOGO DE NUESTROS KITS";
             // 
-            // labelBusqueda
+            // cbCatalogo
             // 
-            this.labelBusqueda.AutoSize = true;
-            this.labelBusqueda.Location = new System.Drawing.Point(82, 603);
-            this.labelBusqueda.Name = "labelBusqueda";
-            this.labelBusqueda.Size = new System.Drawing.Size(282, 25);
-            this.labelBusqueda.TabIndex = 2;
-            this.labelBusqueda.Text = "Búsqueda de kit por nombre";
+            this.cbCatalogo.FormattingEnabled = true;
+            this.cbCatalogo.Location = new System.Drawing.Point(230, 149);
+            this.cbCatalogo.Name = "cbCatalogo";
+            this.cbCatalogo.Size = new System.Drawing.Size(407, 33);
+            this.cbCatalogo.TabIndex = 2;
+            // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2});
+            this.listView1.Location = new System.Drawing.Point(170, 276);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(547, 227);
+            this.listView1.TabIndex = 5;
+            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // FormularioKits
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(906, 1022);
-            this.Controls.Add(this.labelBusqueda);
+            this.ClientSize = new System.Drawing.Size(917, 913);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.cbCatalogo);
             this.Controls.Add(this.labelCatalogo);
-            this.Controls.Add(this.GridKits);
             this.Name = "FormularioKits";
             this.Text = "FormularioKits";
-            ((System.ComponentModel.ISupportInitialize)(this.GridKits)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView GridKits;
         private System.Windows.Forms.Label labelCatalogo;
-        private System.Windows.Forms.Label labelBusqueda;
+        private System.Windows.Forms.ComboBox cbCatalogo;
+        private System.Windows.Forms.ListView listView1;
     }
 }
