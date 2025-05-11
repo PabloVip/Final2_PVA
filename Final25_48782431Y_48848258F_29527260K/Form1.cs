@@ -22,37 +22,17 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            string conexion = "server=(local)\\SQLEXPRESS;database=PAYAVISOLAR; Integrated Security=SSPI";
             string usuario = tb_usuario.Text;
             string contrasena = tb_contraseña.Text;
 
-            using (SqlConnection conn = new SqlConnection(conexion))
+            if (BaseDeDatos.CompruebaUsuario(usuario, contrasena))
             {
-                try
-                {
-                    conn.Open();
-                    string query = "SELECT COUNT(*) FROM Usuarios WHERE Email = @usuario AND Password = @contrasena";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@usuario", usuario);
-                    cmd.Parameters.AddWithValue("@contrasena", contrasena);
-
-                    int count = (int)cmd.ExecuteScalar();
-                    if (count > 0)
-                    {
-                        FormPrincipal principal = new FormPrincipal();
-                        principal.Show();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Usuario o contraseña incorrectos");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al conectar con la base de datos: " + ex.Message);
-                }
+                FormPrincipal principal = new FormPrincipal();
+                principal.Show();
+                this.Hide();
             }
+            else
+                MessageBox.Show("Usuario o contraseña incorrectos");
         }
 
        

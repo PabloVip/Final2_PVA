@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Final25_48782431Y_48848258F_29527260K.Clases;
+using System.Security.Policy;
+using System.Windows.Forms;
 
 namespace Final25_48782431Y_48848258F_29527260K
 {
@@ -77,5 +79,31 @@ namespace Final25_48782431Y_48848258F_29527260K
             return usuarios;
         }
 
+        public static bool CompruebaUsuario(string usuario, string password)
+        {
+            using (SqlConnection conn = new SqlConnection(CadenaConexion))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM Usuarios WHERE Email = @usuario AND Password = @contrasena";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@usuario", usuario);
+                    cmd.Parameters.AddWithValue("@contrasena", password);
+
+                    int count = (int)cmd.ExecuteScalar();
+                    if (count > 0)
+                        return true;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al conectar con la base de datos: " + ex.Message);
+                }
+
+                return false;
+
+            }
+        }
     }
 }
