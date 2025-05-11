@@ -15,16 +15,14 @@ namespace Final25_48782431Y_48848258F_29527260K
         public FormularioKits()
         {
             InitializeComponent();
+
+            // el AddRange necesita un array en vez de una lista
+            cbCatalogo.Items.AddRange(BaseDeDatos.LeerKits().Select(x => x.Codigo).ToArray());
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void FormularioKits_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
