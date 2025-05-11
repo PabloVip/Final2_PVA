@@ -16,5 +16,10 @@ namespace Final25_48782431Y_48848258F_29527260K
         {
             InitializeComponent();
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

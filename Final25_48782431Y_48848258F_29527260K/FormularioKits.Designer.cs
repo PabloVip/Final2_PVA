@@ -33,6 +33,7 @@
             this.labelCatalogo = new System.Windows.Forms.Label();
             this.cbCatalogo = new System.Windows.Forms.ComboBox();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelCatalogo
@@ -66,12 +67,24 @@
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
+            // btnVolver
+            // 
+            this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVolver.Location = new System.Drawing.Point(50, 832);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(136, 42);
+            this.btnVolver.TabIndex = 6;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // FormularioKits
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(917, 913);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.cbCatalogo);
             this.Controls.Add(this.labelCatalogo);
@@ -86,5 +99,6 @@
         private System.Windows.Forms.Label labelCatalogo;
         private System.Windows.Forms.ComboBox cbCatalogo;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Button btnVolver;
     }
 }
