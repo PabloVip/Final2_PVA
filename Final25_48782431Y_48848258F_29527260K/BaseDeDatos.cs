@@ -17,66 +17,82 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         public static List<Producto> LeerProductos()
         {
-            var conexión = new SqlConnection(CadenaConexion);
-            conexión.Open();
-            var command = new SqlCommand();
-            command.Connection = conexión;
-            command.CommandText = "SELECT * FROM PRODUCTOS";
-            var dt = command.ExecuteReader();
-
-            var productos = new List<Producto>();
-
-            while (dt.Read())
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
-                var pt = new Producto();
-                pt.Id = dt.GetInt32(0);
-                pt.Codigo = dt.GetString(1);
-                pt.Descripcion = dt.GetString(2);
-                pt.Categoria = dt.GetString(3);
-                pt.Marca = dt.GetString(4);
-                pt.Precio = dt.GetDecimal(5);
-                pt.EsKit = dt.GetBoolean(6);
-                productos.Add(pt);
+                try
+                {
+                    var conexión = new SqlConnection(CadenaConexion);
+                    conexión.Open();
+                    var command = new SqlCommand();
+                    command.Connection = conexión;
+                    command.CommandText = "SELECT * FROM PRODUCTOS";
+                    var dt = command.ExecuteReader();
+
+                    var productos = new List<Producto>();
+
+                    while (dt.Read())
+                    {
+                        var pt = new Producto();
+                        pt.Id = dt.GetInt32(0);
+                        pt.Codigo = dt.GetString(1);
+                        pt.Descripcion = dt.GetString(2);
+                        pt.Categoria = dt.GetString(3);
+                        pt.Marca = dt.GetString(4);
+                        pt.Precio = dt.GetDecimal(5);
+                        pt.EsKit = dt.GetBoolean(6);
+                        productos.Add(pt);
+                    }
+
+                    return productos;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
             }
-
-            conexión.Close();
-
-            return productos;
         }
 
         public static List<Usuario> LeerUsuarios()
         {
-            var conexión = new SqlConnection(CadenaConexion);
-            conexión.Open();
-            var command = new SqlCommand();
-            command.Connection = conexión;
-            command.CommandText = "SELECT * FROM Usuarios";
-            var dt = command.ExecuteReader();
-
-            var usuarios = new List<Usuario>();
-
-            while (dt.Read())
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
-                var user = new Usuario();
-                user.Id = dt.GetInt32(0);
-                user.Empresa = dt.GetString(1);
-                user.Nombre = dt.GetString(2);
-                user.Direccion = dt.GetString(3);
-                user.Poblacion = dt.GetString(4);
-                user.CodigoPostal = dt.GetString(5);
-                user.Provincia = dt.GetString(6);
-                user.Pais = dt.GetString(7);
-                user.Email = dt.GetString(8);
-                user.FechaCreacion = dt.GetDateTime(9);
-                user.Nif = dt.GetString(10);
-                user.RollId = dt.GetString(11);
-                user.Password = dt.GetString(12);
-                usuarios.Add(user);
+                try
+                {
+                    string query = "SELECT * FROM Usuarios";
+                    conexion.Open();
+                    var command = new SqlCommand();
+                    command.Connection = conexion;
+                    command.CommandText = "SELECT * FROM Usuarios";
+                    var dt = command.ExecuteReader();
+
+                    var usuarios = new List<Usuario>();
+
+                    while (dt.Read())
+                    {
+                        var user = new Usuario();
+                        user.Id = dt.GetInt32(0);
+                        user.Empresa = dt.GetString(1);
+                        user.Nombre = dt.GetString(2);
+                        user.Direccion = dt.GetString(3);
+                        user.Poblacion = dt.GetString(4);
+                        user.CodigoPostal = dt.GetString(5);
+                        user.Provincia = dt.GetString(6);
+                        user.Pais = dt.GetString(7);
+                        user.Email = dt.GetString(8);
+                        user.FechaCreacion = dt.GetDateTime(9);
+                        user.Nif = dt.GetString(10);
+                        user.RollId = dt.GetString(11);
+                        user.Password = dt.GetString(12);
+                        usuarios.Add(user);
+                    }
+
+                    return usuarios;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
             }
-
-            conexión.Close();
-
-            return usuarios;
         }
 
         public static bool CompruebaUsuario(string usuario, string password)
@@ -96,9 +112,9 @@ namespace Final25_48782431Y_48848258F_29527260K
                         return true;
 
                 }
-                catch (Exception ex)
+                finally
                 {
-                    MessageBox.Show("Error al conectar con la base de datos: " + ex.Message);
+                    conn.Close();
                 }
 
                 return false;

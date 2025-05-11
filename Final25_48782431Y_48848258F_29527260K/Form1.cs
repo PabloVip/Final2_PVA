@@ -25,14 +25,22 @@ namespace Final25_48782431Y_48848258F_29527260K
             string usuario = tb_usuario.Text;
             string contrasena = tb_contraseña.Text;
 
-            if (BaseDeDatos.CompruebaUsuario(usuario, contrasena))
+            try
             {
-                FormPrincipal principal = new FormPrincipal();
-                principal.Show();
-                this.Hide();
+
+                if (BaseDeDatos.CompruebaUsuario(usuario, contrasena))
+                {
+                    FormPrincipal principal = new FormPrincipal();
+                    principal.Show();
+                    this.Hide();
+                }
+                else
+                    MessageBox.Show("Usuario o contraseña incorrectos");
             }
-            else
-                MessageBox.Show("Usuario o contraseña incorrectos");
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al conectar con la base de datos: " + ex.Message);
+            }
         }
 
        
