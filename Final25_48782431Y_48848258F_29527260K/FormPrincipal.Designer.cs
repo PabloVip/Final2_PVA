@@ -28,12 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.btnvercatalogo = new System.Windows.Forms.Button();
+            this.btncrearkit = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnvercatalogo
+            // 
+            this.btnvercatalogo.Location = new System.Drawing.Point(404, 186);
+            this.btnvercatalogo.Name = "btnvercatalogo";
+            this.btnvercatalogo.Size = new System.Drawing.Size(307, 102);
+            this.btnvercatalogo.TabIndex = 0;
+            this.btnvercatalogo.Text = "Consulta nuestro catalogo";
+            this.btnvercatalogo.UseVisualStyleBackColor = true;
+            // 
+            // btncrearkit
+            // 
+            this.btncrearkit.Location = new System.Drawing.Point(404, 355);
+            this.btncrearkit.Name = "btncrearkit";
+            this.btncrearkit.Size = new System.Drawing.Size(307, 97);
+            this.btncrearkit.TabIndex = 1;
+            this.btncrearkit.Text = "Crea tu propio kit";
+            this.btncrearkit.UseVisualStyleBackColor = true;
+            // 
+            // FormPrincipal
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1169, 883);
+            this.Controls.Add(this.btncrearkit);
+            this.Controls.Add(this.btnvercatalogo);
+            this.Name = "FormPrincipal";
             this.Text = "FormPrincipal";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnvercatalogo;
+        private System.Windows.Forms.Button btncrearkit;
     }
 }
