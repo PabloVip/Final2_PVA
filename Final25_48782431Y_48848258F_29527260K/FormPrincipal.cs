@@ -22,5 +22,10 @@ namespace Final25_48782431Y_48848258F_29527260K
             FormularioKits nuevoFormulario = new FormularioKits();
             nuevoFormulario.Show();
         }
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

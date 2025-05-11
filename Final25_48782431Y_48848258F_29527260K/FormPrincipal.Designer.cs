@@ -36,7 +36,7 @@
             // btn_vercatalogo
             // 
             this.btn_vercatalogo.Location = new System.Drawing.Point(269, 161);
-            this.btn_vercatalogo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_vercatalogo.Margin = new System.Windows.Forms.Padding(2);
             this.btn_vercatalogo.Name = "btn_vercatalogo";
             this.btn_vercatalogo.Size = new System.Drawing.Size(205, 66);
             this.btn_vercatalogo.TabIndex = 0;
@@ -47,7 +47,7 @@
             // btn_crearkit
             // 
             this.btn_crearkit.Location = new System.Drawing.Point(269, 255);
-            this.btn_crearkit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_crearkit.Margin = new System.Windows.Forms.Padding(2);
             this.btn_crearkit.Name = "btn_crearkit";
             this.btn_crearkit.Size = new System.Drawing.Size(205, 63);
             this.btn_crearkit.TabIndex = 1;
@@ -57,7 +57,7 @@
             // btncerrarsesion
             // 
             this.btncerrarsesion.Location = new System.Drawing.Point(672, 501);
-            this.btncerrarsesion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btncerrarsesion.Margin = new System.Windows.Forms.Padding(2);
             this.btncerrarsesion.Name = "btncerrarsesion";
             this.btncerrarsesion.Size = new System.Drawing.Size(81, 40);
             this.btncerrarsesion.TabIndex = 2;
@@ -72,9 +72,10 @@
             this.Controls.Add(this.btncerrarsesion);
             this.Controls.Add(this.btn_crearkit);
             this.Controls.Add(this.btn_vercatalogo);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormPrincipal";
             this.Text = "FormPrincipal";
+            this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.ResumeLayout(false);
 
         }
