@@ -12,5 +12,6 @@ namespace Final25_48782431Y_48848258F_29527260K.Clases
         public int Id { get; set; }
         public int ClienteId { get; set; }
         public DateTime FechaCreacion { get; set; }
+        public List<FacturaLinea> Lineas { get; set; }
     }
 }

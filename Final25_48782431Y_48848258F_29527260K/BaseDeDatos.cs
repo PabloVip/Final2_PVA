@@ -58,7 +58,6 @@ namespace Final25_48782431Y_48848258F_29527260K
             {
                 try
                 {
-                    string query = "SELECT * FROM Usuarios";
                     conexion.Open();
                     var command = new SqlCommand();
                     command.Connection = conexion;
@@ -118,6 +117,63 @@ namespace Final25_48782431Y_48848258F_29527260K
                 }
 
                 return false;
+
+            }
+        }
+
+        public static void GrabarFactura(FacturaCabecera factura)
+        {
+            var fechaCreacion = DateTime.Now;
+
+            using (SqlConnection conn = new SqlConnection(CadenaConexion))
+            {
+                try
+                {
+                    conn.Open();
+                    var query = @"INSERT INTO FacturaCabeceras(ClienteId, FechaCreacion) VALUES
+                            (@ClienteId, @FechaCreacion)";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@ClienteId", factura.ClienteId);
+                    cmd.Parameters.AddWithValue("@FechaCreacion", fechaCreacion);
+
+                    cmd.ExecuteNonQuery();
+
+                    //CONSULTO EL ID DE LA CABECERA DE FACTURA QUE ACABO DE GRABAR PARA PONERLO EN LAS LINEAS
+                    query = "SELECT Id FROM FacturaCabeceras WHERE FechaCreacion=@FechaCreacion";
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@FechaCreacion", fechaCreacion);
+                    var id = (int)cmd.ExecuteScalar();
+
+                    var query2 = @"INSERT INTO FacturaLineas(FacturaId, Linea, ProductoId, CodigoProducto,
+                        Descripcion, Cantidad, Precio, Total) 
+                        VALUES (@FacturaId, @Linea, @ProductoId, @CodigoProducto,
+                        @Descripcion, @Cantidad, @Precio, @Total)";
+
+                    int contadorLinea = 1;
+
+                    foreach (var linea in factura.Lineas)
+                    {
+                        var cmd2 = new SqlCommand(query2, conn);
+                        cmd2.Parameters.AddWithValue("@FacturaId", id);
+                        cmd2.Parameters.AddWithValue("@Linea", contadorLinea);
+                        cmd2.Parameters.AddWithValue("@ProductoId", linea.ProductoId);
+                        cmd2.Parameters.AddWithValue("@CodigoProducto", linea.CodigoProducto);
+                        cmd2.Parameters.AddWithValue("@Descripcion", linea.Descripcion);
+                        cmd2.Parameters.AddWithValue("@Cantidad", linea.Cantidad);
+                        cmd2.Parameters.AddWithValue("@Precio", linea.Precio);
+                        cmd2.Parameters.AddWithValue("@Total", linea.Total);
+
+                        cmd.ExecuteNonQuery();
+
+                        contadorLinea++;
+                    }
+
+                }
+                finally
+                {
+                    conn.Close();
+                }
 
             }
         }
