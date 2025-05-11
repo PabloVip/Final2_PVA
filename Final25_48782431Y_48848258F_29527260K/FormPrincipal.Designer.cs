@@ -28,35 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnvercatalogo = new System.Windows.Forms.Button();
-            this.btncrearkit = new System.Windows.Forms.Button();
+            this.btn_vercatalogo = new System.Windows.Forms.Button();
+            this.btn_crearkit = new System.Windows.Forms.Button();
+            this.btncerrarsesion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnvercatalogo
+            // btn_vercatalogo
             // 
-            this.btnvercatalogo.Location = new System.Drawing.Point(404, 186);
-            this.btnvercatalogo.Name = "btnvercatalogo";
-            this.btnvercatalogo.Size = new System.Drawing.Size(307, 102);
-            this.btnvercatalogo.TabIndex = 0;
-            this.btnvercatalogo.Text = "Consulta nuestro catalogo";
-            this.btnvercatalogo.UseVisualStyleBackColor = true;
+            this.btn_vercatalogo.Location = new System.Drawing.Point(404, 247);
+            this.btn_vercatalogo.Name = "btn_vercatalogo";
+            this.btn_vercatalogo.Size = new System.Drawing.Size(307, 102);
+            this.btn_vercatalogo.TabIndex = 0;
+            this.btn_vercatalogo.Text = "Consulta nuestro cátalogo";
+            this.btn_vercatalogo.UseVisualStyleBackColor = true;
             // 
-            // btncrearkit
+            // btn_crearkit
             // 
-            this.btncrearkit.Location = new System.Drawing.Point(404, 355);
-            this.btncrearkit.Name = "btncrearkit";
-            this.btncrearkit.Size = new System.Drawing.Size(307, 97);
-            this.btncrearkit.TabIndex = 1;
-            this.btncrearkit.Text = "Crea tu propio kit";
-            this.btncrearkit.UseVisualStyleBackColor = true;
+            this.btn_crearkit.Location = new System.Drawing.Point(404, 393);
+            this.btn_crearkit.Name = "btn_crearkit";
+            this.btn_crearkit.Size = new System.Drawing.Size(307, 97);
+            this.btn_crearkit.TabIndex = 1;
+            this.btn_crearkit.Text = "Crea tu propio kit";
+            this.btn_crearkit.UseVisualStyleBackColor = true;
+            // 
+            // btncerrarsesion
+            // 
+            this.btncerrarsesion.Location = new System.Drawing.Point(1008, 771);
+            this.btncerrarsesion.Name = "btncerrarsesion";
+            this.btncerrarsesion.Size = new System.Drawing.Size(121, 61);
+            this.btncerrarsesion.TabIndex = 2;
+            this.btncerrarsesion.Text = "Cerrar sesion";
+            this.btncerrarsesion.UseVisualStyleBackColor = true;
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1169, 883);
-            this.Controls.Add(this.btncrearkit);
-            this.Controls.Add(this.btnvercatalogo);
+            this.Controls.Add(this.btncerrarsesion);
+            this.Controls.Add(this.btn_crearkit);
+            this.Controls.Add(this.btn_vercatalogo);
             this.Name = "FormPrincipal";
             this.Text = "FormPrincipal";
             this.ResumeLayout(false);
@@ -65,7 +76,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnvercatalogo;
-        private System.Windows.Forms.Button btncrearkit;
+        private System.Windows.Forms.Button btn_vercatalogo;
+        private System.Windows.Forms.Button btn_crearkit;
+        private System.Windows.Forms.Button btncerrarsesion;
     }
 }
