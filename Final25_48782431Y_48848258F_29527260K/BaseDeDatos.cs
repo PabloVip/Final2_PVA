@@ -215,5 +215,45 @@ namespace Final25_48782431Y_48848258F_29527260K
 
             }
         }
+        public static List<ProductoKit> LeerProductosKits()
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                try
+                {
+                    var conexión = new SqlConnection(CadenaConexion);
+                    conexión.Open();
+                    var command = new SqlCommand();
+                    command.Connection = conexión;
+                    command.CommandText = @"SELECT p.Id, p.Codigo, p.Descripcion, p.Categoria
+                                           p.Marca, p.Precio, k.Cantidad
+                                           FROM ProductosKit k inner join Productos p on p.Id = k.ProductoId";
+                    var dt = command.ExecuteReader();
+
+                    var productosKit = new List<ProductoKit>();
+
+                    while (dt.Read())
+                    {
+                        var pt = new ProductoKit();
+                        pt.Id = dt.GetInt32(0);
+                        pt.Codigo = dt.GetString(1);
+                        pt.Descripcion = dt.GetString(2);
+                        pt.Categoria = dt.GetString(3);
+                        pt.Marca = dt.GetString(4);
+                        pt.Precio = dt.GetDecimal(5);
+                        pt.Cantidad = dt.GetDecimal(6);
+                        productosKit.Add(pt);
+                    }
+
+                    return productosKit;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
     }
+    
 }

@@ -25,5 +25,13 @@ namespace Final25_48782431Y_48848258F_29527260K
         {
             this.Close();
         }
+
+        private void FormularioKits_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'pAYAVISOLARDataSet.Productos' Puede moverla o quitarla según sea necesario.
+            this.productosTableAdapter.Fill(this.pAYAVISOLARDataSet.Productos);
+            
+
+        }
     }
 }
