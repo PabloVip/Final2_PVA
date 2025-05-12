@@ -2,12 +2,20 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Final25_48782431Y_48848258F_29527260K.Clases;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Final25_48782431Y_48848258F_29527260K
 {
     public class BaseDeDatos
     {
         private const string CadenaConexion = "server=(local)\\SQLEXPRESS;database=PAYAVISOLAR; Integrated Security=SSPI";
+
+        /// <summary>
+        /// Propiedad para guardar el usuario que ha hecho login en la aplicacion
+        /// </summary>
+        public static Usuario UsuarioActivo { get; set; }
+
+
 
         /// <summary>
         /// Metodo para leer todos los productos que no son kit
@@ -193,7 +201,10 @@ namespace Final25_48782431Y_48848258F_29527260K
 
                     int count = (int)command.ExecuteScalar();
                     if (count > 0)
+                    {
+                        UsuarioActivo = LeerUsuario(usuario, password);
                         return true;
+                    }
 
                 }
                 finally
@@ -205,6 +216,52 @@ namespace Final25_48782431Y_48848258F_29527260K
 
             }
         }
+
+
+        public static Usuario LeerUsuario(string usuario, string password)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "SELECT * FROM Usuarios WHERE Email = @usuario AND Password = @contrasena";
+                    var dt = command.ExecuteReader();
+
+                    dt.Read();
+                    var user = new Usuario();
+                    user.Id = dt.GetInt32(0);
+                    user.Empresa = dt.GetString(1);
+                    user.Nombre = dt.GetString(2);
+                    user.Direccion = dt.GetString(3);
+                    user.Poblacion = dt.GetString(4);
+                    user.CodigoPostal = dt.GetString(5);
+                    user.Provincia = dt.GetString(6);
+                    user.Pais = dt.GetString(7);
+                    user.Email = dt.GetString(8);
+                    user.FechaCreacion = dt.GetDateTime(9);
+                    user.Nif = dt.GetString(10);
+                    user.RollId = dt.GetString(111);
+
+                    return user;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para poner a null el usuario activo en la aplicacion para cuando se cierra la sesion
+        /// </summary>
+        public static void Logout()
+        {
+            UsuarioActivo = null;
+        }
+
 
         /// <summary>
         /// Metodo para guardar un nuevo usuario

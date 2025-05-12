@@ -29,6 +29,7 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btncerrarsesion_Click(object sender, EventArgs e)
         {
+            BaseDeDatos.Logout(); // Pongo a null la informacion del usuario activo.
             cerrandoSesion = true;
             this.Close();
             Form1 nuevoFormulario = new Form1();
