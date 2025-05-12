@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Final25_48782431Y_48848258F_29527260K.Clases;
-using System.Security.Policy;
-using System.Windows.Forms;
 
 namespace Final25_48782431Y_48848258F_29527260K
 {
@@ -18,13 +13,12 @@ namespace Final25_48782431Y_48848258F_29527260K
         public static List<Producto> LeerProductos()
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
             {
                 try
                 {
-                    var conexión = new SqlConnection(CadenaConexion);
-                    conexión.Open();
-                    var command = new SqlCommand();
-                    command.Connection = conexión;
+                    conexion.Open();
+                    command.Connection = conexion;
                     command.CommandText = "SELECT * FROM PRODUCTOS";
                     var dt = command.ExecuteReader();
 
@@ -56,13 +50,12 @@ namespace Final25_48782431Y_48848258F_29527260K
         public static List<Producto> LeerKits()
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
             {
                 try
                 {
-                    var conexión = new SqlConnection(CadenaConexion);
-                    conexión.Open();
-                    var command = new SqlCommand();
-                    command.Connection = conexión;
+                    conexion.Open();
+                    command.Connection = conexion;
                     command.CommandText = "SELECT * FROM PRODUCTOS WHERE EsKit=1";
                     var dt = command.ExecuteReader();
 
@@ -93,11 +86,11 @@ namespace Final25_48782431Y_48848258F_29527260K
         public static List<Usuario> LeerUsuarios()
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
             {
                 try
                 {
                     conexion.Open();
-                    var command = new SqlCommand();
                     command.Connection = conexion;
                     command.CommandText = "SELECT * FROM Usuarios";
                     var dt = command.ExecuteReader();
@@ -135,16 +128,18 @@ namespace Final25_48782431Y_48848258F_29527260K
         public static bool CompruebaUsuario(string usuario, string password)
         {
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
             {
                 try
                 {
                     conn.Open();
                     string query = "SELECT COUNT(*) FROM Usuarios WHERE Email = @usuario AND Password = @contrasena";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@usuario", usuario);
-                    cmd.Parameters.AddWithValue("@contrasena", password);
+                    command.CommandText = query;
+                    command.Connection = conn;
+                    command.Parameters.AddWithValue("@usuario", usuario);
+                    command.Parameters.AddWithValue("@contrasena", password);
 
-                    int count = (int)cmd.ExecuteScalar();
+                    int count = (int)command.ExecuteScalar();
                     if (count > 0)
                         return true;
 
@@ -164,6 +159,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             var fechaCreacion = DateTime.Now;
 
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
             {
                 try
                 {
@@ -171,17 +167,19 @@ namespace Final25_48782431Y_48848258F_29527260K
                     var query = @"INSERT INTO FacturaCabeceras(ClienteId, FechaCreacion) VALUES
                             (@ClienteId, @FechaCreacion)";
 
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@ClienteId", factura.ClienteId);
-                    cmd.Parameters.AddWithValue("@FechaCreacion", fechaCreacion);
+                    command.CommandText = query;
+                    command.Connection = conn;
+                    command.Parameters.AddWithValue("@ClienteId", factura.ClienteId);
+                    command.Parameters.AddWithValue("@FechaCreacion", fechaCreacion);
 
-                    cmd.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
 
                     //CONSULTO EL ID DE LA CABECERA DE FACTURA QUE ACABO DE GRABAR PARA PONERLO EN LAS LINEAS
                     query = "SELECT Id FROM FacturaCabeceras WHERE FechaCreacion=@FechaCreacion";
-                    cmd = new SqlCommand(query, conn);
+                    var cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@FechaCreacion", fechaCreacion);
                     var id = (int)cmd.ExecuteScalar();
+                    cmd.Dispose();
 
                     var query2 = @"INSERT INTO FacturaLineas(FacturaId, Linea, ProductoId, CodigoProducto,
                         Descripcion, Cantidad, Precio, Total) 
@@ -218,13 +216,12 @@ namespace Final25_48782431Y_48848258F_29527260K
         public static List<ProductoKit> LeerProductosKits()
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
             {
                 try
                 {
-                    var conexión = new SqlConnection(CadenaConexion);
-                    conexión.Open();
-                    var command = new SqlCommand();
-                    command.Connection = conexión;
+                    conexion.Open();
+                    command.Connection = conexion;
                     command.CommandText = @"SELECT p.Id, p.Codigo, p.Descripcion, p.Categoria,
                                            p.Marca, p.Precio, k.Cantidad
                                            FROM ProductosKit k inner join Productos p on p.Id = k.ProductoId";
@@ -253,17 +250,17 @@ namespace Final25_48782431Y_48848258F_29527260K
                 }
             }
         }
-        public static List<ProductoKit> LeerProductosKitsPorCodigo(string codigoKit)
+        public static List<ProductoKit> LeerProductosDeUnKitPorCodigo(string codigoKit)
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 conexion.Open();
                 var command = new SqlCommand(@"
-            SELECT p.Id, p.Codigo, p.Descripcion, p.Categoria, p.Marca, p.Precio, k.Cantidad
-            FROM ProductosKit k 
-            INNER JOIN Productos p ON p.Id = k.ProductoId
-            INNER JOIN Productos kit ON kit.Id = k.KitId
-            WHERE kit.Codigo = @codigoKit", conexion);
+                    SELECT p.Id, p.Codigo, p.Descripcion, p.Categoria, p.Marca, p.Precio, k.Cantidad
+                    FROM ProductosKit k 
+                    INNER JOIN Productos p ON p.Id = k.ProductoId
+                    INNER JOIN Productos kit ON kit.Id = k.KitId
+                    WHERE kit.Codigo = @codigoKit", conexion);
 
                 command.Parameters.AddWithValue("@codigoKit", codigoKit);
 
