@@ -225,7 +225,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                     conexión.Open();
                     var command = new SqlCommand();
                     command.Connection = conexión;
-                    command.CommandText = @"SELECT p.Id, p.Codigo, p.Descripcion, p.Categoria
+                    command.CommandText = @"SELECT p.Id, p.Codigo, p.Descripcion, p.Categoria,
                                            p.Marca, p.Precio, k.Cantidad
                                            FROM ProductosKit k inner join Productos p on p.Id = k.ProductoId";
                     var dt = command.ExecuteReader();
@@ -253,7 +253,42 @@ namespace Final25_48782431Y_48848258F_29527260K
                 }
             }
         }
+        public static List<ProductoKit> LeerProductosKitsPorCodigo(string codigoKit)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                var command = new SqlCommand(@"
+            SELECT p.Id, p.Codigo, p.Descripcion, p.Categoria, p.Marca, p.Precio, k.Cantidad
+            FROM ProductosKit k 
+            INNER JOIN Productos p ON p.Id = k.ProductoId
+            INNER JOIN Productos kit ON kit.Id = k.KitId
+            WHERE kit.Codigo = @codigoKit", conexion);
+
+                command.Parameters.AddWithValue("@codigoKit", codigoKit);
+
+                var reader = command.ExecuteReader();
+                var productosKit = new List<ProductoKit>();
+
+                while (reader.Read())
+                {
+                    productosKit.Add(new ProductoKit
+                    {
+                        Id = reader.GetInt32(0),
+                        Codigo = reader.GetString(1),
+                        Descripcion = reader.GetString(2),
+                        Categoria = reader.GetString(3),
+                        Marca = reader.GetString(4),
+                        Precio = reader.GetDecimal(5),
+                        Cantidad = reader.GetDecimal(6)
+                    });
+                }
+
+                return productosKit;
+            }
+        }
+
 
     }
-    
+
 }
