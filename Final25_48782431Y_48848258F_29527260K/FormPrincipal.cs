@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Final25_48782431Y_48848258F_29527260K.Clases;
+using System;
 using System.Windows.Forms;
 
 namespace Final25_48782431Y_48848258F_29527260K
@@ -7,10 +8,11 @@ namespace Final25_48782431Y_48848258F_29527260K
     {
         private bool cerrandoSesion = false;
 
-        public FormPrincipal()
+        public FormPrincipal(String usuario)
         {
             InitializeComponent();
             this.FormClosed += FormPrincipal_FormClosed;
+            label_usuario.Text = "Bienvenid@ " + usuario;
         }
 
         private void btn_vercatalogo_Click(object sender, EventArgs e)

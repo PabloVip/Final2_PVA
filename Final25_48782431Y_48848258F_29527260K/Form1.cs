@@ -30,7 +30,7 @@ namespace Final25_48782431Y_48848258F_29527260K
 
                 if (BaseDeDatos.CompruebaUsuario(usuario, contrasena))
                 {
-                    FormPrincipal principal = new FormPrincipal();
+                    FormPrincipal principal = new FormPrincipal(usuario);
                     principal.Show();
                     this.Hide();
                 }
