@@ -61,12 +61,13 @@
             this.Categoria,
             this.Marca,
             this.Precio});
-            this.dataGridproductos.Location = new System.Drawing.Point(45, 38);
+            this.dataGridproductos.Location = new System.Drawing.Point(30, 25);
+            this.dataGridproductos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridproductos.Name = "dataGridproductos";
             this.dataGridproductos.ReadOnly = true;
             this.dataGridproductos.RowHeadersWidth = 62;
             this.dataGridproductos.RowTemplate.Height = 28;
-            this.dataGridproductos.Size = new System.Drawing.Size(1212, 337);
+            this.dataGridproductos.Size = new System.Drawing.Size(808, 219);
             this.dataGridproductos.TabIndex = 0;
             this.dataGridproductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridproductos_CellClick);
             // 
@@ -131,9 +132,10 @@
             // label_productos
             // 
             this.label_productos.AutoSize = true;
-            this.label_productos.Location = new System.Drawing.Point(42, 15);
+            this.label_productos.Location = new System.Drawing.Point(28, 10);
+            this.label_productos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_productos.Name = "label_productos";
-            this.label_productos.Size = new System.Drawing.Size(81, 20);
+            this.label_productos.Size = new System.Drawing.Size(55, 13);
             this.label_productos.TabIndex = 1;
             this.label_productos.Text = "Productos";
             // 
@@ -141,20 +143,22 @@
             // 
             this.dataGridcarrito.AllowUserToDeleteRows = false;
             this.dataGridcarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridcarrito.Location = new System.Drawing.Point(45, 449);
+            this.dataGridcarrito.Location = new System.Drawing.Point(30, 292);
+            this.dataGridcarrito.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridcarrito.Name = "dataGridcarrito";
             this.dataGridcarrito.ReadOnly = true;
             this.dataGridcarrito.RowHeadersWidth = 62;
             this.dataGridcarrito.RowTemplate.Height = 28;
-            this.dataGridcarrito.Size = new System.Drawing.Size(1212, 314);
+            this.dataGridcarrito.Size = new System.Drawing.Size(808, 204);
             this.dataGridcarrito.TabIndex = 2;
             // 
             // label_carrito
             // 
             this.label_carrito.AutoSize = true;
-            this.label_carrito.Location = new System.Drawing.Point(42, 412);
+            this.label_carrito.Location = new System.Drawing.Point(28, 268);
+            this.label_carrito.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_carrito.Name = "label_carrito";
-            this.label_carrito.Size = new System.Drawing.Size(56, 20);
+            this.label_carrito.Size = new System.Drawing.Size(37, 13);
             this.label_carrito.TabIndex = 3;
             this.label_carrito.Text = "Carrito";
             // 
@@ -164,9 +168,10 @@
             // 
             // btnEliminarProducto
             // 
-            this.btnEliminarProducto.Location = new System.Drawing.Point(45, 769);
+            this.btnEliminarProducto.Location = new System.Drawing.Point(30, 500);
+            this.btnEliminarProducto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
-            this.btnEliminarProducto.Size = new System.Drawing.Size(120, 47);
+            this.btnEliminarProducto.Size = new System.Drawing.Size(80, 31);
             this.btnEliminarProducto.TabIndex = 4;
             this.btnEliminarProducto.Text = "Borrar";
             this.btnEliminarProducto.UseVisualStyleBackColor = true;
@@ -174,14 +179,15 @@
             // 
             // FormularioProductos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 853);
+            this.ClientSize = new System.Drawing.Size(892, 557);
             this.Controls.Add(this.btnEliminarProducto);
             this.Controls.Add(this.label_carrito);
             this.Controls.Add(this.dataGridcarrito);
             this.Controls.Add(this.label_productos);
             this.Controls.Add(this.dataGridproductos);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormularioProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormularioProductos";
