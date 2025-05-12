@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Final25_48782431Y_48848258F_29527260K.Clases;
 
 namespace Final25_48782431Y_48848258F_29527260K
 {
     public partial class FormularioKits : Form
     {
+        private List<Producto> _kits;
+
         public FormularioKits()
         {
             InitializeComponent();
 
-            //CARGO LOS KITS AL COMBOBOX
-            // el AddRange necesita un array en vez de una lista
-            cbCatalogo.Items.AddRange(BaseDeDatos.LeerKits().Select(x => x.Codigo).ToArray());
+            //CARGO LOS KITS AL COMBOBOX. Guardo la lista de kits al inicializar la ventana en _kits
+            _kits = BaseDeDatos.LeerKits();
+
+            // Al AddRange necesita un array en vez de una lista
+            var codigos = _kits.Select(x => x.Codigo).ToArray();
+            cbCatalogo.Items.AddRange(codigos);
 
             cbCatalogo.SelectedIndexChanged += cbCatalogo_SelectedIndexChanged;
 
@@ -40,10 +41,18 @@ namespace Final25_48782431Y_48848258F_29527260K
         {
             if (cbCatalogo.SelectedValue is string codigoKit)
             {
-                var productosDelKit = BaseDeDatos.LeerProductosKitsPorCodigo(codigoKit);
+                // Consulto el Id del producto kit
+                var idDelKit = _kits.First(x => x.Codigo == codigoKit).Id;
+
+                // Consulto los productos incluidos en el kit
+                var productosDelKit = BaseDeDatos.LeerProductosDeUnKit(idDelKit);
 
                 listView1.Items.Clear();
 
+                // Si el kit no tiene productos, salimos
+                if (!productosDelKit.Any()) 
+                    return;
+                
                 foreach (var pk in productosDelKit)
                 {
                     var item = new ListViewItem(pk.Id.ToString());
