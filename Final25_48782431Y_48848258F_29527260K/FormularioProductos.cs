@@ -23,25 +23,27 @@ namespace Final25_48782431Y_48848258F_29527260K
             dataGridcarrito.Columns.Add("Categoria", "Categoría");
             dataGridcarrito.Columns.Add("Marca", "Marca");
             dataGridcarrito.Columns.Add("Precio", "Precio");
+            dataGridcarrito.Columns.Add("Cantidad", "Cantidad");
 
-            // Asociar el evento Load correctamente
+            // Asociar el evento Load
             this.Load += FormularioProductos_Load;
-
-            // Asociar el evento CellClick
-            dataGridproductos.CellClick += dataGridproductos_CellClick;
         }
 
         private void FormularioProductos_Load(object sender, EventArgs e)
         {
-            // Limpiar filas antes de cargar (por si el formulario se reabre)
+            // Limpiar filas antes de cargar
             dataGridproductos.Rows.Clear();
 
-            // Cargar productos solo una vez
+            // Cargar productos una sola vez
             foreach (var p in BaseDeDatos.LeerProductos())
             {
                 if (!p.EsKit)
                     dataGridproductos.Rows.Add(p.Id, p.Codigo, p.Descripcion, p.Categoria, p.Marca, p.Precio);
             }
+
+            // Suscribir el evento CellClick solo una vez
+            dataGridproductos.CellClick -= dataGridproductos_CellClick;
+            dataGridproductos.CellClick += dataGridproductos_CellClick;
         }
 
         private void dataGridproductos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -54,32 +56,56 @@ namespace Final25_48782431Y_48848258F_29527260K
                 {
                     string idProducto = fila.Cells[0].Value.ToString();
 
-                    // Verificar si ya está en el carrito
-                    bool yaExiste = false;
-                    foreach (DataGridViewRow filaCarrito in dataGridcarrito.Rows)
+                    // Mostrar el formulario personalizado de cantidad
+                    using (var frmCantidad = new FormularioCantidad())
                     {
-                        if (filaCarrito.Cells[0].Value != null && filaCarrito.Cells[0].Value.ToString() == idProducto)
+                        if (frmCantidad.ShowDialog() == DialogResult.OK)
                         {
-                            yaExiste = true;
-                            break;
+                            int cantidad = frmCantidad.Cantidad;
+
+                            object codigo = fila.Cells[1].Value;
+                            object descripcion = fila.Cells[2].Value;
+                            object categoria = fila.Cells[3].Value;
+                            object marca = fila.Cells[4].Value;
+                            object precio = fila.Cells[5].Value;
+
+                            // Comprobar si el producto ya existe en el carrito
+                            bool encontrado = false;
+                            foreach (DataGridViewRow filaCarrito in dataGridcarrito.Rows)
+                            {
+                                if (filaCarrito.Cells[0].Value != null && filaCarrito.Cells[0].Value.ToString() == idProducto)
+                                {
+                                    // Sumar la cantidad
+                                    int cantidadExistente = Convert.ToInt32(filaCarrito.Cells[6].Value);
+                                    filaCarrito.Cells[6].Value = cantidadExistente + cantidad;
+                                    encontrado = true;
+                                    break;
+                                }
+                            }
+
+                            if (!encontrado)
+                            {
+                                // Si no existe, agregar como nueva fila
+                                dataGridcarrito.Rows.Add(idProducto, codigo, descripcion, categoria, marca, precio, cantidad);
+                            }
                         }
                     }
-
-                    if (!yaExiste)
-                    {
-                        object codigo = fila.Cells[1].Value;
-                        object descripcion = fila.Cells[2].Value;
-                        object categoria = fila.Cells[3].Value;
-                        object marca = fila.Cells[4].Value;
-                        object precio = fila.Cells[5].Value;
-
-                        dataGridcarrito.Rows.Add(idProducto, codigo, descripcion, categoria, marca, precio);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Producto añadido al carrito.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
                 }
+            }
+        }
+
+        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        {
+            if (dataGridcarrito.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow fila in dataGridcarrito.SelectedRows)
+                {
+                    dataGridcarrito.Rows.Remove(fila);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una fila del carrito para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

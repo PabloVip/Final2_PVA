@@ -42,6 +42,7 @@
             this.dataGridcarrito = new System.Windows.Forms.DataGridView();
             this.label_carrito = new System.Windows.Forms.Label();
             this.productosTableAdapter = new Final25_48782431Y_48848258F_29527260K.PAYAVISOLARDataSetTableAdapters.ProductosTableAdapter();
+            this.btnEliminarProducto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridproductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pAYAVISOLARDataSet)).BeginInit();
@@ -161,11 +162,22 @@
             // 
             this.productosTableAdapter.ClearBeforeFill = true;
             // 
+            // btnEliminarProducto
+            // 
+            this.btnEliminarProducto.Location = new System.Drawing.Point(45, 769);
+            this.btnEliminarProducto.Name = "btnEliminarProducto";
+            this.btnEliminarProducto.Size = new System.Drawing.Size(120, 47);
+            this.btnEliminarProducto.TabIndex = 4;
+            this.btnEliminarProducto.Text = "Borrar";
+            this.btnEliminarProducto.UseVisualStyleBackColor = true;
+            this.btnEliminarProducto.Click += new System.EventHandler(this.btnEliminarProducto_Click);
+            // 
             // FormularioProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 794);
+            this.ClientSize = new System.Drawing.Size(1350, 853);
+            this.Controls.Add(this.btnEliminarProducto);
             this.Controls.Add(this.label_carrito);
             this.Controls.Add(this.dataGridcarrito);
             this.Controls.Add(this.label_productos);
@@ -198,5 +210,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Marca;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.Button btnEliminarProducto;
     }
 }
