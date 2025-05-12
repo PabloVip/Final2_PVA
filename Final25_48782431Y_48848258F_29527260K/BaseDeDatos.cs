@@ -9,7 +9,10 @@ namespace Final25_48782431Y_48848258F_29527260K
     {
         private const string CadenaConexion = "server=(local)\\SQLEXPRESS;database=PAYAVISOLAR; Integrated Security=SSPI";
 
-
+        /// <summary>
+        /// Metodo para leer todos los productos que no son kit
+        /// </summary>
+        /// <returns></returns>
         public static List<Producto> LeerProductos()
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
@@ -19,7 +22,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                 {
                     conexion.Open();
                     command.Connection = conexion;
-                    command.CommandText = "SELECT * FROM PRODUCTOS";
+                    command.CommandText = "SELECT * FROM PRODUCTOS WHERE EsKit=0";
                     var dt = command.ExecuteReader();
 
                     var productos = new List<Producto>();
@@ -47,6 +50,10 @@ namespace Final25_48782431Y_48848258F_29527260K
         }
 
 
+        /// <summary>
+        /// Metodo para leer todos los productos que son kit
+        /// </summary>
+        /// <returns></returns>
         public static List<Producto> LeerKits()
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
@@ -83,6 +90,10 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
         }
 
+        /// <summary>
+        /// Metodo para leer todos los usuarios
+        /// </summary>
+        /// <returns></returns>
         public static List<Usuario> LeerUsuarios()
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
@@ -125,6 +136,47 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
         }
 
+        /// <summary>
+        /// Metodo para leer los roles
+        /// </summary>
+        /// <returns></returns>
+        public static List<Rol> LeerRoles()
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "SELECT * FROM ROLES";
+                    var dt = command.ExecuteReader();
+
+                    var roles = new List<Rol>();
+
+                    while (dt.Read())
+                    {
+                        var pt = new Rol();
+                        pt.Id = dt.GetString(0);
+                        pt.Descripcion = dt.GetString(1);
+                        roles.Add(pt);
+                    }
+
+                    return roles;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para el login de la aplicacion y ver si un usuario existe y su contraseña es correcta
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static bool CompruebaUsuario(string usuario, string password)
         {
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
@@ -154,6 +206,11 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
         }
 
+
+        /// <summary>
+        /// Metodo para grabar una factura
+        /// </summary>
+        /// <param name="factura">Cabecera de factura con sus lineas incluidas</param>
         public static void GrabarFactura(FacturaCabecera factura)
         {
             var fechaCreacion = DateTime.Now;
@@ -200,8 +257,8 @@ namespace Final25_48782431Y_48848258F_29527260K
                         cmd2.Parameters.AddWithValue("@Precio", linea.Precio);
                         cmd2.Parameters.AddWithValue("@Total", linea.Total);
 
-                        cmd.ExecuteNonQuery();
-
+                        cmd2.ExecuteNonQuery();
+                        cmd2.Dispose();
                         contadorLinea++;
                     }
 
@@ -213,7 +270,13 @@ namespace Final25_48782431Y_48848258F_29527260K
 
             }
         }
-        public static List<ProductoKit> LeerProductosKits()
+
+        /// <summary>
+        /// Metodo para consultar los productos que pertenecen a un kit y sus cantidades
+        /// </summary>
+        /// <param name="kitId">el Id del kit, que es el Id del producto que representa al kit</param>
+        /// <returns></returns>
+        public static List<ProductoKit> LeerProductosDeUnKit(int kitId)
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             using (SqlCommand command = new SqlCommand())
@@ -224,7 +287,9 @@ namespace Final25_48782431Y_48848258F_29527260K
                     command.Connection = conexion;
                     command.CommandText = @"SELECT p.Id, p.Codigo, p.Descripcion, p.Categoria,
                                            p.Marca, p.Precio, k.Cantidad
-                                           FROM ProductosKit k inner join Productos p on p.Id = k.ProductoId";
+                                           FROM ProductoKits k 
+                                           INNER JOIN Productos p on p.Id = k.ProductoId
+                                           WHERE k.Id = @kitId";
                     var dt = command.ExecuteReader();
 
                     var productosKit = new List<ProductoKit>();
@@ -250,42 +315,185 @@ namespace Final25_48782431Y_48848258F_29527260K
                 }
             }
         }
-        public static List<ProductoKit> LeerProductosDeUnKitPorCodigo(string codigoKit)
+      
+
+        /// <summary>
+        /// Metodo para guardar un nuevo producto que es kit
+        /// </summary>
+        /// <param name="kit">Producto que es kit</param>
+        /// <param name="productosDelKit">Lista de productos que incluye el kit</param>
+        public void GuardarNuevoKit(Producto kit, List<ProductoKit> productosDelKit)
         {
-            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlConnection conn = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
             {
-                conexion.Open();
-                var command = new SqlCommand(@"
-                    SELECT p.Id, p.Codigo, p.Descripcion, p.Categoria, p.Marca, p.Precio, k.Cantidad
-                    FROM ProductosKit k 
-                    INNER JOIN Productos p ON p.Id = k.ProductoId
-                    INNER JOIN Productos kit ON kit.Id = k.KitId
-                    WHERE kit.Codigo = @codigoKit", conexion);
-
-                command.Parameters.AddWithValue("@codigoKit", codigoKit);
-
-                var reader = command.ExecuteReader();
-                var productosKit = new List<ProductoKit>();
-
-                while (reader.Read())
+                try
                 {
-                    productosKit.Add(new ProductoKit
-                    {
-                        Id = reader.GetInt32(0),
-                        Codigo = reader.GetString(1),
-                        Descripcion = reader.GetString(2),
-                        Categoria = reader.GetString(3),
-                        Marca = reader.GetString(4),
-                        Precio = reader.GetDecimal(5),
-                        Cantidad = reader.GetDecimal(6)
-                    });
-                }
+                    conn.Open();
+                    var query = @"INSERT INTO Producto(Codigo, Descripcion, Categoria, Marca, Precio, EsKit) VALUES
+                            (@Codigo, @Descripcion, @Categoria, @Marca, @Precio, @EsKit)";
 
-                return productosKit;
+                    command.CommandText = query;
+                    command.Connection = conn;
+                    command.Parameters.AddWithValue("@Codigo", kit.Codigo);
+                    command.Parameters.AddWithValue("@Descripcion", kit.Descripcion);
+                    command.Parameters.AddWithValue("@Categoria", kit.Categoria);
+                    command.Parameters.AddWithValue("@Marca", kit.Marca);
+                    command.Parameters.AddWithValue("@Precio", kit.Precio);
+                    command.Parameters.AddWithValue("@EsKit", 1);
+                    
+                    command.ExecuteNonQuery();
+
+                    // Leemos el ID del ultimo producto creado que es un kit
+                    query = "SELECT TOP 1 Id FROM Productos WHERE EsKit=1 ORDER BY Id DESC";
+                    var cmd = new SqlCommand(query, conn);
+                    var idKit = (int)cmd.ExecuteScalar();
+                    cmd.Dispose();
+
+                    // Insertamos las lineas de productos del kit
+                    query = @"INSERT INTO ProductoKits(Id, ProductoId, Cantidad) VALUES
+                            (@Id, @ProductoId, @Cantidad)";
+                    foreach (var producto in productosDelKit)
+                    {
+                        var cmd2 = new SqlCommand(query, conn);
+                        cmd2.Parameters.AddWithValue("@Id", idKit);
+                        cmd2.Parameters.AddWithValue("@ProductoId", producto.Id);
+                        cmd2.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
+
+                        cmd.ExecuteNonQuery();
+                        cmd2.Dispose();
+                    }
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
         }
 
 
-    }
+        /// <summary>
+        /// Metodo para leer las marcas
+        /// </summary>
+        /// <returns></returns>
+        public static List<Marca> LeerMarcas()
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "SELECT * FROM MARCAS";
+                    var dt = command.ExecuteReader();
 
+                    var marcas = new List<Marca>();
+
+                    while (dt.Read())
+                    {
+                        var pt = new Marca();
+                        pt.Id = dt.GetString(0);
+                        pt.Descripcion = dt.GetString(1);
+                        marcas.Add(pt);
+                    }
+
+                    return marcas;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para guardar una nueva marca
+        /// </summary>
+        /// <param name="marca"></param>
+        public static void GuardarMarca(Marca marca)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "INSERT INTO MARCAS(Id, Descripcion) VALUES (@Id, @Descripcion)";
+                    command.Parameters.AddWithValue("@Id", marca.Id);
+                    command.Parameters.AddWithValue("@Descripcion", marca.Descripcion);
+                    command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        ///  Metodo para leer las categorias
+        /// </summary>
+        /// <returns></returns>
+        public static List<Categoria> LeerCategorias()
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "SELECT * FROM CATEGORIAS";
+                    var dt = command.ExecuteReader();
+
+                    var categorias = new List<Categoria>();
+
+                    while (dt.Read())
+                    {
+                        var pt = new Categoria();
+                        pt.Id = dt.GetString(0);
+                        pt.Descripcion = dt.GetString(1);
+                        categorias.Add(pt);
+                    }
+
+                    return categorias;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para guardar una nueva categoria
+        /// </summary>
+        /// <param name="categoria"></param>
+        public static void GuardarCategoria(Categoria categoria)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "INSERT INTO CATEGORIAS(Id, Descripcion) VALUES (@Id, @Descripcion)";
+                    command.Parameters.AddWithValue("@Id", categoria.Id);
+                    command.Parameters.AddWithValue("@Descripcion", categoria.Descripcion);
+                    command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+
+
+
+    }
 }
