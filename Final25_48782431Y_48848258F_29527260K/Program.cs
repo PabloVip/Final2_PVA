@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Final25_48782431Y_48848258F_29527260K.Clases;
 
 namespace Final25_48782431Y_48848258F_29527260K
 {

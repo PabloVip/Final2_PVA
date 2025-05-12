@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Final25_48782431Y_48848258F_29527260K.Clases;
-using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Final25_48782431Y_48848258F_29527260K
 {
     public class BaseDeDatos
     {
         private const string CadenaConexion = "server=(local)\\SQLEXPRESS;database=PAYAVISOLAR; Integrated Security=SSPI";
+        // private const string CadenaConexion = "server=localhost;database=PAYAVISOLAR; Integrated Security=SSPI";
 
         /// <summary>
         /// Propiedad para guardar el usuario que ha hecho login en la aplicacion
