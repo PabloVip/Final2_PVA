@@ -27,6 +27,12 @@ namespace Final25_48782431Y_48848258F_29527260K
 
             try
             {
+                if (string.IsNullOrWhiteSpace(usuario)
+                    || string.IsNullOrWhiteSpace(contrasena))
+                {
+                    MessageBox.Show("Los campos usuario y contraseña deben tener algún valor");
+                    return;
+                }
 
                 if (BaseDeDatos.CompruebaUsuario(usuario, contrasena))
                 {
@@ -46,6 +52,16 @@ namespace Final25_48782431Y_48848258F_29527260K
        
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
