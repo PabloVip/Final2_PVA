@@ -55,31 +55,28 @@
             this.labelCatalogo.AutoSize = true;
             this.labelCatalogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCatalogo.ForeColor = System.Drawing.Color.Coral;
-            this.labelCatalogo.Location = new System.Drawing.Point(176, 71);
-            this.labelCatalogo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCatalogo.Location = new System.Drawing.Point(12, 9);
             this.labelCatalogo.Name = "labelCatalogo";
-            this.labelCatalogo.Size = new System.Drawing.Size(540, 37);
+            this.labelCatalogo.Size = new System.Drawing.Size(260, 29);
             this.labelCatalogo.TabIndex = 1;
-            this.labelCatalogo.Text = "CATÁLOGO DE NUESTROS KITS";
+            this.labelCatalogo.Text = "CATÁLOGO DE KITS";
             // 
             // cbCatalogo
             // 
             this.cbCatalogo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCatalogo.FormattingEnabled = true;
-            this.cbCatalogo.Location = new System.Drawing.Point(230, 148);
-            this.cbCatalogo.Margin = new System.Windows.Forms.Padding(4);
+            this.cbCatalogo.Location = new System.Drawing.Point(11, 51);
             this.cbCatalogo.Name = "cbCatalogo";
-            this.cbCatalogo.Size = new System.Drawing.Size(408, 33);
+            this.cbCatalogo.Size = new System.Drawing.Size(307, 28);
             this.cbCatalogo.TabIndex = 2;
             this.cbCatalogo.SelectedIndexChanged += new System.EventHandler(this.cbCatalogo_SelectedIndexChanged);
             // 
             // btnVolver
             // 
             this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(50, 833);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
+            this.btnVolver.Location = new System.Drawing.Point(574, 684);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(136, 42);
+            this.btnVolver.Size = new System.Drawing.Size(102, 34);
             this.btnVolver.TabIndex = 6;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
@@ -119,9 +116,10 @@
             this.Precio,
             this.Cantidad});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(108, 295);
+            this.listView1.Location = new System.Drawing.Point(11, 98);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(688, 353);
+            this.listView1.Size = new System.Drawing.Size(665, 570);
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -144,7 +142,6 @@
             // 
             // Marca
             // 
-            this.Marca.DisplayIndex = 6;
             this.Marca.Text = "Marca";
             // 
             // Precio
@@ -159,18 +156,17 @@
             // 
             // FormularioKits
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(916, 913);
+            this.ClientSize = new System.Drawing.Size(687, 730);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.cbCatalogo);
             this.Controls.Add(this.labelCatalogo);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormularioKits";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormularioKits";
+            this.Text = "Kits";
             ((System.ComponentModel.ISupportInitialize)(this.pAYAVISOLARDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productoKitsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).EndInit();
