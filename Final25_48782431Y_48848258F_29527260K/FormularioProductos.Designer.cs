@@ -30,18 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridproductos = new System.Windows.Forms.DataGridView();
-            this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pAYAVISOLARDataSet = new Final25_48782431Y_48848258F_29527260K.PAYAVISOLARDataSet();
-            this.label_productos = new System.Windows.Forms.Label();
-            this.dataGridcarrito = new System.Windows.Forms.DataGridView();
-            this.label_carrito = new System.Windows.Forms.Label();
-            this.productosTableAdapter = new Final25_48782431Y_48848258F_29527260K.PAYAVISOLARDataSetTableAdapters.ProductosTableAdapter();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Marca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pAYAVISOLARDataSet = new Final25_48782431Y_48848258F_29527260K.PAYAVISOLARDataSet();
+            this.label_productos = new System.Windows.Forms.Label();
+            this.dataGridcarrito = new System.Windows.Forms.DataGridView();
+            this.label_carrito = new System.Windows.Forms.Label();
+            this.productosTableAdapter = new Final25_48782431Y_48848258F_29527260K.PAYAVISOLARDataSetTableAdapters.ProductosTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridproductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pAYAVISOLARDataSet)).BeginInit();
@@ -60,62 +60,14 @@
             this.Categoria,
             this.Marca,
             this.Precio});
-            this.dataGridproductos.Location = new System.Drawing.Point(60, 49);
-            this.dataGridproductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridproductos.Location = new System.Drawing.Point(30, 25);
+            this.dataGridproductos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridproductos.Name = "dataGridproductos";
             this.dataGridproductos.ReadOnly = true;
             this.dataGridproductos.RowHeadersWidth = 62;
             this.dataGridproductos.RowTemplate.Height = 28;
-            this.dataGridproductos.Size = new System.Drawing.Size(1616, 421);
+            this.dataGridproductos.Size = new System.Drawing.Size(808, 219);
             this.dataGridproductos.TabIndex = 0;
-            // 
-            // productosBindingSource
-            // 
-            this.productosBindingSource.DataMember = "Productos";
-            this.productosBindingSource.DataSource = this.pAYAVISOLARDataSet;
-            // 
-            // pAYAVISOLARDataSet
-            // 
-            this.pAYAVISOLARDataSet.DataSetName = "PAYAVISOLARDataSet";
-            this.pAYAVISOLARDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // label_productos
-            // 
-            this.label_productos.AutoSize = true;
-            this.label_productos.Location = new System.Drawing.Point(55, 20);
-            this.label_productos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_productos.Name = "label_productos";
-            this.label_productos.Size = new System.Drawing.Size(109, 25);
-            this.label_productos.TabIndex = 1;
-            this.label_productos.Text = "Productos";
-            // 
-            // dataGridcarrito
-            // 
-            this.dataGridcarrito.AllowUserToAddRows = false;
-            this.dataGridcarrito.AllowUserToDeleteRows = false;
-            this.dataGridcarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridcarrito.Location = new System.Drawing.Point(60, 562);
-            this.dataGridcarrito.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dataGridcarrito.Name = "dataGridcarrito";
-            this.dataGridcarrito.ReadOnly = true;
-            this.dataGridcarrito.RowHeadersWidth = 62;
-            this.dataGridcarrito.RowTemplate.Height = 28;
-            this.dataGridcarrito.Size = new System.Drawing.Size(1616, 392);
-            this.dataGridcarrito.TabIndex = 2;
-            // 
-            // label_carrito
-            // 
-            this.label_carrito.AutoSize = true;
-            this.label_carrito.Location = new System.Drawing.Point(55, 516);
-            this.label_carrito.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_carrito.Name = "label_carrito";
-            this.label_carrito.Size = new System.Drawing.Size(76, 25);
-            this.label_carrito.TabIndex = 3;
-            this.label_carrito.Text = "Carrito";
-            // 
-            // productosTableAdapter
-            // 
-            this.productosTableAdapter.ClearBeforeFill = true;
             // 
             // Id
             // 
@@ -165,17 +117,66 @@
             this.Precio.ReadOnly = true;
             this.Precio.Width = 200;
             // 
+            // productosBindingSource
+            // 
+            this.productosBindingSource.DataMember = "Productos";
+            this.productosBindingSource.DataSource = this.pAYAVISOLARDataSet;
+            // 
+            // pAYAVISOLARDataSet
+            // 
+            this.pAYAVISOLARDataSet.DataSetName = "PAYAVISOLARDataSet";
+            this.pAYAVISOLARDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label_productos
+            // 
+            this.label_productos.AutoSize = true;
+            this.label_productos.Location = new System.Drawing.Point(28, 10);
+            this.label_productos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_productos.Name = "label_productos";
+            this.label_productos.Size = new System.Drawing.Size(62, 15);
+            this.label_productos.TabIndex = 1;
+            this.label_productos.Text = "Productos";
+            // 
+            // dataGridcarrito
+            // 
+            this.dataGridcarrito.AllowUserToAddRows = false;
+            this.dataGridcarrito.AllowUserToDeleteRows = false;
+            this.dataGridcarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridcarrito.Location = new System.Drawing.Point(30, 292);
+            this.dataGridcarrito.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridcarrito.Name = "dataGridcarrito";
+            this.dataGridcarrito.ReadOnly = true;
+            this.dataGridcarrito.RowHeadersWidth = 62;
+            this.dataGridcarrito.RowTemplate.Height = 28;
+            this.dataGridcarrito.Size = new System.Drawing.Size(808, 204);
+            this.dataGridcarrito.TabIndex = 2;
+            // 
+            // label_carrito
+            // 
+            this.label_carrito.AutoSize = true;
+            this.label_carrito.Location = new System.Drawing.Point(28, 268);
+            this.label_carrito.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_carrito.Name = "label_carrito";
+            this.label_carrito.Size = new System.Drawing.Size(43, 15);
+            this.label_carrito.TabIndex = 3;
+            this.label_carrito.Text = "Carrito";
+            // 
+            // productosTableAdapter
+            // 
+            this.productosTableAdapter.ClearBeforeFill = true;
+            // 
             // FormularioProductos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1799, 993);
+            this.ClientSize = new System.Drawing.Size(900, 516);
             this.Controls.Add(this.label_carrito);
             this.Controls.Add(this.dataGridcarrito);
             this.Controls.Add(this.label_productos);
             this.Controls.Add(this.dataGridproductos);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormularioProductos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormularioProductos";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridproductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).EndInit();
