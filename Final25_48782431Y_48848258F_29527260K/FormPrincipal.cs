@@ -15,6 +15,7 @@ namespace Final25_48782431Y_48848258F_29527260K
         public FormPrincipal()
         {
             InitializeComponent();
+            this.FormClosed += FormPrincipal_FormClosed;
         }
 
         private void btn_vercatalogo_Click(object sender, EventArgs e)
@@ -34,6 +35,16 @@ namespace Final25_48782431Y_48848258F_29527260K
             this.Close();
             Form1 nuevoFormulario = new Form1();
             nuevoFormulario.Show();
+        }
+
+        private void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
