@@ -23,11 +23,6 @@ namespace Final25_48782431Y_48848258F_29527260K
             nuevoFormulario.Show();
         }
 
-        private void FormPrincipal_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_crearkit_Click(object sender, EventArgs e)
         {
             FormularioProductos nuevoFormulario = new FormularioProductos();

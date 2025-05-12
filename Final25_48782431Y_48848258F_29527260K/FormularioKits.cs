@@ -16,6 +16,7 @@ namespace Final25_48782431Y_48848258F_29527260K
         {
             InitializeComponent();
 
+            //CARGO LOS KITS AL COMBOBOX
             // el AddRange necesita un array en vez de una lista
             cbCatalogo.Items.AddRange(BaseDeDatos.LeerKits().Select(x => x.Codigo).ToArray());
         }

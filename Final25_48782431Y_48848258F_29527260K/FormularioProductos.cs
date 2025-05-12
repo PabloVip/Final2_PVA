@@ -15,12 +15,13 @@ namespace Final25_48782431Y_48848258F_29527260K
         public FormularioProductos()
         {
             InitializeComponent();
-        }
 
-        private void FormularioProductos_Load(object sender, EventArgs e)
-        {
-            // TODO: esta línea de código carga datos en la tabla 'pAYAVISOLARDataSet.Productos' Puede moverla o quitarla según sea necesario.
-            this.productosTableAdapter.Fill(this.pAYAVISOLARDataSet.Productos);
+            //CARGO LOS PRODUCTOS A DATAGRIDPRODUCTOS
+            foreach (var p in BaseDeDatos.LeerProductos())
+            {
+                if (!p.EsKit)
+                    dataGridproductos.Rows.Add(p.Id, p.Codigo, p.Descripcion, p.Categoria, p.Marca, p.Precio);
+            }
 
         }
     }
