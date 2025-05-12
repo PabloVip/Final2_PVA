@@ -28,5 +28,12 @@ namespace Final25_48782431Y_48848258F_29527260K
             FormularioProductos nuevoFormulario = new FormularioProductos();
             nuevoFormulario.Show();
         }
+
+        private void btncerrarsesion_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 nuevoFormulario = new Form1();
+            nuevoFormulario.Show();
+        }
     }
 }
