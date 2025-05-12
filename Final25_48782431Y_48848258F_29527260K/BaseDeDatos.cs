@@ -206,6 +206,44 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
         }
 
+        /// <summary>
+        /// Metodo para guardar un nuevo usuario
+        /// </summary>
+        /// <param name="usuario"></param>
+        public static void GuardarUsuario(Usuario usuario)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = @"INSERT INTO USUARIO (Empresa, Nombre, Direccion, Poblacion, CodigoPostal,
+                        Provincia, Pais, Email, FechaCreacion, Nif, RolId, Password) 
+                        VALUES (@Empresa, @Nombre, @Direccion, @Poblacion, @CodigoPostal,
+                        @Provincia, @Pais, @Email, @FechaCreacion, @Nif, @RolId, @Password)";
+                    command.Parameters.AddWithValue("@Empresa", usuario.Empresa);
+                    command.Parameters.AddWithValue("@Nombre", usuario.Nombre);
+                    command.Parameters.AddWithValue("@Direccion", usuario.Direccion);
+                    command.Parameters.AddWithValue("@Poblacion", usuario.Poblacion);
+                    command.Parameters.AddWithValue("@CodigoPostal", usuario.CodigoPostal);
+                    command.Parameters.AddWithValue("@Provincia", usuario.Provincia);
+                    command.Parameters.AddWithValue("@Pais", usuario.Pais);
+                    command.Parameters.AddWithValue("@Email", usuario.Email);
+                    command.Parameters.AddWithValue("@FechaCreacion", DateTime.Now);
+                    command.Parameters.AddWithValue("@Nif", usuario.Nif);
+                    command.Parameters.AddWithValue("@RolId", usuario.RollId);
+                    command.Parameters.AddWithValue("@Password", usuario.Password);
+                    command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
 
         /// <summary>
         /// Metodo para grabar una factura
