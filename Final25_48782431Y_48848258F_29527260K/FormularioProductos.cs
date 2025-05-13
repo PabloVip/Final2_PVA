@@ -115,23 +115,27 @@ namespace Final25_48782431Y_48848258F_29527260K
             this.Close();
         }
 
-        
-             
+
+
         private void btncrearfactura_Click(object sender, EventArgs e)
         {
-
             if (dataGridcarrito.Rows.Count <= 1) // solo la fila nueva vacía
             {
                 MessageBox.Show("El carrito está vacío. Agregue productos antes de crear la factura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // Obtener las facturas existentes antes de grabar
+            var facturasAntes = BaseDeDatos.LeerFacturas().Select(f => f.Id).ToList();
 
-            // 1. Crear la cabecera de la factura
+            var fechaCreacion = DateTime.Now;
+            fechaCreacion = new DateTime(fechaCreacion.Year, fechaCreacion.Month, fechaCreacion.Day,
+                                         fechaCreacion.Hour, fechaCreacion.Minute, fechaCreacion.Second);
+
             var factura = new FacturaCabecera
             {
-                ClienteId = 1, // Aquí puedes poner el ID de cliente si lo tienes o pedirlo al usuario
-                FechaCreacion = DateTime.Now,
+                ClienteId = 1,
+                FechaCreacion = fechaCreacion,
                 Lineas = new List<FacturaLinea>()
             };
 
@@ -156,15 +160,36 @@ namespace Final25_48782431Y_48848258F_29527260K
                 }
             }
 
-            // 2. Grabar la factura en la base de datos
-            BaseDeDatos.GrabarFactura(factura);
+            try
+            {
+                BaseDeDatos.GrabarFactura(factura);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al grabar la factura: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            MessageBox.Show("Factura guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Volver a leer las facturas después de grabar para detectar la nueva
+            var facturasDespues = BaseDeDatos.LeerFacturas();
+            var nuevaFactura = facturasDespues.FirstOrDefault(f => !facturasAntes.Contains(f.Id));
 
-            // Opcional: limpiar el carrito
+            if (nuevaFactura != null)
+            {
+                MessageBox.Show($"Factura guardada correctamente con Id: {nuevaFactura.Id}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Factura guardada, pero no se pudo identificar su Id.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            // Limpiar el carrito
             dataGridcarrito.Rows.Clear();
         }
+
+
+
     }
- }
+}
 
 
