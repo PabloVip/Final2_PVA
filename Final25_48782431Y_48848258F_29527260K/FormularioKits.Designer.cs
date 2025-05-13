@@ -59,10 +59,10 @@
             this.labelCatalogo.AutoSize = true;
             this.labelCatalogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCatalogo.ForeColor = System.Drawing.Color.Coral;
-            this.labelCatalogo.Location = new System.Drawing.Point(16, 11);
-            this.labelCatalogo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCatalogo.Location = new System.Drawing.Point(8, 6);
+            this.labelCatalogo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCatalogo.Name = "labelCatalogo";
-            this.labelCatalogo.Size = new System.Drawing.Size(345, 37);
+            this.labelCatalogo.Size = new System.Drawing.Size(179, 20);
             this.labelCatalogo.TabIndex = 1;
             this.labelCatalogo.Text = "CATÁLOGO DE KITS";
             // 
@@ -70,20 +70,20 @@
             // 
             this.cbCatalogo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCatalogo.FormattingEnabled = true;
-            this.cbCatalogo.Location = new System.Drawing.Point(15, 51);
-            this.cbCatalogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbCatalogo.Location = new System.Drawing.Point(7, 27);
+            this.cbCatalogo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbCatalogo.Name = "cbCatalogo";
-            this.cbCatalogo.Size = new System.Drawing.Size(468, 33);
+            this.cbCatalogo.Size = new System.Drawing.Size(236, 21);
             this.cbCatalogo.TabIndex = 2;
             this.cbCatalogo.SelectedIndexChanged += new System.EventHandler(this.cbCatalogo_SelectedIndexChanged);
             // 
             // btnVolver
             // 
             this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(837, 892);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVolver.Location = new System.Drawing.Point(419, 464);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(136, 42);
+            this.btnVolver.Size = new System.Drawing.Size(68, 22);
             this.btnVolver.TabIndex = 6;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
@@ -123,11 +123,11 @@
             this.Precio,
             this.Cantidad});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(15, 155);
-            this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listView1.Location = new System.Drawing.Point(7, 81);
+            this.listView1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(959, 712);
+            this.listView1.Size = new System.Drawing.Size(481, 372);
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -170,10 +170,10 @@
             // btnNuevo
             // 
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNuevo.Location = new System.Drawing.Point(493, 51);
-            this.btnNuevo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNuevo.Location = new System.Drawing.Point(247, 27);
+            this.btnNuevo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(136, 42);
+            this.btnNuevo.Size = new System.Drawing.Size(68, 22);
             this.btnNuevo.TabIndex = 8;
             this.btnNuevo.Text = "Nuevo kit";
             this.btnNuevo.UseVisualStyleBackColor = true;
@@ -182,10 +182,10 @@
             // btnAñadirProducto
             // 
             this.btnAñadirProducto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAñadirProducto.Location = new System.Drawing.Point(15, 106);
-            this.btnAñadirProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAñadirProducto.Location = new System.Drawing.Point(7, 55);
+            this.btnAñadirProducto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAñadirProducto.Name = "btnAñadirProducto";
-            this.btnAñadirProducto.Size = new System.Drawing.Size(192, 42);
+            this.btnAñadirProducto.Size = new System.Drawing.Size(96, 22);
             this.btnAñadirProducto.TabIndex = 9;
             this.btnAñadirProducto.Text = "Añadir producto";
             this.btnAñadirProducto.UseVisualStyleBackColor = true;
@@ -194,10 +194,10 @@
             // btnEliminar
             // 
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(637, 51);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEliminar.Location = new System.Drawing.Point(319, 27);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(136, 42);
+            this.btnEliminar.Size = new System.Drawing.Size(68, 22);
             this.btnEliminar.TabIndex = 10;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -206,10 +206,10 @@
             // btnEliminarProducto
             // 
             this.btnEliminarProducto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarProducto.Location = new System.Drawing.Point(215, 106);
-            this.btnEliminarProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEliminarProducto.Location = new System.Drawing.Point(107, 55);
+            this.btnEliminarProducto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
-            this.btnEliminarProducto.Size = new System.Drawing.Size(192, 42);
+            this.btnEliminarProducto.Size = new System.Drawing.Size(96, 22);
             this.btnEliminarProducto.TabIndex = 11;
             this.btnEliminarProducto.Text = "Eliminar producto";
             this.btnEliminarProducto.UseVisualStyleBackColor = true;
@@ -217,10 +217,10 @@
             // 
             // FormularioKits
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(995, 949);
+            this.ClientSize = new System.Drawing.Size(497, 493);
             this.Controls.Add(this.btnEliminarProducto);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAñadirProducto);
@@ -229,7 +229,7 @@
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.cbCatalogo);
             this.Controls.Add(this.labelCatalogo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormularioKits";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kits";
