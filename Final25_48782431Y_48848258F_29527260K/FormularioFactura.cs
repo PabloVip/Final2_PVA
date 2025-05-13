@@ -12,9 +12,15 @@ namespace Final25_48782431Y_48848258F_29527260K
 {
     public partial class FormularioFactura : Form
     {
-        public FormularioFactura()
+        public FormularioFactura(string contenidoFactura)
         {
             InitializeComponent();
+            richTextBoxFactura.Text = contenidoFactura;
+        }
+
+        private void FormularioFactura_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
