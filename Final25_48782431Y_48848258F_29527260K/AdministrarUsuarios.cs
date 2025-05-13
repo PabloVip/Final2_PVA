@@ -84,6 +84,47 @@ namespace Final25_48782431Y_48848258F_29527260K
             usuarios = BaseDeDatos.LeerUsuarios();  // Recargar desde la base de datos
             CargarUsuariosEnListView();
         }
+
+        private void bt_añadir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Validar campos básicos
+                if (string.IsNullOrWhiteSpace(tb_email.Text) || string.IsNullOrWhiteSpace(tb_password.Text))
+                {
+                    MessageBox.Show("Email y contraseña son obligatorios.");
+                    return;
+                }
+
+                Usuario nuevoUsuario = new Usuario
+                {
+                    Id = int.Parse(tb_id.Text),
+                    Empresa = tb_empresa.Text,
+                    Nombre = tb_nombre.Text,
+                    Direccion = tb_direccion.Text,
+                    Poblacion = tb_poblacion.Text,
+                    CodigoPostal = tb_CP.Text,
+                    Provincia = tb_provincia.Text,
+                    Pais = tb_pais.Text,
+                    Email = tb_email.Text,
+                    FechaCreacion = DateTime.Parse(tb_fechacreacion.Text),
+                    Nif = tb_nif.Text,
+                    RollId = tb_rolid.Text,
+                    Password = tb_password.Text
+                };
+
+                BaseDeDatos.GuardarUsuario(nuevoUsuario); // Debe existir este método
+                MessageBox.Show("Usuario añadido correctamente.");
+
+                usuarios = BaseDeDatos.LeerUsuarios();  // Recargar lista
+                CargarUsuariosEnListView();             // Refrescar tabla
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al añadir usuario: " + ex.Message);
+            }
+        }
+
     }
 }
 

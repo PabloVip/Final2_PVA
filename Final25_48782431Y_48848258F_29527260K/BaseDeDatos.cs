@@ -634,7 +634,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                 {
                     conexion.Open();
                     command.Connection = conexion;
-                    command.CommandText = @"INSERT INTO USUARIO (Empresa, Nombre, Direccion, Poblacion, CodigoPostal,
+                    command.CommandText = @"INSERT INTO Usuarios (Empresa, Nombre, Direccion, Poblacion, CodigoPostal,
                         Provincia, Pais, Email, FechaCreacion, Nif, RolId, Password) 
                         VALUES (@Empresa, @Nombre, @Direccion, @Poblacion, @CodigoPostal,
                         @Provincia, @Pais, @Email, @FechaCreacion, @Nif, @RolId, @Password)";
