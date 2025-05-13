@@ -141,34 +141,7 @@ namespace Final25_48782431Y_48848258F_29527260K
 
 
         //funcion para exportar a excel la factura
-        private void ExportarFacturaACsv(FacturaCabecera factura)
-        {
-            string nombreArchivo = $"Factura_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
-            string rutaCompleta = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), nombreArchivo);
 
-            using (StreamWriter writer = new StreamWriter(rutaCompleta, false, Encoding.UTF8))
-            {
-                writer.WriteLine($"Factura ID;{factura.Id}");
-                writer.WriteLine($"Cliente ID;{factura.ClienteId}");
-                writer.WriteLine($"Fecha;{factura.FechaCreacion:yyyy-MM-dd HH:mm:ss}");
-                writer.WriteLine();
-                writer.WriteLine("Cantidad;Código;Descripción;Precio Unitario;Subtotal");
-
-                decimal totalFactura = 0;
-
-                foreach (var linea in factura.Lineas)
-                {
-                    decimal subtotal = linea.Precio * linea.Cantidad;
-                    writer.WriteLine($"{linea.Cantidad};{linea.CodigoProducto};{linea.Descripcion};{linea.Precio};{subtotal}");
-                    totalFactura += subtotal;
-                }
-
-                writer.WriteLine();
-                writer.WriteLine($"Total Factura;;;;{totalFactura}");
-            }
-
-            MessageBox.Show($"Factura exportada como CSV en el escritorio:\n{rutaCompleta}", "Exportación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
 
 
 
@@ -212,13 +185,10 @@ namespace Final25_48782431Y_48848258F_29527260K
                 }
             }
 
-            // Intentar grabar la factura pero no detener el flujo si falla
             try
             {
                 BaseDeDatos.GrabarFactura(factura);
                 MessageBox.Show("Factura guardada correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ExportarFacturaACsv(factura);
-
             }
             catch (Exception ex)
             {
@@ -226,7 +196,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                                 "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            // Mostrar la factura con los datos ya preparados, pase lo que pase
+            // Mostrar la factura en el formulario
             string contenidoFactura = GenerarContenidoFactura(factura);
             FormularioFactura ventanaFactura = new FormularioFactura(contenidoFactura);
             ventanaFactura.ShowDialog();
@@ -234,6 +204,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             // Limpiar el carrito después
             dataGridcarrito.Rows.Clear();
         }
+
 
 
 

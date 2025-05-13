@@ -31,6 +31,7 @@
             this.richTextBoxFactura = new System.Windows.Forms.RichTextBox();
             this.labelfactura = new System.Windows.Forms.Label();
             this.btnvolverfactura = new System.Windows.Forms.Button();
+            this.btnPasarAExcel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBoxFactura
@@ -61,11 +62,22 @@
             this.btnvolverfactura.Text = "Volver";
             this.btnvolverfactura.UseVisualStyleBackColor = true;
             // 
+            // btnPasarAExcel
+            // 
+            this.btnPasarAExcel.Location = new System.Drawing.Point(26, 598);
+            this.btnPasarAExcel.Name = "btnPasarAExcel";
+            this.btnPasarAExcel.Size = new System.Drawing.Size(180, 57);
+            this.btnPasarAExcel.TabIndex = 3;
+            this.btnPasarAExcel.Text = "Pasar factura a excel";
+            this.btnPasarAExcel.UseVisualStyleBackColor = true;
+            this.btnPasarAExcel.Click += new System.EventHandler(this.btnPasarAExcel_Click);
+            // 
             // FormularioFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(831, 743);
+            this.Controls.Add(this.btnPasarAExcel);
             this.Controls.Add(this.btnvolverfactura);
             this.Controls.Add(this.labelfactura);
             this.Controls.Add(this.richTextBoxFactura);
@@ -82,5 +94,6 @@
         private System.Windows.Forms.RichTextBox richTextBoxFactura;
         private System.Windows.Forms.Label labelfactura;
         private System.Windows.Forms.Button btnvolverfactura;
+        private System.Windows.Forms.Button btnPasarAExcel;
     }
 }
