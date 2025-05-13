@@ -44,6 +44,7 @@
             this.productosTableAdapter = new Final25_48782431Y_48848258F_29527260K.PAYAVISOLARDataSetTableAdapters.ProductosTableAdapter();
             this.btnEliminarProducto = new System.Windows.Forms.Button();
             this.btnvolverproductos = new System.Windows.Forms.Button();
+            this.btncrearfactura = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridproductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pAYAVISOLARDataSet)).BeginInit();
@@ -167,9 +168,9 @@
             // 
             this.btnEliminarProducto.Location = new System.Drawing.Point(45, 769);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
-            this.btnEliminarProducto.Size = new System.Drawing.Size(120, 48);
+            this.btnEliminarProducto.Size = new System.Drawing.Size(219, 48);
             this.btnEliminarProducto.TabIndex = 4;
-            this.btnEliminarProducto.Text = "Borrar";
+            this.btnEliminarProducto.Text = "Borrar producto del carrito";
             this.btnEliminarProducto.UseVisualStyleBackColor = true;
             this.btnEliminarProducto.Click += new System.EventHandler(this.btnEliminarProducto_Click);
             // 
@@ -183,11 +184,21 @@
             this.btnvolverproductos.UseVisualStyleBackColor = true;
             this.btnvolverproductos.Click += new System.EventHandler(this.btnvolverproductos_Click);
             // 
+            // btncrearfactura
+            // 
+            this.btncrearfactura.Location = new System.Drawing.Point(1292, 449);
+            this.btncrearfactura.Name = "btncrearfactura";
+            this.btncrearfactura.Size = new System.Drawing.Size(190, 314);
+            this.btncrearfactura.TabIndex = 6;
+            this.btncrearfactura.Text = "Crear factura";
+            this.btncrearfactura.UseVisualStyleBackColor = true;
+            // 
             // FormularioProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1338, 857);
+            this.ClientSize = new System.Drawing.Size(1576, 877);
+            this.Controls.Add(this.btncrearfactura);
             this.Controls.Add(this.btnvolverproductos);
             this.Controls.Add(this.btnEliminarProducto);
             this.Controls.Add(this.label_carrito);
@@ -225,5 +236,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.Button btnEliminarProducto;
         private System.Windows.Forms.Button btnvolverproductos;
+        private System.Windows.Forms.Button btncrearfactura;
     }
 }
