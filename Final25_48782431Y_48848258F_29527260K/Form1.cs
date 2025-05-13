@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Final25_48782431Y_48848258F_29527260K.Clases;
 
 namespace Final25_48782431Y_48848258F_29527260K
 {
@@ -36,11 +37,20 @@ namespace Final25_48782431Y_48848258F_29527260K
 
                 if (BaseDeDatos.CompruebaUsuario(usuario, contrasena))
                 {
-                    FormPrincipal principal = new FormPrincipal(usuario);
-                    principal.Show();
-                    this.Hide();
+                    Usuario mi_usuario = BaseDeDatos.LeerUsuario(usuario, contrasena);
+                    if (mi_usuario.RollId != "ADMINISTRADOR")
+                    {                     FormPrincipal principal = new FormPrincipal(usuario);
+                                          principal.Show();
+                                          this.Hide();
+                    
+                    } else {
+                        FormAdmin admin = new FormAdmin(usuario);
+                        admin.Show();
+                        this.Hide();
+                    }
+
                 }
-                else
+                    else
                     MessageBox.Show("Usuario o contraseña incorrectos");
             }
             catch (Exception ex)
