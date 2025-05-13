@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using Final25_48782431Y_48848258F_29527260K.Clases;
 
 namespace Final25_48782431Y_48848258F_29527260K
@@ -16,7 +17,9 @@ namespace Final25_48782431Y_48848258F_29527260K
         public static Usuario UsuarioActivo { get; set; }
 
 
+        #region PRODUCTOS
 
+        
         /// <summary>
         /// Metodo para leer todos los productos que no son kit
         /// </summary>
@@ -59,6 +62,100 @@ namespace Final25_48782431Y_48848258F_29527260K
 
 
         /// <summary>
+        /// Metodo para eliminar un producto por id
+        /// </summary>
+        /// <param name="productoId"></param>
+        public static void EliminarProducto(int productoId)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "DELETE FROM PRODUCTOS WHERE Id=@ProductoId";
+                    command.Parameters.AddWithValue("@ProductoId", productoId);
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo para modificar un producto por su Id
+        /// </summary>
+        /// <param name="producto"></param>
+        public static void ModificarProducto(Producto producto)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = @"UPDATE PRODUCTOS SET
+                            Codigo=@Codigo, Descripcion=@Descripcion, Categoria=@Categoria, Marca=@Marca, Precio=@Precio, EsKit=@EsKit
+                        WHERE Id=@ProductoId";
+                    command.Parameters.AddWithValue("@Codigo", producto.Codigo);
+                    command.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
+                    command.Parameters.AddWithValue("@Categoria", producto.Categoria);
+                    command.Parameters.AddWithValue("@Marca", producto.Marca);
+                    command.Parameters.AddWithValue("@Precio", producto.Precio);
+                    command.Parameters.AddWithValue("@EsKit", producto.EsKit);
+
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para guardar un producto nuevo que no es kit
+        /// </summary>
+        /// <param name="producto"></param>
+        public static void GuardarProducto(Producto producto)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = @"INSERT INTO PRODUCTOS (Codigo, Descripcion, Categoria, Marca, Precio, EsKit) 
+                            VALUES (@Codigo, Descripcion, Categoria, Marca, Precio, EsKit)";
+                    command.Parameters.AddWithValue("@Codigo", producto.Codigo);
+                    command.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
+                    command.Parameters.AddWithValue("@Categoria", producto.Categoria);
+                    command.Parameters.AddWithValue("@Marca", producto.Marca);
+                    command.Parameters.AddWithValue("@Precio", producto.Precio);
+                    command.Parameters.AddWithValue("@EsKit", 0);
+
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+
+        #endregion
+
+
+        #region KITS
+
+        /// <summary>
         /// Metodo para leer todos los productos que son kit
         /// </summary>
         /// <returns></returns>
@@ -99,6 +196,140 @@ namespace Final25_48782431Y_48848258F_29527260K
         }
 
         /// <summary>
+        /// Metodo para consultar los productos que pertenecen a un kit y sus cantidades
+        /// </summary>
+        /// <param name="kitId">el Id del kit, que es el Id del producto que representa al kit</param>
+        /// <returns></returns>
+        public static List<ProductoKit> LeerProductosDeUnKit(int kitId)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = @"SELECT p.Id, p.Codigo, p.Descripcion, p.Categoria,
+                                           p.Marca, p.Precio, k.Cantidad
+                                           FROM ProductoKits k 
+                                           INNER JOIN Productos p on p.Id = k.ProductoId
+                                           WHERE k.Id = @kitId";
+                    var dt = command.ExecuteReader();
+
+                    var productosKit = new List<ProductoKit>();
+
+                    while (dt.Read())
+                    {
+                        var pt = new ProductoKit();
+                        pt.Id = dt.GetInt32(0);
+                        pt.Codigo = dt.GetString(1);
+                        pt.Descripcion = dt.GetString(2);
+                        pt.Categoria = dt.GetString(3);
+                        pt.Marca = dt.GetString(4);
+                        pt.Precio = dt.GetDecimal(5);
+                        pt.Cantidad = dt.GetDecimal(6);
+                        productosKit.Add(pt);
+                    }
+
+                    return productosKit;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo para guardar un nuevo producto que es kit
+        /// </summary>
+        /// <param name="kit">Producto que es kit</param>
+        /// <param name="productosDelKit">Lista de productos que incluye el kit</param>
+        public void GuardarNuevoKit(Producto kit, List<ProductoKit> productosDelKit)
+        {
+            using (SqlConnection conn = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conn.Open();
+                    var query = @"INSERT INTO Producto(Codigo, Descripcion, Categoria, Marca, Precio, EsKit) VALUES
+                            (@Codigo, @Descripcion, @Categoria, @Marca, @Precio, @EsKit)";
+
+                    command.CommandText = query;
+                    command.Connection = conn;
+                    command.Parameters.AddWithValue("@Codigo", kit.Codigo);
+                    command.Parameters.AddWithValue("@Descripcion", kit.Descripcion);
+                    command.Parameters.AddWithValue("@Categoria", kit.Categoria);
+                    command.Parameters.AddWithValue("@Marca", kit.Marca);
+                    command.Parameters.AddWithValue("@Precio", kit.Precio);
+                    command.Parameters.AddWithValue("@EsKit", 1);
+
+                    command.ExecuteNonQuery();
+
+                    // Leemos el ID del ultimo producto creado que es un kit
+                    query = "SELECT TOP 1 Id FROM Productos WHERE EsKit=1 ORDER BY Id DESC";
+                    var cmd = new SqlCommand(query, conn);
+                    var idKit = (int)cmd.ExecuteScalar();
+                    cmd.Dispose();
+
+                    // Insertamos las lineas de productos del kit
+                    query = @"INSERT INTO ProductoKits(Id, ProductoId, Cantidad) VALUES
+                            (@Id, @ProductoId, @Cantidad)";
+                    foreach (var producto in productosDelKit)
+                    {
+                        var cmd2 = new SqlCommand(query, conn);
+                        cmd2.Parameters.AddWithValue("@Id", idKit);
+                        cmd2.Parameters.AddWithValue("@ProductoId", producto.Id);
+                        cmd2.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
+
+                        cmd.ExecuteNonQuery();
+                        cmd2.Dispose();
+                    }
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo para eliminar un producto que es un kit
+        /// </summary>
+        /// <param name="productoId"></param>
+        public static void EliminarKit(int productoId)
+        {
+            // Ponemos en la tabla ProductoKit que borre en cascada por Id. Asi cuando se borra un producto se
+            // borran tambien cualquier kit que corresponda que este en la tabla ProductoKit
+
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "DELETE FROM PRODUCTOS WHERE Id=@ProductoId";
+                    command.Parameters.AddWithValue("@ProductoId", productoId);
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+
+        #endregion
+
+        
+        #region USUARIOS Y ROLES
+
+        /// <summary>
         /// Metodo para leer todos los usuarios
         /// </summary>
         /// <returns></returns>
@@ -136,41 +367,6 @@ namespace Final25_48782431Y_48848258F_29527260K
                     }
 
                     return usuarios;
-                }
-                finally
-                {
-                    conexion.Close();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Metodo para leer los roles
-        /// </summary>
-        /// <returns></returns>
-        public static List<Rol> LeerRoles()
-        {
-            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
-            using (SqlCommand command = new SqlCommand())
-            {
-                try
-                {
-                    conexion.Open();
-                    command.Connection = conexion;
-                    command.CommandText = "SELECT * FROM ROLES";
-                    var dt = command.ExecuteReader();
-
-                    var roles = new List<Rol>();
-
-                    while (dt.Read())
-                    {
-                        var pt = new Rol();
-                        pt.Id = dt.GetString(0);
-                        pt.Descripcion = dt.GetString(1);
-                        roles.Add(pt);
-                    }
-
-                    return roles;
                 }
                 finally
                 {
@@ -254,12 +450,65 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
         }
 
+
         /// <summary>
-        /// Metodo para poner a null el usuario activo en la aplicacion para cuando se cierra la sesion
+        /// Metodo para eliminar un usuario por su id
         /// </summary>
-        public static void Logout()
+        /// <param name="usuarioId"></param>
+        public static void EliminarUsuario(int usuarioId)
         {
-            UsuarioActivo = null;
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "DELETE FROM Usuarios WHERE Id=@UsuarioId";
+                    command.Parameters.AddWithValue("@UsuarioId", usuarioId);
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para modificar un usuario
+        /// </summary>
+        /// <param name="usuario"></param>
+        public static void ModificarUsuario(Usuario usuario)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = @"UPDATE Usuarios SET
+                            Empresa=@Empresa, Nombre=@Nombre, Direccion=@Direccion, Poblacion=@Poblacion, CodigoPostal=@CodigoPostal,
+                            Provincia=@Provincia, Pais=@Pais, Email=@Email, Nif=@Nif
+                        WHERE Id=@UsuarioId";
+                    command.Parameters.AddWithValue("@Empresa", usuario.Empresa);
+                    command.Parameters.AddWithValue("@Nombre", usuario.Nombre);
+                    command.Parameters.AddWithValue("@Direccion", usuario.Direccion);
+                    command.Parameters.AddWithValue("@Poblacion", usuario.Poblacion);
+                    command.Parameters.AddWithValue("@CodigoPostal", usuario.CodigoPostal);
+                    command.Parameters.AddWithValue("@Provincia", usuario.Provincia);
+                    command.Parameters.AddWithValue("@Pais", usuario.Pais);
+                    command.Parameters.AddWithValue("@Email", usuario.Email);
+                    command.Parameters.AddWithValue("@Nif", usuario.Nif);
+
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
         }
 
 
@@ -301,6 +550,280 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
         }
 
+        
+        /// <summary>
+        ///  Metodo para modificar la contraseña de un usuario
+        /// </summary>
+        /// <param name="usuarioId"></param>
+        /// <param name="contraseña"></param>
+        public static void ModificarContraseña(int usuarioId, string contraseña)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = @"UPDATE Usuarios SET Password=@Contraseña WHERE Id=@UsuarioId";
+                    command.Parameters.AddWithValue("@UsuarioId", usuarioId);
+                    command.Parameters.AddWithValue("@Password", contraseña);
+
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// Modificar Rol de un usuario
+        /// </summary>
+        /// <param name="usuarioId"></param>
+        /// <param name="contraseña"></param>
+        public static void ModificarRolDeUsuario(int usuarioId, string rolId)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = @"UPDATE Usuarios SET RolId=@RolId WHERE Id=@UsuarioId";
+                    command.Parameters.AddWithValue("@UsuarioId", usuarioId);
+                    command.Parameters.AddWithValue("@RolId", rolId);
+
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para leer los roles
+        /// </summary>
+        /// <returns></returns>
+        public static List<Rol> LeerRoles()
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "SELECT * FROM Roles";
+                    var dt = command.ExecuteReader();
+
+                    var roles = new List<Rol>();
+
+                    while (dt.Read())
+                    {
+                        var pt = new Rol();
+                        pt.Id = dt.GetString(0);
+                        pt.Descripcion = dt.GetString(1);
+                        roles.Add(pt);
+                    }
+
+                    return roles;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para borrar un rol. Antes de borrar hay que borrar los usuarios de ese rol para que no de error
+        /// </summary>
+        /// <param name="rolId"></param>
+        public static void EliminarRol(string rolId)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = @"DELETE FROM Roles WHERE Id=@RolId";
+                    command.Parameters.AddWithValue("@RolId", rolId);
+
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo para guardar un nuevo rol
+        /// </summary>
+        /// <param name="rolId"></param>
+        public static void GuardarRol(string rolId, string descripcion)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = @"INSERT INTO Roles (Id, Descripcion) VALUES (@Id, @Descripcion)";
+                    command.Parameters.AddWithValue("@Id", rolId);
+                    command.Parameters.AddWithValue("@Descripcion", descripcion);
+
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para modificar un rol
+        /// </summary>
+        /// <param name="rolId"></param>
+        /// <param name="descripcion"></param>
+        public static void ModificarRol(string rolId, string descripcion)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = @"UPDATE Roles SET Descripcion=@Descripcion WHERE Id=@RolId";
+                    command.Parameters.AddWithValue("@Descripcion", descripcion);
+                    command.Parameters.AddWithValue("@RolId", rolId);
+
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para poner a null el usuario activo en la aplicacion para cuando se cierra la sesion
+        /// </summary>
+        public static void Logout()
+        {
+            UsuarioActivo = null;
+        }
+
+        #endregion
+
+
+        #region FACTURAS
+
+        /// <summary>
+        /// Metodo para leer las cabeceras de las facturas
+        /// </summary>
+        /// <returns></returns>
+        public static List<FacturaCabecera> LeerFacturas()
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "SELECT * FROM FacturaCabeceras";
+                    var dt = command.ExecuteReader();
+
+                    var facturas = new List<FacturaCabecera>();
+
+                    while (dt.Read())
+                    {
+                        var factura = new FacturaCabecera();
+                        factura.Id = dt.GetInt32(0);
+                        factura.ClienteId = dt.GetInt32(1);
+                        factura.FechaCreacion = dt.GetDateTime(2);
+                        facturas.Add(factura);
+                    }
+
+                    return facturas;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo para leer una factura con sus lineas
+        /// </summary>
+        /// <param name="facturaId"></param>
+        /// <returns></returns>
+        public static FacturaCabecera LeerFactura(int facturaId)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "SELECT * FROM FacturaCabeceras WHERE Id=@FacturaId";
+                    command.Parameters.AddWithValue("@FacturaId", facturaId);
+
+                    var dt = command.ExecuteReader();
+
+                    var factura = new FacturaCabecera();
+                    factura.Id = dt.GetInt32(0);
+                    factura.ClienteId = dt.GetInt32(1);
+                    factura.FechaCreacion = dt.GetDateTime(2);
+                    factura.Lineas = new List<FacturaLinea>(); // Inicializo la lista de lineas vacia
+
+                    // Leemos las lineas
+                    command.CommandText = "SELECT * FROM FacturaLineas WHERE FacturaId=@FacturaId";
+                    command.Parameters.AddWithValue("@FacturaId", facturaId);
+
+                    var dt2 = command.ExecuteReader();
+                    while (dt2.Read())
+                    {
+                        var linea = new FacturaLinea();
+                        linea.FacturaId = dt2.GetInt32(0);
+                        linea.Linea = dt2.GetInt32(1);
+                        linea.ProductoId = dt2.GetInt32(2);
+                        linea.CodigoProducto = dt2.GetString(3);
+                        linea.Descripcion = dt2.GetString(4);
+                        linea.Cantidad = dt2.GetDecimal(5);
+                        linea.Precio = dt2.GetDecimal(6);
+                        linea.Total = dt2.GetDecimal(7);
+
+                        factura.Lineas.Add(linea);
+                    }
+
+                    return factura;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
 
         /// <summary>
         /// Metodo para grabar una factura
@@ -366,12 +889,12 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
         }
 
+
         /// <summary>
-        /// Metodo para consultar los productos que pertenecen a un kit y sus cantidades
+        /// Metodo para eliminar una factura
         /// </summary>
-        /// <param name="kitId">el Id del kit, que es el Id del producto que representa al kit</param>
-        /// <returns></returns>
-        public static List<ProductoKit> LeerProductosDeUnKit(int kitId)
+        /// <param name="facturaId"></param>
+        public void EliminarFactura(int facturaId)
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             using (SqlCommand command = new SqlCommand())
@@ -380,29 +903,9 @@ namespace Final25_48782431Y_48848258F_29527260K
                 {
                     conexion.Open();
                     command.Connection = conexion;
-                    command.CommandText = @"SELECT p.Id, p.Codigo, p.Descripcion, p.Categoria,
-                                           p.Marca, p.Precio, k.Cantidad
-                                           FROM ProductoKits k 
-                                           INNER JOIN Productos p on p.Id = k.ProductoId
-                                           WHERE k.Id = @kitId";
-                    var dt = command.ExecuteReader();
-
-                    var productosKit = new List<ProductoKit>();
-
-                    while (dt.Read())
-                    {
-                        var pt = new ProductoKit();
-                        pt.Id = dt.GetInt32(0);
-                        pt.Codigo = dt.GetString(1);
-                        pt.Descripcion = dt.GetString(2);
-                        pt.Categoria = dt.GetString(3);
-                        pt.Marca = dt.GetString(4);
-                        pt.Precio = dt.GetDecimal(5);
-                        pt.Cantidad = dt.GetDecimal(6);
-                        productosKit.Add(pt);
-                    }
-
-                    return productosKit;
+                    command.CommandText = "DELETE FROM FacturaCabeceras WHERE Id=@FacturaId";
+                    command.Parameters.AddWithValue("@FacturaId", facturaId);
+                    command.ExecuteNonQuery();
                 }
                 finally
                 {
@@ -410,62 +913,11 @@ namespace Final25_48782431Y_48848258F_29527260K
                 }
             }
         }
-      
 
-        /// <summary>
-        /// Metodo para guardar un nuevo producto que es kit
-        /// </summary>
-        /// <param name="kit">Producto que es kit</param>
-        /// <param name="productosDelKit">Lista de productos que incluye el kit</param>
-        public void GuardarNuevoKit(Producto kit, List<ProductoKit> productosDelKit)
-        {
-            using (SqlConnection conn = new SqlConnection(CadenaConexion))
-            using (SqlCommand command = new SqlCommand())
-            {
-                try
-                {
-                    conn.Open();
-                    var query = @"INSERT INTO Producto(Codigo, Descripcion, Categoria, Marca, Precio, EsKit) VALUES
-                            (@Codigo, @Descripcion, @Categoria, @Marca, @Precio, @EsKit)";
+        #endregion
 
-                    command.CommandText = query;
-                    command.Connection = conn;
-                    command.Parameters.AddWithValue("@Codigo", kit.Codigo);
-                    command.Parameters.AddWithValue("@Descripcion", kit.Descripcion);
-                    command.Parameters.AddWithValue("@Categoria", kit.Categoria);
-                    command.Parameters.AddWithValue("@Marca", kit.Marca);
-                    command.Parameters.AddWithValue("@Precio", kit.Precio);
-                    command.Parameters.AddWithValue("@EsKit", 1);
-                    
-                    command.ExecuteNonQuery();
-
-                    // Leemos el ID del ultimo producto creado que es un kit
-                    query = "SELECT TOP 1 Id FROM Productos WHERE EsKit=1 ORDER BY Id DESC";
-                    var cmd = new SqlCommand(query, conn);
-                    var idKit = (int)cmd.ExecuteScalar();
-                    cmd.Dispose();
-
-                    // Insertamos las lineas de productos del kit
-                    query = @"INSERT INTO ProductoKits(Id, ProductoId, Cantidad) VALUES
-                            (@Id, @ProductoId, @Cantidad)";
-                    foreach (var producto in productosDelKit)
-                    {
-                        var cmd2 = new SqlCommand(query, conn);
-                        cmd2.Parameters.AddWithValue("@Id", idKit);
-                        cmd2.Parameters.AddWithValue("@ProductoId", producto.Id);
-                        cmd2.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
-
-                        cmd.ExecuteNonQuery();
-                        cmd2.Dispose();
-                    }
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-        }
-
+        
+        #region MARCAS
 
         /// <summary>
         /// Metodo para leer las marcas
@@ -480,7 +932,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                 {
                     conexion.Open();
                     command.Connection = conexion;
-                    command.CommandText = "SELECT * FROM MARCAS";
+                    command.CommandText = "SELECT * FROM Marcas";
                     var dt = command.ExecuteReader();
 
                     var marcas = new List<Marca>();
@@ -515,7 +967,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                 {
                     conexion.Open();
                     command.Connection = conexion;
-                    command.CommandText = "INSERT INTO MARCAS(Id, Descripcion) VALUES (@Id, @Descripcion)";
+                    command.CommandText = "INSERT INTO Marcas(Id, Descripcion) VALUES (@Id, @Descripcion)";
                     command.Parameters.AddWithValue("@Id", marca.Id);
                     command.Parameters.AddWithValue("@Descripcion", marca.Descripcion);
                     command.ExecuteNonQuery();
@@ -526,6 +978,64 @@ namespace Final25_48782431Y_48848258F_29527260K
                 }
             }
         }
+
+
+        /// <summary>
+        /// Eliminar marca por id
+        /// </summary>
+        /// <param name="marcaId"></param>
+        public static void EliminarMarca(string marcaId)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "DELETE FROM Marcas WHERE Id=@MarcaId";
+                    command.Parameters.AddWithValue("@MarcaId", marcaId);
+                    command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo para modificar una marca
+        /// </summary>
+        /// <param name="marcaId"></param>
+        /// <param name="descripcion"></param>
+        public static void ModificaMarca(string marcaId, string descripcion)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "UPDATE Marcas SET Descripcion=@Descripcion WHERE Id=@MarcaId";
+                    command.Parameters.AddWithValue("@MarcaId", marcaId);
+                    command.Parameters.AddWithValue("@Descripcion", descripcion);
+                    command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+
+        #endregion
+
+
+        #region CATEGORIAS
 
         /// <summary>
         ///  Metodo para leer las categorias
@@ -586,6 +1096,61 @@ namespace Final25_48782431Y_48848258F_29527260K
                 }
             }
         }
+
+        /// <summary>
+        /// Metodo para borrar una categoria
+        /// </summary>
+        /// <param name="categoriaId"></param>
+        public static void EliminarCategoria(string categoriaId)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "DELETE FROM Categorias WHERE Id=@CategoriaId";
+                    command.Parameters.AddWithValue("@CategoriaId", categoriaId);
+                    command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para modificar una categoria
+        /// </summary>
+        /// <param name="categoriaId"></param>
+        /// <param name="descripcion"></param>
+        public static void ModificaCategoria(string categoriaId, string descripcion)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "UPDATE Categorias SET Descripcion=@Descripcion WHERE Id=@CategoriaId";
+                    command.Parameters.AddWithValue("@CategoriaId", categoriaId);
+                    command.Parameters.AddWithValue("@Descripcion", descripcion);
+                    command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        #endregion
+
+
+
 
 
 
