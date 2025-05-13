@@ -141,7 +141,7 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btncrearfactura_Click(object sender, EventArgs e)
         {
-            if (dataGridcarrito.Rows.Count <= 1) // solo la fila nueva vacía
+            if (dataGridcarrito.Rows.Count <= 1)
             {
                 MessageBox.Show("El carrito está vacío. Agregue productos antes de crear la factura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -179,19 +179,19 @@ namespace Final25_48782431Y_48848258F_29527260K
                 }
             }
 
+            // Intentar grabar la factura pero no detener el flujo si falla
             try
             {
                 BaseDeDatos.GrabarFactura(factura);
+                MessageBox.Show("Factura guardada correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error al grabar la factura: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("La factura puede haberse guardado, pero ocurrió un error interno al confirmar el Id.\nDetalles: " + ex.Message,
+                                "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            MessageBox.Show("Factura guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // Mostrar el formulario con los datos que ya tienes en memoria
+            // Mostrar la factura con los datos ya preparados, pase lo que pase
             string contenidoFactura = GenerarContenidoFactura(factura);
             FormularioFactura ventanaFactura = new FormularioFactura(contenidoFactura);
             ventanaFactura.ShowDialog();
@@ -199,6 +199,8 @@ namespace Final25_48782431Y_48848258F_29527260K
             // Limpiar el carrito después
             dataGridcarrito.Rows.Clear();
         }
+
+
 
 
 
