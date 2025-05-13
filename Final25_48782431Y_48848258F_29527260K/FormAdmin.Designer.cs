@@ -30,6 +30,9 @@
         {
             this.btncerrarsesion = new System.Windows.Forms.Button();
             this.btn_vercatalogo = new System.Windows.Forms.Button();
+            this.btn_usuario = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btncerrarsesion
@@ -54,11 +57,45 @@
             this.btn_vercatalogo.UseVisualStyleBackColor = true;
             this.btn_vercatalogo.Click += new System.EventHandler(this.btn_vercatalogo_Click);
             // 
+            // btn_usuario
+            // 
+            this.btn_usuario.Location = new System.Drawing.Point(288, 147);
+            this.btn_usuario.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_usuario.Name = "btn_usuario";
+            this.btn_usuario.Size = new System.Drawing.Size(206, 67);
+            this.btn_usuario.TabIndex = 5;
+            this.btn_usuario.Text = "Editar usuarios";
+            this.btn_usuario.UseVisualStyleBackColor = true;
+            this.btn_usuario.Click += new System.EventHandler(this.btn_usuario_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(288, 218);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(206, 67);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Registro de ventas";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(288, 289);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(206, 67);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Editar productos";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btn_usuario);
             this.Controls.Add(this.btn_vercatalogo);
             this.Controls.Add(this.btncerrarsesion);
             this.Name = "FormAdmin";
@@ -72,5 +109,8 @@
 
         private System.Windows.Forms.Button btncerrarsesion;
         private System.Windows.Forms.Button btn_vercatalogo;
+        private System.Windows.Forms.Button btn_usuario;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

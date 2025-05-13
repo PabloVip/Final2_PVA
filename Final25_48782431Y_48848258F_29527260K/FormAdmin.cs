@@ -38,5 +38,11 @@ namespace Final25_48782431Y_48848258F_29527260K
             FormularioKits nuevoFormulario = new FormularioKits();
             nuevoFormulario.Show();
         }
+
+        private void btn_usuario_Click(object sender, EventArgs e)
+        {
+            AdministrarUsuarios formularioUsuarios = new AdministrarUsuarios();
+            formularioUsuarios.Show();
+        }
     }
 }
