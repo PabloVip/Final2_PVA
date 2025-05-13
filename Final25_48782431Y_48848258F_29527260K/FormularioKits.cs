@@ -167,13 +167,15 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            // Mostrar ventana y pedir los datos de un producto que va a ser un kit. Todos los camos menos Id y EsKit
+            // Mostrar ventana y pedir los datos de un producto que va a ser un kit. Todos los campos menos Id y EsKit
 
             // BaseDeDatos.GuardarKit( producto );
 
             // Recargamos el combobox con los kits
             var codigos = _kits.Select(x => x.Codigo).ToArray();
             cbCatalogo.Items.AddRange(codigos);
+
+            listView1.Items.Clear();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)

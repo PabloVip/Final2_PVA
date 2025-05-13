@@ -27,6 +27,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             if(!BaseDeDatos.ProductoExiste(codigoProducto))
             {
                 MessageBox.Show("Ese producto no existe");
+                this.DialogResult = DialogResult.Cancel;
                 return;
             }
 
