@@ -53,6 +53,9 @@ namespace Final25_48782431Y_48848258F_29527260K
             // Aquí puedes cargar datos o dar bienvenida
         }
 
-     
+        private void lblUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
