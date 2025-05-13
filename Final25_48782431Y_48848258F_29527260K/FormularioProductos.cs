@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Final25_48782431Y_48848258F_29527260K.Clases;
 
 namespace Final25_48782431Y_48848258F_29527260K
 {
@@ -118,9 +119,52 @@ namespace Final25_48782431Y_48848258F_29527260K
              
         private void btncrearfactura_Click(object sender, EventArgs e)
         {
-            
-            FormularioFactura ventanaFactura = new FormularioFactura(contenidoFactura);
-            ventanaFactura.ShowDialog();
+
+            if (dataGridcarrito.Rows.Count <= 1) // solo la fila nueva vacía
+            {
+                MessageBox.Show("El carrito está vacío. Agregue productos antes de crear la factura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            // 1. Crear la cabecera de la factura
+            var factura = new FacturaCabecera
+            {
+                ClienteId = 1, // Aquí puedes poner el ID de cliente si lo tienes o pedirlo al usuario
+                FechaCreacion = DateTime.Now,
+                Lineas = new List<FacturaLinea>()
+            };
+
+            int contadorLinea = 1;
+            foreach (DataGridViewRow fila in dataGridcarrito.Rows)
+            {
+                if (!fila.IsNewRow)
+                {
+                    var linea = new FacturaLinea
+                    {
+                        Linea = contadorLinea,
+                        ProductoId = Convert.ToInt32(fila.Cells["Id"].Value),
+                        CodigoProducto = fila.Cells["Codigo"].Value?.ToString(),
+                        Descripcion = fila.Cells["Descripcion"].Value?.ToString(),
+                        Cantidad = Convert.ToDecimal(fila.Cells["Cantidad"].Value),
+                        Precio = Convert.ToDecimal(fila.Cells["Precio"].Value),
+                        Total = Convert.ToDecimal(fila.Cells["Precio"].Value) * Convert.ToDecimal(fila.Cells["Cantidad"].Value)
+                    };
+
+                    factura.Lineas.Add(linea);
+                    contadorLinea++;
+                }
+            }
+
+            // 2. Grabar la factura en la base de datos
+            BaseDeDatos.GrabarFactura(factura);
+
+            MessageBox.Show("Factura guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Opcional: limpiar el carrito
+            dataGridcarrito.Rows.Clear();
         }
     }
-}
+ }
+
+
