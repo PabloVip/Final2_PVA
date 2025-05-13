@@ -63,7 +63,7 @@
             this.Categoria,
             this.Marca,
             this.Precio});
-            this.dataGridproductos.Location = new System.Drawing.Point(45, 38);
+            this.dataGridproductos.Location = new System.Drawing.Point(45, 51);
             this.dataGridproductos.Name = "dataGridproductos";
             this.dataGridproductos.ReadOnly = true;
             this.dataGridproductos.RowHeadersWidth = 62;
@@ -133,9 +133,10 @@
             // label_productos
             // 
             this.label_productos.AutoSize = true;
-            this.label_productos.Location = new System.Drawing.Point(42, 15);
+            this.label_productos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_productos.Location = new System.Drawing.Point(41, 9);
             this.label_productos.Name = "label_productos";
-            this.label_productos.Size = new System.Drawing.Size(81, 20);
+            this.label_productos.Size = new System.Drawing.Size(131, 29);
             this.label_productos.TabIndex = 1;
             this.label_productos.Text = "Productos";
             // 
@@ -154,9 +155,10 @@
             // label_carrito
             // 
             this.label_carrito.AutoSize = true;
+            this.label_carrito.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_carrito.Location = new System.Drawing.Point(42, 412);
             this.label_carrito.Name = "label_carrito";
-            this.label_carrito.Size = new System.Drawing.Size(56, 20);
+            this.label_carrito.Size = new System.Drawing.Size(92, 29);
             this.label_carrito.TabIndex = 3;
             this.label_carrito.Text = "Carrito";
             // 
@@ -168,7 +170,7 @@
             // 
             this.btnEliminarProducto.Location = new System.Drawing.Point(45, 769);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
-            this.btnEliminarProducto.Size = new System.Drawing.Size(219, 48);
+            this.btnEliminarProducto.Size = new System.Drawing.Size(228, 61);
             this.btnEliminarProducto.TabIndex = 4;
             this.btnEliminarProducto.Text = "Borrar producto del carrito";
             this.btnEliminarProducto.UseVisualStyleBackColor = true;
@@ -176,7 +178,7 @@
             // 
             // btnvolverproductos
             // 
-            this.btnvolverproductos.Location = new System.Drawing.Point(1179, 782);
+            this.btnvolverproductos.Location = new System.Drawing.Point(1110, 779);
             this.btnvolverproductos.Name = "btnvolverproductos";
             this.btnvolverproductos.Size = new System.Drawing.Size(147, 63);
             this.btnvolverproductos.TabIndex = 5;
