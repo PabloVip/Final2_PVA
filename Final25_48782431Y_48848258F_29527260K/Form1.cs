@@ -19,6 +19,7 @@ namespace Final25_48782431Y_48848258F_29527260K
         public Form1()
         {
             InitializeComponent();
+            this.FormClosed += Form1_FormClosed;
         }
 
         private void btn_login_Click(object sender, EventArgs e)
@@ -59,7 +60,10 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
         }
 
-       
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+                Application.Exit();
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
