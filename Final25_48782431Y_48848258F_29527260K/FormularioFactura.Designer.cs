@@ -38,7 +38,7 @@
             this.richTextBoxFactura.Location = new System.Drawing.Point(26, 70);
             this.richTextBoxFactura.Name = "richTextBoxFactura";
             this.richTextBoxFactura.ReadOnly = true;
-            this.richTextBoxFactura.Size = new System.Drawing.Size(676, 522);
+            this.richTextBoxFactura.Size = new System.Drawing.Size(793, 522);
             this.richTextBoxFactura.TabIndex = 0;
             this.richTextBoxFactura.Text = "";
             // 
@@ -65,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 743);
+            this.ClientSize = new System.Drawing.Size(831, 743);
             this.Controls.Add(this.btnvolverfactura);
             this.Controls.Add(this.labelfactura);
             this.Controls.Add(this.richTextBoxFactura);

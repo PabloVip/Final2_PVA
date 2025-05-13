@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -139,6 +140,38 @@ namespace Final25_48782431Y_48848258F_29527260K
         }
 
 
+        //funcion para exportar a excel la factura
+        private void ExportarFacturaACsv(FacturaCabecera factura)
+        {
+            string nombreArchivo = $"Factura_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
+            string rutaCompleta = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), nombreArchivo);
+
+            using (StreamWriter writer = new StreamWriter(rutaCompleta, false, Encoding.UTF8))
+            {
+                writer.WriteLine($"Factura ID;{factura.Id}");
+                writer.WriteLine($"Cliente ID;{factura.ClienteId}");
+                writer.WriteLine($"Fecha;{factura.FechaCreacion:yyyy-MM-dd HH:mm:ss}");
+                writer.WriteLine();
+                writer.WriteLine("Cantidad;Código;Descripción;Precio Unitario;Subtotal");
+
+                decimal totalFactura = 0;
+
+                foreach (var linea in factura.Lineas)
+                {
+                    decimal subtotal = linea.Precio * linea.Cantidad;
+                    writer.WriteLine($"{linea.Cantidad};{linea.CodigoProducto};{linea.Descripcion};{linea.Precio};{subtotal}");
+                    totalFactura += subtotal;
+                }
+
+                writer.WriteLine();
+                writer.WriteLine($"Total Factura;;;;{totalFactura}");
+            }
+
+            MessageBox.Show($"Factura exportada como CSV en el escritorio:\n{rutaCompleta}", "Exportación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+
         private void btncrearfactura_Click(object sender, EventArgs e)
         {
             if (dataGridcarrito.Rows.Count <= 1)
@@ -184,6 +217,8 @@ namespace Final25_48782431Y_48848258F_29527260K
             {
                 BaseDeDatos.GrabarFactura(factura);
                 MessageBox.Show("Factura guardada correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ExportarFacturaACsv(factura);
+
             }
             catch (Exception ex)
             {
