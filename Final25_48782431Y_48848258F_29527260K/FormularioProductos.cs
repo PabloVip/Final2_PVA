@@ -114,37 +114,11 @@ namespace Final25_48782431Y_48848258F_29527260K
             this.Close();
         }
 
-        private string GenerarContenidoFactura()
-        {
-            string factura = "Factura\n\n";
-            double total = 0.0;
-
-            foreach (DataGridViewRow fila in dataGridcarrito.Rows)
-            {
-                if (!fila.IsNewRow)
-                {
-                    // Aquí debes usar los nombres SIN tilde, como los declaraste al crear las columnas del carrito.
-                    string codigo = fila.Cells["Codigo"].Value?.ToString();
-                    string descripcion = fila.Cells["Descripcion"].Value?.ToString();
-                    double precio = Convert.ToDouble(fila.Cells["Precio"].Value);
-                    int cantidad = Convert.ToInt32(fila.Cells["Cantidad"].Value);
-                    double subtotal = precio * cantidad;
-
-                    factura += $"{cantidad} x {descripcion} ({codigo}) - {precio:C} = {subtotal:C}\n";
-                    total += subtotal;
-                }
-            }
-
-            factura += $"\nTotal: {total:C}";
-            return factura;
-        }
-
-
-
-
+        
+             
         private void btncrearfactura_Click(object sender, EventArgs e)
         {
-            string contenidoFactura = GenerarContenidoFactura();
+            
             FormularioFactura ventanaFactura = new FormularioFactura(contenidoFactura);
             ventanaFactura.ShowDialog();
         }
