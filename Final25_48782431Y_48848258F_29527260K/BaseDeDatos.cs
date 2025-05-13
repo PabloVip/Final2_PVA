@@ -515,6 +515,8 @@ namespace Final25_48782431Y_48848258F_29527260K
                     conexion.Open();
                     command.Connection = conexion;
                     command.CommandText = "SELECT * FROM Usuarios WHERE Email = @usuario AND Password = @contrasena";
+                    command.Parameters.AddWithValue("@usuario", usuario);
+                    command.Parameters.AddWithValue("@contrasena", password);
                     var dt = command.ExecuteReader();
 
                     dt.Read();
@@ -530,7 +532,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                     user.Email = dt.GetString(8);
                     user.FechaCreacion = dt.GetDateTime(9);
                     user.Nif = dt.GetString(10);
-                    user.RollId = dt.GetString(111);
+                    user.RollId = dt.GetString(11);
 
                     return user;
                 }

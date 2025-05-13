@@ -16,7 +16,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             lblEmpresa.Text = BaseDeDatos.UsuarioActivo.Empresa;
             lblUsuario.Text = BaseDeDatos.UsuarioActivo.Nombre;
 
-            label_usuario.Text = "Bienvenid@ " + usuario;
+            // label_usuario.Text = "Bienvenid@ " + usuario;
         }
 
         private void btn_vercatalogo_Click(object sender, EventArgs e)
