@@ -118,6 +118,9 @@
     <EmbeddedResource Include="FormularioCantidad.resx">
       <DependentUpon>FormularioCantidad.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormularioFactura.resx">
+      <DependentUpon>FormularioFactura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioKits.resx">
       <DependentUpon>FormularioKits.cs</DependentUpon>
     </EmbeddedResource>
