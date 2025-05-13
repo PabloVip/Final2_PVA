@@ -45,6 +45,10 @@
             this.Marca = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Precio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Cantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnAñadirProducto = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnEliminarProducto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pAYAVISOLARDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productoKitsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).BeginInit();
@@ -65,16 +69,16 @@
             // 
             this.cbCatalogo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCatalogo.FormattingEnabled = true;
-            this.cbCatalogo.Location = new System.Drawing.Point(11, 51);
+            this.cbCatalogo.Location = new System.Drawing.Point(11, 41);
             this.cbCatalogo.Name = "cbCatalogo";
-            this.cbCatalogo.Size = new System.Drawing.Size(307, 28);
+            this.cbCatalogo.Size = new System.Drawing.Size(352, 28);
             this.cbCatalogo.TabIndex = 2;
             this.cbCatalogo.SelectedIndexChanged += new System.EventHandler(this.cbCatalogo_SelectedIndexChanged);
             // 
             // btnVolver
             // 
             this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(574, 684);
+            this.btnVolver.Location = new System.Drawing.Point(628, 714);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(102, 34);
             this.btnVolver.TabIndex = 6;
@@ -116,10 +120,11 @@
             this.Precio,
             this.Cantidad});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(11, 98);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listView1.Location = new System.Drawing.Point(11, 124);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(665, 570);
+            this.listView1.Size = new System.Drawing.Size(720, 570);
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -146,20 +151,66 @@
             // 
             // Precio
             // 
-            this.Precio.DisplayIndex = 4;
             this.Precio.Text = "Precio";
             // 
             // Cantidad
             // 
-            this.Cantidad.DisplayIndex = 5;
             this.Cantidad.Text = "Cantidad";
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNuevo.Location = new System.Drawing.Point(370, 41);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(102, 34);
+            this.btnNuevo.TabIndex = 8;
+            this.btnNuevo.Text = "Nuevo kit";
+            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
+            // btnAñadirProducto
+            // 
+            this.btnAñadirProducto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAñadirProducto.Location = new System.Drawing.Point(11, 85);
+            this.btnAñadirProducto.Name = "btnAñadirProducto";
+            this.btnAñadirProducto.Size = new System.Drawing.Size(144, 34);
+            this.btnAñadirProducto.TabIndex = 9;
+            this.btnAñadirProducto.Text = "Añadir producto";
+            this.btnAñadirProducto.UseVisualStyleBackColor = true;
+            this.btnAñadirProducto.Click += new System.EventHandler(this.btnAñadirProducto_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminar.Location = new System.Drawing.Point(478, 41);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(102, 34);
+            this.btnEliminar.TabIndex = 10;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnEliminarProducto
+            // 
+            this.btnEliminarProducto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminarProducto.Location = new System.Drawing.Point(161, 85);
+            this.btnEliminarProducto.Name = "btnEliminarProducto";
+            this.btnEliminarProducto.Size = new System.Drawing.Size(144, 34);
+            this.btnEliminarProducto.TabIndex = 11;
+            this.btnEliminarProducto.Text = "Eliminar producto";
+            this.btnEliminarProducto.UseVisualStyleBackColor = true;
+            this.btnEliminarProducto.Click += new System.EventHandler(this.btnEliminarProducto_Click);
             // 
             // FormularioKits
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(687, 730);
+            this.ClientSize = new System.Drawing.Size(746, 759);
+            this.Controls.Add(this.btnEliminarProducto);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnAñadirProducto);
+            this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.cbCatalogo);
@@ -192,5 +243,9 @@
         private System.Windows.Forms.ColumnHeader Precio;
         private System.Windows.Forms.ColumnHeader Cantidad;
         private System.Windows.Forms.ColumnHeader Marca;
+        private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.Button btnAñadirProducto;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnEliminarProducto;
     }
 }

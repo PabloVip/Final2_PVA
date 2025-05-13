@@ -242,11 +242,46 @@ namespace Final25_48782431Y_48848258F_29527260K
 
 
         /// <summary>
-        /// Metodo para guardar un nuevo producto que es kit
+        /// Metodo para crear un nuevo producto Kit sin lineas. Las lineas se añaden a parte
+        /// </summary>
+        /// <param name="kit"></param>
+        public static void GuardarKit(Producto kit)
+        {
+            using (SqlConnection conn = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conn.Open();
+                    var query = @"INSERT INTO Producto(Codigo, Descripcion, Categoria, Marca, Precio, EsKit) VALUES
+                            (@Codigo, @Descripcion, @Categoria, @Marca, @Precio, @EsKit)";
+
+                    command.CommandText = query;
+                    command.Connection = conn;
+                    command.Parameters.AddWithValue("@Codigo", kit.Codigo);
+                    command.Parameters.AddWithValue("@Descripcion", kit.Descripcion);
+                    command.Parameters.AddWithValue("@Categoria", kit.Categoria);
+                    command.Parameters.AddWithValue("@Marca", kit.Marca);
+                    command.Parameters.AddWithValue("@Precio", kit.Precio);
+                    command.Parameters.AddWithValue("@EsKit", 1);
+
+                    command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo para guardar un nuevo producto que es kit y sus lineas
+        /// los añadimos
         /// </summary>
         /// <param name="kit">Producto que es kit</param>
         /// <param name="productosDelKit">Lista de productos que incluye el kit</param>
-        public void GuardarNuevoKit(Producto kit, List<ProductoKit> productosDelKit)
+        public static void GuardarKitConLineas(Producto kit, List<ProductoKit> productosDelKit)
         {
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             using (SqlCommand command = new SqlCommand())
@@ -274,7 +309,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                     var idKit = (int)cmd.ExecuteScalar();
                     cmd.Dispose();
 
-                    // Insertamos las lineas de productos del kit
+                    // Insertamos las lineas de productos del kit si hay alguna
                     query = @"INSERT INTO ProductoKits(Id, ProductoId, Cantidad) VALUES
                             (@Id, @ProductoId, @Cantidad)";
                     foreach (var producto in productosDelKit)
@@ -312,8 +347,64 @@ namespace Final25_48782431Y_48848258F_29527260K
                 {
                     conexion.Open();
                     command.Connection = conexion;
-                    command.CommandText = "DELETE FROM PRODUCTOS WHERE Id=@ProductoId";
+                    command.CommandText = "DELETE FROM Productos WHERE Id=@ProductoId";
                     command.Parameters.AddWithValue("@ProductoId", productoId);
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para borrar un producto de un Kit
+        /// </summary>
+        /// <param name="kitId"></param>
+        /// <param name="productoAEliminarId"></param>
+        public static void EliminarProductoDeUnKit(int kitId, int productoAEliminarId)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "DELETE FROM ProductoKit WHERE Id=@KitId AND ProductoId=@ProductoAEliminarId";
+                    command.Parameters.AddWithValue("@KitId", kitId);
+                    command.Parameters.AddWithValue("@ProductoAEliminarId", productoAEliminarId);
+                    var dt = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo para añadir un nuevo producto a un kit existente
+        /// </summary>
+        /// <param name="kitId"></param>
+        /// <param name="productoId"></param>
+        /// <param name="cantidad"></param>
+        public static void AñadirProductoAUnKit(int kitId, int productoId, decimal cantidad)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = @"INSERT INTO ProductoKit (Id, ProductoId, Cantidad)
+                        VALUES (@Id, @ProductoId, @Cantidad";
+                    command.Parameters.AddWithValue("@Id", kitId);
+                    command.Parameters.AddWithValue("@ProductoId", productoId);
+                    command.Parameters.AddWithValue("@Cantidad", cantidad);
                     var dt = command.ExecuteNonQuery();
                 }
                 finally
@@ -326,7 +417,7 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         #endregion
 
-        
+
         #region USUARIOS Y ROLES
 
         /// <summary>
