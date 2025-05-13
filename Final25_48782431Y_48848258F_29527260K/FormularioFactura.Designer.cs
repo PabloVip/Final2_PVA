@@ -37,7 +37,7 @@
             this.richTextBoxFactura.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxFactura.Name = "richTextBoxFactura";
             this.richTextBoxFactura.ReadOnly = true;
-            this.richTextBoxFactura.Size = new System.Drawing.Size(958, 473);
+            this.richTextBoxFactura.Size = new System.Drawing.Size(939, 513);
             this.richTextBoxFactura.TabIndex = 0;
             this.richTextBoxFactura.Text = "";
             // 
@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(958, 473);
+            this.ClientSize = new System.Drawing.Size(939, 513);
             this.Controls.Add(this.richTextBoxFactura);
             this.Name = "FormularioFactura";
             this.Text = "FormularioFactura";
