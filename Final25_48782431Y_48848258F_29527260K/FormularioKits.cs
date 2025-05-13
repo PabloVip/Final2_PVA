@@ -158,5 +158,10 @@ namespace Final25_48782431Y_48848258F_29527260K
             var codigos = _kits.Select(x => x.Codigo).ToArray();
             cbCatalogo.Items.AddRange(codigos);
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
