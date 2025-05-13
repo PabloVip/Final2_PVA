@@ -12,9 +12,17 @@ namespace Final25_48782431Y_48848258F_29527260K
 {
     public partial class FormularioAniadirProducto : Form
     {
+        public string codigoProducto { get; private set; }
         public FormularioAniadirProducto()
         {
             InitializeComponent();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            codigoProducto = tbCodigo.Text; 
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
