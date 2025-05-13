@@ -42,8 +42,6 @@
             this.NIF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RolId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Password = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label1 = new System.Windows.Forms.Label();
-            this.tb_id = new System.Windows.Forms.TextBox();
             this.tb_empresa = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tb_nombre = new System.Windows.Forms.TextBox();
@@ -158,22 +156,6 @@
             // Password
             // 
             this.Password.Text = "Password";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(934, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "ID";
-            // 
-            // tb_id
-            // 
-            this.tb_id.Location = new System.Drawing.Point(937, 56);
-            this.tb_id.Name = "tb_id";
-            this.tb_id.Size = new System.Drawing.Size(146, 20);
-            this.tb_id.TabIndex = 10;
             // 
             // tb_empresa
             // 
@@ -369,6 +351,7 @@
             this.bt_modificar.TabIndex = 34;
             this.bt_modificar.Text = "Modificar";
             this.bt_modificar.UseVisualStyleBackColor = true;
+            this.bt_modificar.Click += new System.EventHandler(this.bt_modificar_Click);
             // 
             // button1
             // 
@@ -428,8 +411,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tb_empresa);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.tb_id);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.listView1);
             this.Name = "AdministrarUsuarios";
             this.Text = "AdministrarUsuarios";
@@ -454,8 +435,6 @@
         private System.Windows.Forms.ColumnHeader NIF;
         private System.Windows.Forms.ColumnHeader RolId;
         private System.Windows.Forms.ColumnHeader Password;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tb_id;
         private System.Windows.Forms.TextBox tb_empresa;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tb_nombre;

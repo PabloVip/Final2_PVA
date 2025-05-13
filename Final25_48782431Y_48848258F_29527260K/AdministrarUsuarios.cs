@@ -62,7 +62,6 @@ namespace Final25_48782431Y_48848258F_29527260K
                 var item = listView1.SelectedItems[0]; // La fila seleccionada
 
                 // Asumiendo que tienes TextBox con estos nombres:
-                tb_id.Text = item.SubItems[0].Text;
                 tb_empresa.Text = item.SubItems[1].Text;
                 tb_nombre.Text = item.SubItems[2].Text;
                 tb_direccion.Text = item.SubItems[3].Text;
@@ -80,7 +79,8 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BaseDeDatos.EliminarUsuario(int.Parse(tb_id.Text));
+            var item = listView1.SelectedItems[0]; // La fila seleccionada
+            BaseDeDatos.EliminarUsuario(int.Parse(item.SubItems[0].Text));
             usuarios = BaseDeDatos.LeerUsuarios();  // Recargar desde la base de datos
             CargarUsuariosEnListView();
         }
@@ -98,7 +98,6 @@ namespace Final25_48782431Y_48848258F_29527260K
 
                 Usuario nuevoUsuario = new Usuario
                 {
-                    Id = int.Parse(tb_id.Text),
                     Empresa = tb_empresa.Text,
                     Nombre = tb_nombre.Text,
                     Direccion = tb_direccion.Text,
@@ -124,6 +123,64 @@ namespace Final25_48782431Y_48848258F_29527260K
                 MessageBox.Show("Error al añadir usuario: " + ex.Message);
             }
         }
+
+        private void bt_modificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listView1.SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("Selecciona un usuario de la lista para modificar.");
+                    return;
+                }
+
+                var item = listView1.SelectedItems[0];
+                int id = int.Parse(item.SubItems[0].Text); 
+
+                // Validar campos básicos
+                if (string.IsNullOrWhiteSpace(tb_email.Text) || string.IsNullOrWhiteSpace(tb_password.Text))
+                {
+                    MessageBox.Show("Email y contraseña son obligatorios.");
+                    return;
+                }
+
+                DateTime fecha;
+                if (!DateTime.TryParse(tb_fechacreacion.Text, out fecha))
+                {
+                    MessageBox.Show("La fecha no es válida.");
+                    return;
+                }
+
+                Usuario usuarioModificado = new Usuario
+                {
+                    Id = id,
+                    Empresa = tb_empresa.Text,
+                    Nombre = tb_nombre.Text,
+                    Direccion = tb_direccion.Text,
+                    Poblacion = tb_poblacion.Text,
+                    CodigoPostal = tb_CP.Text,
+                    Provincia = tb_provincia.Text,
+                    Pais = tb_pais.Text,
+                    Email = tb_email.Text,
+                    FechaCreacion = fecha,
+                    Nif = tb_nif.Text,
+                    RollId = tb_rolid.Text,
+                    Password = tb_password.Text
+                };
+
+                BaseDeDatos.ModificarUsuario(usuarioModificado);
+
+                MessageBox.Show("Usuario modificado correctamente.");
+
+                usuarios = BaseDeDatos.LeerUsuarios();  // Recargar lista
+                CargarUsuariosEnListView();             // Refrescar tabla
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al modificar usuario: " + ex.Message);
+            }
+        }
+
 
     }
 }

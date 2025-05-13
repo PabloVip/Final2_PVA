@@ -598,9 +598,10 @@ namespace Final25_48782431Y_48848258F_29527260K
                     conexion.Open();
                     command.Connection = conexion;
                     command.CommandText = @"UPDATE Usuarios SET
-                            Empresa=@Empresa, Nombre=@Nombre, Direccion=@Direccion, Poblacion=@Poblacion, CodigoPostal=@CodigoPostal,
-                            Provincia=@Provincia, Pais=@Pais, Email=@Email, Nif=@Nif
-                        WHERE Id=@UsuarioId";
+                Empresa=@Empresa, Nombre=@Nombre, Direccion=@Direccion, Poblacion=@Poblacion, CodigoPostal=@CodigoPostal,
+                Provincia=@Provincia, Pais=@Pais, Email=@Email, Nif=@Nif
+                WHERE Id=@UsuarioId";
+                    command.Parameters.AddWithValue("@UsuarioId", usuario.Id);  
                     command.Parameters.AddWithValue("@Empresa", usuario.Empresa);
                     command.Parameters.AddWithValue("@Nombre", usuario.Nombre);
                     command.Parameters.AddWithValue("@Direccion", usuario.Direccion);
@@ -619,6 +620,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                 }
             }
         }
+
 
 
         /// <summary>
