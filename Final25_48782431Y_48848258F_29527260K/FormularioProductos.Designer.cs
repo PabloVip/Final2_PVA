@@ -192,6 +192,7 @@
             this.btncrearfactura.TabIndex = 6;
             this.btncrearfactura.Text = "Crear factura";
             this.btncrearfactura.UseVisualStyleBackColor = true;
+            this.btncrearfactura.Click += new System.EventHandler(this.btncrearfactura_Click);
             // 
             // FormularioProductos
             // 

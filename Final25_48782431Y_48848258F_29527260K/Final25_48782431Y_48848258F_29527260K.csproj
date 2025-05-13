@@ -80,6 +80,12 @@
     <Compile Include="FormularioCantidad.Designer.cs">
       <DependentUpon>FormularioCantidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioFactura.Designer.cs">
+      <DependentUpon>FormularioFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioKits.cs">
       <SubType>Form</SubType>
     </Compile>

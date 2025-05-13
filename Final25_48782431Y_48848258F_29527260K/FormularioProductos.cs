@@ -113,5 +113,11 @@ namespace Final25_48782431Y_48848258F_29527260K
         {
             this.Close();
         }
+
+        private void btncrearfactura_Click(object sender, EventArgs e)
+        {
+            FormularioFactura nuevoFormulario = new FormularioFactura();
+            nuevoFormulario.Show();
+        }
     }
 }
