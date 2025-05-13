@@ -116,6 +116,28 @@ namespace Final25_48782431Y_48848258F_29527260K
         }
 
 
+        private string GenerarContenidoFactura(FacturaCabecera factura)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("FACTURA");
+            sb.AppendLine($"ID Factura: {factura.Id}");
+            sb.AppendLine($"Fecha: {factura.FechaCreacion}");
+            sb.AppendLine($"Cliente ID: {factura.ClienteId}");
+            sb.AppendLine();
+            sb.AppendLine("Detalle:");
+            decimal totalFactura = 0;
+
+            foreach (var linea in factura.Lineas)
+            {
+                sb.AppendLine($"{linea.Cantidad} x {linea.Descripcion} ({linea.CodigoProducto}) - {linea.Precio:C} = {linea.Total:C}");
+                totalFactura += linea.Total;
+            }
+
+            sb.AppendLine($"\nTotal Factura: {totalFactura:C}");
+
+            return sb.ToString();
+        }
+
 
         private void btncrearfactura_Click(object sender, EventArgs e)
         {
@@ -124,9 +146,6 @@ namespace Final25_48782431Y_48848258F_29527260K
                 MessageBox.Show("El carrito está vacío. Agregue productos antes de crear la factura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Obtener las facturas existentes antes de grabar
-            var facturasAntes = BaseDeDatos.LeerFacturas().Select(f => f.Id).ToList();
 
             var fechaCreacion = DateTime.Now;
             fechaCreacion = new DateTime(fechaCreacion.Year, fechaCreacion.Month, fechaCreacion.Day,
@@ -170,22 +189,18 @@ namespace Final25_48782431Y_48848258F_29527260K
                 return;
             }
 
-            // Volver a leer las facturas después de grabar para detectar la nueva
-            var facturasDespues = BaseDeDatos.LeerFacturas();
-            var nuevaFactura = facturasDespues.FirstOrDefault(f => !facturasAntes.Contains(f.Id));
+            MessageBox.Show("Factura guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            if (nuevaFactura != null)
-            {
-                MessageBox.Show($"Factura guardada correctamente con Id: {nuevaFactura.Id}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Factura guardada, pero no se pudo identificar su Id.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            // Mostrar el formulario con los datos que ya tienes en memoria
+            string contenidoFactura = GenerarContenidoFactura(factura);
+            FormularioFactura ventanaFactura = new FormularioFactura(contenidoFactura);
+            ventanaFactura.ShowDialog();
 
-            // Limpiar el carrito
+            // Limpiar el carrito después
             dataGridcarrito.Rows.Clear();
         }
+
+
 
 
 

@@ -15,7 +15,7 @@ namespace Final25_48782431Y_48848258F_29527260K
         public FormularioFactura(string contenidoFactura)
         {
             InitializeComponent();
-            
+            richTextBoxFactura.Text = contenidoFactura;
         }
 
         private void FormularioFactura_Load(object sender, EventArgs e)

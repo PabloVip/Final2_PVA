@@ -65,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1018, 743);
+            this.ClientSize = new System.Drawing.Size(725, 743);
             this.Controls.Add(this.btnvolverfactura);
             this.Controls.Add(this.labelfactura);
             this.Controls.Add(this.richTextBoxFactura);
