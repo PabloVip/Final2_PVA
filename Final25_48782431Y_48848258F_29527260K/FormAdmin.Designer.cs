@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btncerrarsesion = new System.Windows.Forms.Button();
+            this.btn_vercatalogo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btncerrarsesion
@@ -42,11 +43,23 @@
             this.btncerrarsesion.UseVisualStyleBackColor = true;
             this.btncerrarsesion.Click += new System.EventHandler(this.btncerrarsesion_Click);
             // 
+            // btn_vercatalogo
+            // 
+            this.btn_vercatalogo.Location = new System.Drawing.Point(288, 76);
+            this.btn_vercatalogo.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_vercatalogo.Name = "btn_vercatalogo";
+            this.btn_vercatalogo.Size = new System.Drawing.Size(206, 67);
+            this.btn_vercatalogo.TabIndex = 4;
+            this.btn_vercatalogo.Text = "Administrar cátalogo";
+            this.btn_vercatalogo.UseVisualStyleBackColor = true;
+            this.btn_vercatalogo.Click += new System.EventHandler(this.btn_vercatalogo_Click);
+            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_vercatalogo);
             this.Controls.Add(this.btncerrarsesion);
             this.Name = "FormAdmin";
             this.Text = "FormAdmin";
@@ -58,5 +71,6 @@
         #endregion
 
         private System.Windows.Forms.Button btncerrarsesion;
+        private System.Windows.Forms.Button btn_vercatalogo;
     }
 }
