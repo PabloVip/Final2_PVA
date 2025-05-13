@@ -108,5 +108,10 @@ namespace Final25_48782431Y_48848258F_29527260K
                 MessageBox.Show("Por favor, seleccione una fila del carrito para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void btnvolverproductos_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
