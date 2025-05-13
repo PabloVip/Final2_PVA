@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbCodigo = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbCantidad = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -45,14 +47,14 @@
             // 
             // tbCodigo
             // 
-            this.tbCodigo.Location = new System.Drawing.Point(228, 169);
+            this.tbCodigo.Location = new System.Drawing.Point(215, 128);
             this.tbCodigo.Name = "tbCodigo";
             this.tbCodigo.Size = new System.Drawing.Size(328, 31);
             this.tbCodigo.TabIndex = 1;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(228, 262);
+            this.btnAceptar.Location = new System.Drawing.Point(215, 332);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(328, 68);
             this.btnAceptar.TabIndex = 2;
@@ -60,11 +62,30 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(137, 197);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(460, 31);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Ingrese la cantidad de este producto:";
+            // 
+            // tbCantidad
+            // 
+            this.tbCantidad.Location = new System.Drawing.Point(215, 252);
+            this.tbCantidad.Name = "tbCantidad";
+            this.tbCantidad.Size = new System.Drawing.Size(328, 31);
+            this.tbCantidad.TabIndex = 4;
+            // 
             // FormularioAniadirProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tbCantidad);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.tbCodigo);
             this.Controls.Add(this.label1);
@@ -80,5 +101,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbCodigo;
         private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbCantidad;
     }
 }

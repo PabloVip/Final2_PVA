@@ -105,11 +105,19 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btnAñadirProducto_Click(object sender, EventArgs e)
         {
-            // Mostrar ventana para elegir un producto y obtener el id    POR HACER
+            // Mostrar ventana para elegir un producto y obtener el id  
             FormularioAniadirProducto fProdcuto = new FormularioAniadirProducto();
             fProdcuto.Show();
 
-            
+            string codigoKit;
+            decimal cantidad;
+
+            if (fProdcuto.ShowDialog() == DialogResult.OK)
+            {
+                codigoKit = fProdcuto.codigoProducto;
+                cantidad = decimal.Parse(fProdcuto.cantidad);
+            }
+               
             try
             {
                 listView1.Clear();
@@ -119,9 +127,8 @@ namespace Final25_48782431Y_48848258F_29527260K
                     // Consulto el Id del producto kit
                     var idDelKit = _kits.First(x => x.Codigo == codigoKit).Id;
 
-
                     // BaseDeDatos.AñadirProductoAUnKit(idDelKit, );  // Aqui hay que pasar el id del producto consultado arriba
-
+                    BaseDeDatos.AñadirProductoAUnKit(idDelKit, codigoKit, cantidad);
 
                     // Consulto los productos incluidos en el kit para recargarlos
                     var productosDelKit = BaseDeDatos.LeerProductosDeUnKit(idDelKit);
