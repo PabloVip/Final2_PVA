@@ -391,7 +391,7 @@ namespace Final25_48782431Y_48848258F_29527260K
         /// <param name="kitId"></param>
         /// <param name="productoId"></param>
         /// <param name="cantidad"></param>
-        public static void AñadirProductoAUnKit(int kitId, int productoId, decimal cantidad)
+        public static void AñadirProductoAUnKit(int kitId, string productoId, decimal cantidad)
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             using (SqlCommand command = new SqlCommand())
@@ -413,6 +413,22 @@ namespace Final25_48782431Y_48848258F_29527260K
                 }
             }
         }
+
+        public static bool ProductoExiste(string codigoProducto)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                conexion.Open();
+                command.Connection = conexion;
+                command.CommandText = "SELECT 1 FROM Productos WHERE Codigo = @Codigo";
+                command.Parameters.AddWithValue("@Codigo", codigoProducto);
+
+                var resultado = command.ExecuteScalar();
+                return resultado != null;
+            }
+        }
+
 
 
         #endregion

@@ -105,37 +105,44 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btnAñadirProducto_Click(object sender, EventArgs e)
         {
-            // Mostrar ventana para elegir un producto y obtener el id  
-            FormularioAniadirProducto fProdcuto = new FormularioAniadirProducto();
-            fProdcuto.Show();
+            // Mostrar ventana para elegir un producto y obtener el código y la cantidad
+            FormularioAniadirProducto fProducto = new FormularioAniadirProducto();
 
-            string codigoKit;
-            decimal cantidad;
+            string codigoProducto = null;
+            decimal cantidad = 0;
 
-            if (fProdcuto.ShowDialog() == DialogResult.OK)
+            if (fProducto.ShowDialog() == DialogResult.OK)
             {
-                codigoKit = fProdcuto.codigoProducto;
-                cantidad = decimal.Parse(fProdcuto.cantidad);
+                codigoProducto = fProducto.codigoProducto;
+
+                if (!decimal.TryParse(fProducto.cantidad, out cantidad))
+                {
+                    MessageBox.Show("Cantidad inválida");
+                    return;
+                }
             }
-               
+            else
+            {
+                return; // El usuario canceló el formulario
+            }
+
             try
             {
                 listView1.Clear();
 
-                if (cbCatalogo.SelectedValue is string codigoKit)
+                if (cbCatalogo.SelectedValue is string codigoKitSeleccionado)
                 {
-                    // Consulto el Id del producto kit
-                    var idDelKit = _kits.First(x => x.Codigo == codigoKit).Id;
+                    // Buscamos el ID del kit por su código
+                    var idDelKit = _kits.First(x => x.Codigo == codigoKitSeleccionado).Id;
 
-                    // BaseDeDatos.AñadirProductoAUnKit(idDelKit, );  // Aqui hay que pasar el id del producto consultado arriba
-                    BaseDeDatos.AñadirProductoAUnKit(idDelKit, codigoKit, cantidad);
+                    // Añadimos el producto al kit
+                    BaseDeDatos.AñadirProductoAUnKit(idDelKit, codigoProducto, cantidad);
 
-                    // Consulto los productos incluidos en el kit para recargarlos
+                    // Leemos los productos actualizados del kit
                     var productosDelKit = BaseDeDatos.LeerProductosDeUnKit(idDelKit);
 
                     listView1.Items.Clear();
 
-                    // Si el kit no tiene productos, salimos
                     if (!productosDelKit.Any())
                         return;
 
@@ -154,6 +161,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 

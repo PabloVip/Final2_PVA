@@ -23,6 +23,13 @@ namespace Final25_48782431Y_48848258F_29527260K
         {
             codigoProducto = tbCodigo.Text; 
             cantidad = tbCantidad.Text;
+
+            if(!BaseDeDatos.ProductoExiste(codigoProducto))
+            {
+                MessageBox.Show("Ese producto no existe");
+                return;
+            }
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
