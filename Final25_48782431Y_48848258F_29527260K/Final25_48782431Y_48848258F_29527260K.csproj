@@ -74,6 +74,12 @@
     <Compile Include="FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioAniadirProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioAniadirProducto.Designer.cs">
+      <DependentUpon>FormularioAniadirProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioCantidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioAniadirProducto.resx">
+      <DependentUpon>FormularioAniadirProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioCantidad.resx">
       <DependentUpon>FormularioCantidad.cs</DependentUpon>

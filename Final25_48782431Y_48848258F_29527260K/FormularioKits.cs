@@ -106,6 +106,8 @@ namespace Final25_48782431Y_48848258F_29527260K
         private void btnAñadirProducto_Click(object sender, EventArgs e)
         {
             // Mostrar ventana para elegir un producto y obtener el id    POR HACER
+            FormularioAniadirProducto fProdcuto = new FormularioAniadirProducto();
+            fProdcuto.Show();
 
             
             try
