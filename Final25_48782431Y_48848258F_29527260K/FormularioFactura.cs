@@ -26,10 +26,10 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btnPasarAExcel_Click(object sender, EventArgs e)
         {
-            string nombreArchivo = $"Factura_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
-            string rutaCompleta = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), nombreArchivo);
+            // Ruta temporal que se elimina cuando se apaga el sistema o si el usuario no lo guarda
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), $"Factura_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
 
-            using (StreamWriter writer = new StreamWriter(rutaCompleta, false, Encoding.UTF8))
+            using (StreamWriter writer = new StreamWriter(rutaTemporal, false, Encoding.UTF8))
             {
                 writer.WriteLine("===============================================");
                 writer.WriteLine("                 FACTURA                       ");
@@ -42,11 +42,10 @@ namespace Final25_48782431Y_48848258F_29527260K
                 writer.WriteLine("===============================================");
             }
 
-            MessageBox.Show("Factura exportada como CSV correctamente en el escritorio.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // Abrir el archivo automáticamente
-            System.Diagnostics.Process.Start("explorer.exe", rutaCompleta);
+            // Abre el archivo temporalmente en Excel
+            System.Diagnostics.Process.Start("explorer.exe", rutaTemporal);
         }
+
 
 
         private void btnvolverfactura_Click(object sender, EventArgs e)
