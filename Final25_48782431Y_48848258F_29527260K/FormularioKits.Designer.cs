@@ -385,6 +385,7 @@
             this.Name = "FormularioKits";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kits";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.pAYAVISOLARDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productoKitsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).EndInit();
