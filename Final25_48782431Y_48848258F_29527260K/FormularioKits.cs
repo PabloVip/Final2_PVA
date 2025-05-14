@@ -10,7 +10,7 @@ namespace Final25_48782431Y_48848258F_29527260K
     {
         private List<Producto> _kits;
 
-        public FormularioKits()
+        public FormularioKits(bool admin)
         {
             InitializeComponent();
 
@@ -18,6 +18,22 @@ namespace Final25_48782431Y_48848258F_29527260K
             CargaComboKits();
 
             cbCatalogo.SelectedIndexChanged += cbCatalogo_SelectedIndexChanged;
+
+            if (!admin)
+            {
+                //SI ERES CLIENTE NO PUEDES EDITAR
+                btnAñadirProducto.Enabled = false;
+                btnEliminarProducto.Enabled = false;
+                btnEliminarKit.Enabled = false;
+                btnModificarKit.Enabled = false;
+                btnNuevoKit.Enabled = false;
+
+                btnAñadirProducto.Visible = false;
+                btnEliminarProducto.Visible = false;
+                btnEliminarKit.Visible = false;
+                btnModificarKit.Visible = false;
+                btnNuevoKit.Visible = false;
+            }
 
         }
 

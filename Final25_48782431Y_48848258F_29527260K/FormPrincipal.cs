@@ -21,8 +21,8 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btn_vercatalogo_Click(object sender, EventArgs e)
         {
-            //FormularioKits nuevoFormulario = new FormularioKits();
-            //nuevoFormulario.Show();
+            FormularioKits nuevoFormulario = new FormularioKits(false);
+            nuevoFormulario.Show();
         }
 
         private void btn_crearkit_Click(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btnKits_Click(object sender, EventArgs e)
         {
-            var fkits = new FormularioKits();
+            var fkits = new FormularioKits(false);
             fkits.Show();
         }
     }
