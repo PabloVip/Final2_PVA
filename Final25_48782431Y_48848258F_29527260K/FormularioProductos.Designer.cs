@@ -149,7 +149,7 @@
             this.dataGridcarrito.ReadOnly = true;
             this.dataGridcarrito.RowHeadersWidth = 62;
             this.dataGridcarrito.RowTemplate.Height = 28;
-            this.dataGridcarrito.Size = new System.Drawing.Size(1156, 314);
+            this.dataGridcarrito.Size = new System.Drawing.Size(1144, 314);
             this.dataGridcarrito.TabIndex = 2;
             // 
             // label_carrito
@@ -178,7 +178,7 @@
             // 
             // btnvolverproductos
             // 
-            this.btnvolverproductos.Location = new System.Drawing.Point(1110, 779);
+            this.btnvolverproductos.Location = new System.Drawing.Point(1042, 779);
             this.btnvolverproductos.Name = "btnvolverproductos";
             this.btnvolverproductos.Size = new System.Drawing.Size(147, 63);
             this.btnvolverproductos.TabIndex = 5;
@@ -188,7 +188,7 @@
             // 
             // btncrearfactura
             // 
-            this.btncrearfactura.Location = new System.Drawing.Point(1226, 459);
+            this.btncrearfactura.Location = new System.Drawing.Point(1211, 459);
             this.btncrearfactura.Name = "btncrearfactura";
             this.btncrearfactura.Size = new System.Drawing.Size(190, 314);
             this.btncrearfactura.TabIndex = 6;
