@@ -15,14 +15,37 @@ namespace Final25_48782431Y_48848258F_29527260K
             InitializeComponent();
 
             //CARGO LOS KITS AL COMBOBOX. Guardo la lista de kits al inicializar la ventana en _kits
-            _kits = BaseDeDatos.LeerKits();
-
-            // Al AddRange necesita un array en vez de una lista
-            var codigos = _kits.Select(x => x.Codigo).ToArray();
-            cbCatalogo.Items.AddRange(codigos);
+            CargaComboKits();
 
             cbCatalogo.SelectedIndexChanged += cbCatalogo_SelectedIndexChanged;
 
+        }
+
+        private void CargaComboKits()
+        {
+            lblId.Text = string.Empty;
+            lblCodigo.Text = string.Empty;
+            lblDescripcion.Text = string.Empty;
+            lblCategoria.Text = string.Empty;
+            lblMarca.Text = string.Empty;
+            lblPrecio.Text = string.Empty;
+
+            cbCatalogo.Items.Clear();
+            _kits = BaseDeDatos.LeerKits();
+            cbCatalogo.Items.AddRange(_kits.Select(x => x.Codigo).ToArray());
+
+            listView1.Items.Clear();
+        }
+
+        private void MuestraDatosDelKit(string codigoKit)
+        {
+            var productoSeleccionado = _kits.First(x => x.Codigo == codigoKit);
+            lblId.Text = productoSeleccionado.Id.ToString();
+            lblCodigo.Text = productoSeleccionado.Codigo;
+            lblDescripcion.Text = productoSeleccionado.Descripcion;
+            lblCategoria.Text = productoSeleccionado.Categoria;
+            lblMarca.Text = productoSeleccionado.Marca;
+            lblPrecio.Text = productoSeleccionado.Precio.ToString();
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -40,10 +63,13 @@ namespace Final25_48782431Y_48848258F_29527260K
         //ARREGLAR
         private void cbCatalogo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbCatalogo.SelectedValue is string codigoKit)
+            var kitSeleccionado = cbCatalogo.SelectedItem.ToString();
+            MuestraDatosDelKit(kitSeleccionado);
+
+            if (!string.IsNullOrWhiteSpace(kitSeleccionado))
             {
                 // Consulto el Id del producto kit
-                var idDelKit = _kits.First(x => x.Codigo == codigoKit).Id;
+                var idDelKit = _kits.First(x => x.Codigo == kitSeleccionado).Id;
 
                 // Consulto los productos incluidos en el kit
                 var productosDelKit = BaseDeDatos.LeerProductosDeUnKit(idDelKit);
@@ -74,16 +100,16 @@ namespace Final25_48782431Y_48848258F_29527260K
             {
                 if (cbCatalogo.SelectedItem != null)
                 {
-                    var productoSeleccionado = (Producto)cbCatalogo.SelectedItem;
-                    BaseDeDatos.EliminarKit(productoSeleccionado.Id);
+                    var producto = _kits.First(x => x.Codigo == cbCatalogo.SelectedItem);
+                    BaseDeDatos.EliminarKit(producto.Id);
+
+                    CargaComboKits();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error eliminando kit: " + ex.Message, "Error", MessageBoxButtons.OK);
             }
-            
-            
         }
 
         private void btnEliminarProducto_Click(object sender, EventArgs e)
@@ -168,28 +194,61 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            // Mostrar ventana y pedir los datos de un producto que va a ser un kit. Todos los campos menos Id y EsKit
-            FormAniadirKit formKit = new FormAniadirKit();
+            try
+            {
+                // Mostrar ventana y pedir los datos de un producto que va a ser un kit. Todos los campos menos Id y EsKit
+                var frmNuevoProducto = new FormularioNuevoProducto(true);
 
-            Producto kit;
+                if (frmNuevoProducto.ShowDialog() == DialogResult.OK)
+                {
+                    BaseDeDatos.GuardarKit(frmNuevoProducto.Producto);
 
-            if (formKit.ShowDialog() == DialogResult.Cancel)
-                return; // El usuario canceló el formulario
+                    // Recargamos el combobox con los kits
+                    CargaComboKits();    
 
-            kit = formKit.kit;
-            // BaseDeDatos.GuardarKit( producto );
-            BaseDeDatos.GuardarKit(kit);
+                    cbCatalogo.SelectedItem = frmNuevoProducto.Producto.Codigo;
+                    MuestraDatosDelKit(frmNuevoProducto.Producto.Codigo);
 
-            // Recargamos el combobox con los kits
-            var codigos = _kits.Select(x => x.Codigo).ToArray();
-            cbCatalogo.Items.AddRange(codigos);
+                    listView1.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
 
-            listView1.Items.Clear();
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnModificarKit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbCatalogo.SelectedItem != null)
+                {
+                    var productoKit = _kits.First(x => x.Codigo == cbCatalogo.SelectedItem);
+
+                    var frmNuevoProducto = new FormularioNuevoProducto(true, productoKit);
+                    if (frmNuevoProducto.ShowDialog() == DialogResult.OK)
+                    {
+                        BaseDeDatos.ModificarProducto(frmNuevoProducto.Producto);
+
+                        // Recargamos el combobox con los kits
+                        CargaComboKits();
+
+                        cbCatalogo.SelectedItem = frmNuevoProducto.Producto.Codigo;
+                        MuestraDatosDelKit(frmNuevoProducto.Producto.Codigo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }

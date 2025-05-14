@@ -57,5 +57,11 @@ namespace Final25_48782431Y_48848258F_29527260K
         {
 
         }
+
+        private void btnKits_Click(object sender, EventArgs e)
+        {
+            var fkits = new FormularioKits();
+            fkits.Show();
+        }
     }
 }

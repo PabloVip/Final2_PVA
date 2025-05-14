@@ -63,6 +63,16 @@ namespace Final25_48782431Y_48848258F_29527260K.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ImagenLogin {
+            get {
+                object obj = ResourceManager.GetObject("ImagenLogin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap inconoUndo {
             get {
                 object obj = ResourceManager.GetObject("inconoUndo", resourceCulture);

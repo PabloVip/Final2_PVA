@@ -8,8 +8,8 @@ namespace Final25_48782431Y_48848258F_29527260K
 {
     public class BaseDeDatos
     {
-        private const string CadenaConexion = "server=(local)\\SQLEXPRESS;database=PAYAVISOLAR; Integrated Security=SSPI";
-        // private const string CadenaConexion = "server=localhost;database=PAYAVISOLAR; Integrated Security=SSPI";
+        // private const string CadenaConexion = "server=(local)\\SQLEXPRESS;database=PAYAVISOLAR; Integrated Security=SSPI";
+        private const string CadenaConexion = "server=localhost;database=PAYAVISOLAR; Integrated Security=SSPI";
 
         /// <summary>
         /// Propiedad para guardar el usuario que ha hecho login en la aplicacion
@@ -102,6 +102,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                     command.CommandText = @"UPDATE PRODUCTOS SET
                             Codigo=@Codigo, Descripcion=@Descripcion, Categoria=@Categoria, Marca=@Marca, Precio=@Precio, EsKit=@EsKit
                         WHERE Id=@ProductoId";
+                    command.Parameters.AddWithValue("@ProductoId", producto.Id);
                     command.Parameters.AddWithValue("@Codigo", producto.Codigo);
                     command.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
                     command.Parameters.AddWithValue("@Categoria", producto.Categoria);
@@ -213,7 +214,8 @@ namespace Final25_48782431Y_48848258F_29527260K
                                            p.Marca, p.Precio, k.Cantidad
                                            FROM ProductoKits k 
                                            INNER JOIN Productos p on p.Id = k.ProductoId
-                                           WHERE k.Id = @kitId";
+                                           WHERE k.Id = @KitId";
+                    command.Parameters.AddWithValue("@KitId", kitId);
                     var dt = command.ExecuteReader();
 
                     var productosKit = new List<ProductoKit>();
@@ -253,7 +255,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                 try
                 {
                     conn.Open();
-                    var query = @"INSERT INTO Producto(Codigo, Descripcion, Categoria, Marca, Precio, EsKit) VALUES
+                    var query = @"INSERT INTO Productos(Codigo, Descripcion, Categoria, Marca, Precio, EsKit) VALUES
                             (@Codigo, @Descripcion, @Categoria, @Marca, @Precio, @EsKit)";
 
                     command.CommandText = query;
