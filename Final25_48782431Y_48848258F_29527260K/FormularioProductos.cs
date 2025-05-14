@@ -125,7 +125,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             sb.AppendLine($"Fecha: {factura.FechaCreacion}");
             sb.AppendLine($"Cliente ID: {factura.ClienteId}");
             sb.AppendLine();
-            sb.AppendLine("Detalle:");
+            sb.AppendLine("Detalles:");
             decimal totalFactura = 0;
 
             foreach (var linea in factura.Lineas)
