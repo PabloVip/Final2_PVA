@@ -36,5 +36,10 @@ namespace Final25_48782431Y_48848258F_29527260K
             // Abrir el archivo automáticamente
             System.Diagnostics.Process.Start("explorer.exe", rutaCompleta);
         }
+
+        private void btnvolverfactura_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

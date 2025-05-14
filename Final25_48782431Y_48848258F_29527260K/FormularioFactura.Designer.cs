@@ -61,6 +61,7 @@
             this.btnvolverfactura.TabIndex = 2;
             this.btnvolverfactura.Text = "Volver";
             this.btnvolverfactura.UseVisualStyleBackColor = true;
+            this.btnvolverfactura.Click += new System.EventHandler(this.btnvolverfactura_Click);
             // 
             // btnPasarAExcel
             // 
