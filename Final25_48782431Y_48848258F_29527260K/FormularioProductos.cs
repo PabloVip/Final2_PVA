@@ -58,7 +58,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                 {
                     string idProducto = fila.Cells[0].Value.ToString();
 
-                    // Mostrar el formulario personalizado de cantidad
+                    // Mostrar el formulario personalizado de Cantidad
                     using (var frmCantidad = new FormularioCantidad())
                     {
                         if (frmCantidad.ShowDialog() == DialogResult.OK)
@@ -77,7 +77,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                             {
                                 if (filaCarrito.Cells[0].Value != null && filaCarrito.Cells[0].Value.ToString() == idProducto)
                                 {
-                                    // Sumar la cantidad
+                                    // Sumar la Cantidad
                                     int cantidadExistente = Convert.ToInt32(filaCarrito.Cells[6].Value);
                                     filaCarrito.Cells[6].Value = cantidadExistente + cantidad;
                                     encontrado = true;

@@ -7,8 +7,9 @@ namespace Final25_48782431Y_48848258F_29527260K
 {
     public partial class FormularioAniadirProducto : Form
     {
-        public string codigoProducto { get; private set; }
-        public string cantidad { get; private set; }
+        public string CodigoProducto { get; private set; }
+        public int IdProducto { get; set; }
+        public string Cantidad { get; private set; }
         public FormularioAniadirProducto()
         {
             InitializeComponent();
@@ -22,17 +23,11 @@ namespace Final25_48782431Y_48848258F_29527260K
                 return;
             }
 
-            codigoProducto = lvProductos.SelectedItems[0].SubItems[1].ToString(); 
-            cantidad = tbCantidad.Text;
+            CodigoProducto = lvProductos.SelectedItems[0].SubItems[1].Text;
+            IdProducto = Int32.Parse(lvProductos.SelectedItems[0].SubItems[0].Text);
+            Cantidad = tbCantidad.Text;
 
-            if (!BaseDeDatos.ProductoExiste(codigoProducto))
-            {
-                MessageBox.Show("Ese producto no existe");
-                this.DialogResult = DialogResult.Cancel;
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(cantidad) || !decimal.TryParse(cantidad, out decimal cantidadDeciamal))
+            if (string.IsNullOrWhiteSpace(Cantidad) || !decimal.TryParse(Cantidad, out decimal cantidadDeciamal))
             {
                 MessageBox.Show("Por favor, introduzca una cantidad válida");
                 return;

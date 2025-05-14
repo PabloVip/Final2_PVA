@@ -374,7 +374,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                 {
                     conexion.Open();
                     command.Connection = conexion;
-                    command.CommandText = "DELETE FROM ProductoKit WHERE Id=@KitId AND ProductoId=@ProductoAEliminarId";
+                    command.CommandText = "DELETE FROM ProductoKits WHERE Id=@KitId AND ProductoId=@ProductoAEliminarId";
                     command.Parameters.AddWithValue("@KitId", kitId);
                     command.Parameters.AddWithValue("@ProductoAEliminarId", productoAEliminarId);
                     var dt = command.ExecuteNonQuery();
@@ -393,7 +393,7 @@ namespace Final25_48782431Y_48848258F_29527260K
         /// <param name="kitId"></param>
         /// <param name="productoId"></param>
         /// <param name="cantidad"></param>
-        public static void AñadirProductoAUnKit(int kitId, string productoId, decimal cantidad)
+        public static void AñadirProductoAUnKit(int kitId, int productoId, decimal cantidad)
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             using (SqlCommand command = new SqlCommand())
@@ -402,8 +402,8 @@ namespace Final25_48782431Y_48848258F_29527260K
                 {
                     conexion.Open();
                     command.Connection = conexion;
-                    command.CommandText = @"INSERT INTO ProductoKit (Id, ProductoId, Cantidad)
-                        VALUES (@Id, @ProductoId, @Cantidad";
+                    command.CommandText = @"INSERT INTO ProductoKits (Id, ProductoId, Cantidad)
+                        VALUES (@Id, @ProductoId, @Cantidad)";
                     command.Parameters.AddWithValue("@Id", kitId);
                     command.Parameters.AddWithValue("@ProductoId", productoId);
                     command.Parameters.AddWithValue("@Cantidad", cantidad);

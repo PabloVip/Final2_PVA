@@ -94,6 +94,7 @@
             this.Categoria,
             this.Marca,
             this.Precio});
+            this.lvProductos.FullRowSelect = true;
             this.lvProductos.HideSelection = false;
             this.lvProductos.Location = new System.Drawing.Point(16, 49);
             this.lvProductos.Margin = new System.Windows.Forms.Padding(2);

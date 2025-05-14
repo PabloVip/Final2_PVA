@@ -57,7 +57,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(166, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Introduzca la cantidad";
+            this.label1.Text = "Introduzca la Cantidad";
             // 
             // FormularioCantidad
             // 

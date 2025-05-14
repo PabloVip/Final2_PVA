@@ -118,48 +118,20 @@ namespace Final25_48782431Y_48848258F_29527260K
             {
                 if (cbCatalogo.SelectedItem != null && listView1.SelectedItems.Count == 1)
                 {
-                    var kitSeleccionado = (Producto)cbCatalogo.SelectedItem;
+                    var kitSeleccionado = _kits.FirstOrDefault(x => x.Codigo == cbCatalogo.SelectedItem.ToString());
                     var filaSeleccionada = listView1.SelectedItems[0];
-                    BaseDeDatos.EliminarProductoDeUnKit(kitSeleccionado.Id,
-                        Int32.Parse(filaSeleccionada.SubItems[0].ToString()));
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error eliminando producto del kit: " + ex.Message, "Error", MessageBoxButtons.OK);
-            }
-        }
+                    var idProducto = Int32.Parse(filaSeleccionada.SubItems[0].Text);
+                    BaseDeDatos.EliminarProductoDeUnKit(kitSeleccionado.Id, idProducto);
 
-        private void btnAñadirProducto_Click(object sender, EventArgs e)
-        {
-            // Mostrar ventana para elegir un producto y obtener el código y la cantidad
-            FormularioAniadirProducto fProducto = new FormularioAniadirProducto();
+                    // Consulto el Id del producto kit
+                    var idDelKit = _kits.First(x => x.Codigo == cbCatalogo.SelectedItem).Id;
 
-            string codigoProducto = null;
-            decimal cantidad = 0;
-
-            if (fProducto.ShowDialog() != DialogResult.OK)
-                return;
-
-            codigoProducto = fProducto.codigoProducto;
-            cantidad = Decimal.Parse(fProducto.cantidad); // Compruebo en el otro formulario si es una cantidad valida
-
-            try
-            {
-
-                if (cbCatalogo.SelectedValue is string codigoKitSeleccionado)
-                {
-                    // Buscamos el ID del kit por su código
-                    var idDelKit = _kits.First(x => x.Codigo == codigoKitSeleccionado).Id;
-
-                    // Añadimos el producto al kit
-                    BaseDeDatos.AñadirProductoAUnKit(idDelKit, codigoProducto, cantidad);
-
-                    // Leemos los productos actualizados del kit
+                    // Consulto los productos incluidos en el kit
                     var productosDelKit = BaseDeDatos.LeerProductosDeUnKit(idDelKit);
 
                     listView1.Items.Clear();
 
+                    // Si el kit no tiene productos, salimos
                     if (!productosDelKit.Any())
                         return;
 
@@ -174,6 +146,61 @@ namespace Final25_48782431Y_48848258F_29527260K
                         item.SubItems.Add(pk.Cantidad.ToString("N2"));
                         listView1.Items.Add(item);
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error eliminando producto del kit: " + ex.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
+
+        private void btnAñadirProducto_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(cbCatalogo.SelectedItem.ToString()))
+            {
+                MessageBox.Show("Seleccione un kit");
+                return;
+            }
+
+            // Mostrar ventana para elegir un producto y obtener el código y la cantidad
+            FormularioAniadirProducto fProducto = new FormularioAniadirProducto();
+
+            string codigoProducto = null;
+            decimal cantidad = 0;
+
+            if (fProducto.ShowDialog() != DialogResult.OK)
+                return;
+
+            codigoProducto = fProducto.CodigoProducto;
+            cantidad = Decimal.Parse(fProducto.Cantidad); // Compruebo en el otro formulario si es una cantidad valida
+            
+
+            try
+            {
+                // Buscamos el ID del kit por su código
+                var idDelKit = _kits.First(x => x.Codigo == cbCatalogo.SelectedItem.ToString()).Id;
+
+                // Añadimos el producto al kit
+                BaseDeDatos.AñadirProductoAUnKit(idDelKit, fProducto.IdProducto, cantidad);
+
+                // Leemos los productos actualizados del kit
+                var productosDelKit = BaseDeDatos.LeerProductosDeUnKit(idDelKit);
+
+                listView1.Items.Clear();
+
+                if (!productosDelKit.Any())
+                    return;
+
+                foreach (var pk in productosDelKit)
+                {
+                    var item = new ListViewItem(pk.Id.ToString());
+                    item.SubItems.Add(pk.Codigo);
+                    item.SubItems.Add(pk.Descripcion);
+                    item.SubItems.Add(pk.Categoria);
+                    item.SubItems.Add(pk.Marca);
+                    item.SubItems.Add(pk.Precio.ToString("C"));
+                    item.SubItems.Add(pk.Cantidad.ToString("N2"));
+                    listView1.Items.Add(item);
                 }
             }
             catch (Exception ex)
