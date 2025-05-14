@@ -74,9 +74,10 @@
             this.labelCatalogo.AutoSize = true;
             this.labelCatalogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCatalogo.ForeColor = System.Drawing.Color.Coral;
-            this.labelCatalogo.Location = new System.Drawing.Point(12, 9);
+            this.labelCatalogo.Location = new System.Drawing.Point(16, 11);
+            this.labelCatalogo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCatalogo.Name = "labelCatalogo";
-            this.labelCatalogo.Size = new System.Drawing.Size(260, 29);
+            this.labelCatalogo.Size = new System.Drawing.Size(345, 37);
             this.labelCatalogo.TabIndex = 1;
             this.labelCatalogo.Text = "CATÁLOGO DE KITS";
             // 
@@ -84,9 +85,10 @@
             // 
             this.cbCatalogo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCatalogo.FormattingEnabled = true;
-            this.cbCatalogo.Location = new System.Drawing.Point(10, 42);
+            this.cbCatalogo.Location = new System.Drawing.Point(13, 52);
+            this.cbCatalogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbCatalogo.Name = "cbCatalogo";
-            this.cbCatalogo.Size = new System.Drawing.Size(352, 28);
+            this.cbCatalogo.Size = new System.Drawing.Size(468, 33);
             this.cbCatalogo.TabIndex = 2;
             this.cbCatalogo.SelectedIndexChanged += new System.EventHandler(this.cbCatalogo_SelectedIndexChanged);
             // 
@@ -94,9 +96,10 @@
             // 
             this.btnVolver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(1161, 883);
+            this.btnVolver.Location = new System.Drawing.Point(1548, 1104);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(102, 34);
+            this.btnVolver.Size = new System.Drawing.Size(136, 42);
             this.btnVolver.TabIndex = 6;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
@@ -140,11 +143,11 @@
             this.Cantidad});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(10, 202);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2);
+            this.listView1.Location = new System.Drawing.Point(13, 252);
+            this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1253, 660);
+            this.listView1.Size = new System.Drawing.Size(1669, 824);
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -187,9 +190,10 @@
             // btnNuevoKit
             // 
             this.btnNuevoKit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNuevoKit.Location = new System.Drawing.Point(369, 38);
+            this.btnNuevoKit.Location = new System.Drawing.Point(492, 48);
+            this.btnNuevoKit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNuevoKit.Name = "btnNuevoKit";
-            this.btnNuevoKit.Size = new System.Drawing.Size(102, 34);
+            this.btnNuevoKit.Size = new System.Drawing.Size(136, 42);
             this.btnNuevoKit.TabIndex = 8;
             this.btnNuevoKit.Text = "Nuevo";
             this.btnNuevoKit.UseVisualStyleBackColor = true;
@@ -198,9 +202,10 @@
             // btnAñadirProducto
             // 
             this.btnAñadirProducto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAñadirProducto.Location = new System.Drawing.Point(11, 163);
+            this.btnAñadirProducto.Location = new System.Drawing.Point(15, 204);
+            this.btnAñadirProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAñadirProducto.Name = "btnAñadirProducto";
-            this.btnAñadirProducto.Size = new System.Drawing.Size(144, 34);
+            this.btnAñadirProducto.Size = new System.Drawing.Size(192, 42);
             this.btnAñadirProducto.TabIndex = 9;
             this.btnAñadirProducto.Text = "Añadir producto";
             this.btnAñadirProducto.UseVisualStyleBackColor = true;
@@ -209,9 +214,10 @@
             // btnEliminarKit
             // 
             this.btnEliminarKit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarKit.Location = new System.Drawing.Point(585, 38);
+            this.btnEliminarKit.Location = new System.Drawing.Point(780, 48);
+            this.btnEliminarKit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEliminarKit.Name = "btnEliminarKit";
-            this.btnEliminarKit.Size = new System.Drawing.Size(102, 34);
+            this.btnEliminarKit.Size = new System.Drawing.Size(136, 42);
             this.btnEliminarKit.TabIndex = 10;
             this.btnEliminarKit.Text = "Eliminar";
             this.btnEliminarKit.UseVisualStyleBackColor = true;
@@ -220,9 +226,10 @@
             // btnEliminarProducto
             // 
             this.btnEliminarProducto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminarProducto.Location = new System.Drawing.Point(161, 163);
+            this.btnEliminarProducto.Location = new System.Drawing.Point(215, 204);
+            this.btnEliminarProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
-            this.btnEliminarProducto.Size = new System.Drawing.Size(144, 34);
+            this.btnEliminarProducto.Size = new System.Drawing.Size(192, 42);
             this.btnEliminarProducto.TabIndex = 11;
             this.btnEliminarProducto.Text = "Eliminar producto";
             this.btnEliminarProducto.UseVisualStyleBackColor = true;
@@ -231,9 +238,10 @@
             // btnModificarKit
             // 
             this.btnModificarKit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificarKit.Location = new System.Drawing.Point(477, 38);
+            this.btnModificarKit.Location = new System.Drawing.Point(636, 48);
+            this.btnModificarKit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnModificarKit.Name = "btnModificarKit";
-            this.btnModificarKit.Size = new System.Drawing.Size(102, 34);
+            this.btnModificarKit.Size = new System.Drawing.Size(136, 42);
             this.btnModificarKit.TabIndex = 12;
             this.btnModificarKit.Text = "Modificar";
             this.btnModificarKit.UseVisualStyleBackColor = true;
@@ -242,110 +250,122 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 3);
+            this.label1.Location = new System.Drawing.Point(7, 4);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 20);
+            this.label1.Size = new System.Drawing.Size(35, 25);
             this.label1.TabIndex = 13;
             this.label1.Text = "Id:";
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(31, 3);
+            this.lblId.Location = new System.Drawing.Point(41, 4);
+            this.lblId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(23, 20);
+            this.lblId.Size = new System.Drawing.Size(29, 25);
             this.lblId.TabIndex = 14;
             this.lblId.Text = "Id";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 23);
+            this.label3.Location = new System.Drawing.Point(7, 29);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 20);
+            this.label3.Size = new System.Drawing.Size(86, 25);
             this.label3.TabIndex = 15;
             this.label3.Text = "Código:";
             // 
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(72, 23);
+            this.lblCodigo.Location = new System.Drawing.Point(96, 29);
+            this.lblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(148, 20);
+            this.lblCodigo.Size = new System.Drawing.Size(201, 25);
             this.lblCodigo.TabIndex = 16;
             this.lblCodigo.Text = "codigo del producto";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 43);
+            this.label5.Location = new System.Drawing.Point(8, 54);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 20);
+            this.label5.Size = new System.Drawing.Size(131, 25);
             this.label5.TabIndex = 17;
             this.label5.Text = "Descripción:";
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(99, 43);
+            this.lblDescripcion.Location = new System.Drawing.Point(132, 54);
+            this.lblDescripcion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(51, 20);
+            this.lblDescripcion.Size = new System.Drawing.Size(70, 25);
             this.lblDescripcion.TabIndex = 18;
             this.lblDescripcion.Text = "label6";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 63);
+            this.label7.Location = new System.Drawing.Point(8, 79);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 20);
+            this.label7.Size = new System.Drawing.Size(111, 25);
             this.label7.TabIndex = 19;
             this.label7.Text = "Categoría:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 83);
+            this.label8.Location = new System.Drawing.Point(9, 104);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 20);
+            this.label8.Size = new System.Drawing.Size(78, 25);
             this.label8.TabIndex = 20;
             this.label8.Text = "Marca:";
             // 
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(87, 63);
+            this.lblCategoria.Location = new System.Drawing.Point(116, 79);
+            this.lblCategoria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCategoria.Name = "lblCategoria";
-            this.lblCategoria.Size = new System.Drawing.Size(75, 20);
+            this.lblCategoria.Size = new System.Drawing.Size(101, 25);
             this.lblCategoria.TabIndex = 21;
             this.lblCategoria.Text = "categoria";
             // 
             // lblMarca
             // 
             this.lblMarca.AutoSize = true;
-            this.lblMarca.Location = new System.Drawing.Point(64, 83);
+            this.lblMarca.Location = new System.Drawing.Point(85, 104);
+            this.lblMarca.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMarca.Name = "lblMarca";
-            this.lblMarca.Size = new System.Drawing.Size(53, 20);
+            this.lblMarca.Size = new System.Drawing.Size(71, 25);
             this.lblMarca.TabIndex = 22;
             this.lblMarca.Text = "marca";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 103);
+            this.label11.Location = new System.Drawing.Point(9, 129);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(57, 20);
+            this.label11.Size = new System.Drawing.Size(79, 25);
             this.label11.TabIndex = 23;
             this.label11.Text = "Precio:";
             // 
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(68, 103);
+            this.lblPrecio.Location = new System.Drawing.Point(91, 129);
+            this.lblPrecio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(60, 20);
+            this.lblPrecio.Size = new System.Drawing.Size(73, 25);
             this.lblPrecio.TabIndex = 24;
-            this.lblPrecio.Text = "label12";
+            this.lblPrecio.Text = "Precio";
             // 
             // panel1
             // 
@@ -361,17 +381,18 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.lblDescripcion);
-            this.panel1.Location = new System.Drawing.Point(708, 42);
+            this.panel1.Location = new System.Drawing.Point(944, 52);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(555, 135);
+            this.panel1.Size = new System.Drawing.Size(740, 169);
             this.panel1.TabIndex = 25;
             // 
             // FormularioKits
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1279, 927);
+            this.ClientSize = new System.Drawing.Size(1705, 1159);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnModificarKit);
             this.Controls.Add(this.btnEliminarProducto);
@@ -382,6 +403,7 @@
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.cbCatalogo);
             this.Controls.Add(this.labelCatalogo);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormularioKits";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kits";

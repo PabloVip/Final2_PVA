@@ -431,6 +431,26 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
         }
 
+        public static void ActualizarPrecioKit(int idKit, decimal nuevoPrecio)
+        {
+            using (SqlConnection conn = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conn.Open();
+                    command.Connection = conn;
+                    command.CommandText = "UPDATE Productos SET Precio = @Precio WHERE Id = @Id AND EsKit = 1";
+                    command.Parameters.AddWithValue("@Precio", nuevoPrecio);
+                    command.Parameters.AddWithValue("@Id", idKit);
+                    command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
 
 
         #endregion

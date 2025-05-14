@@ -32,6 +32,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             {
                 comboCategoria.SelectedItem = "Kit";
                 comboCategoria.Enabled = false;
+                txtPrecio.Enabled = false;
             }
 
             // Cargamos los combos

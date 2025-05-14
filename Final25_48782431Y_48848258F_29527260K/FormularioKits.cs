@@ -184,6 +184,8 @@ namespace Final25_48782431Y_48848258F_29527260K
                 if (!productosDelKit.Any())
                     return;
 
+                decimal nuevoPrecioKit = 0;
+
                 foreach (var pk in productosDelKit)
                 {
                     var item = new ListViewItem(pk.Id.ToString());
@@ -194,7 +196,16 @@ namespace Final25_48782431Y_48848258F_29527260K
                     item.SubItems.Add(pk.Precio.ToString("C"));
                     item.SubItems.Add(pk.Cantidad.ToString("N2"));
                     listView1.Items.Add(item);
+
+                    // Calculo nuevo precio total del kit
+                    nuevoPrecioKit += pk.Precio * pk.Cantidad;
                 }
+
+                //Actualizo el precio en la base de datos
+                BaseDeDatos.ActualizarPrecioKit(idDelKit, nuevoPrecioKit);
+                //Actualizo la etiqueta
+                lblPrecio.Text = nuevoPrecioKit.ToString("C"); 
+
             }
             catch (Exception ex)
             {
