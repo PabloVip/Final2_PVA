@@ -28,12 +28,14 @@ namespace Final25_48782431Y_48848258F_29527260K
             chkEsKit.Checked = esKit;
             Producto.EsKit = esKit;
 
-            if (esKit)
-            {
-                comboCategoria.SelectedItem = "Kit";
-                comboCategoria.Enabled = false;
-                txtPrecio.Enabled = false;
-            }
+            
+            //if (esKit)
+            //{
+            //    comboCategoria.SelectedItem = "Kit";
+            //    comboCategoria.Enabled = false;
+            //    txtPrecio.Enabled = false;
+            //}
+            
 
             // Cargamos los combos
             comboCategoria.Items.Clear();

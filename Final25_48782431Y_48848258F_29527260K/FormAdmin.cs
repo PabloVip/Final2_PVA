@@ -69,7 +69,8 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            formEditarProducto formularioProductos = new formEditarProducto();
+            formularioProductos.Show();
         }
     }
 }
