@@ -28,6 +28,12 @@ namespace Final25_48782431Y_48848258F_29527260K
             chkEsKit.Checked = esKit;
             Producto.EsKit = esKit;
 
+            if (esKit)
+            {
+                comboCategoria.SelectedItem = "Kit";
+                comboCategoria.Enabled = false;
+            }
+
             // Cargamos los combos
             comboCategoria.Items.Clear();
             _categorias = BaseDeDatos.LeerCategorias();
@@ -50,13 +56,13 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btnAceptar_Click(object sender, System.EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(comboCategoria.SelectedItem.ToString()))
+            if (comboCategoria.Enabled && (comboCategoria.SelectedItem == null || string.IsNullOrWhiteSpace(comboCategoria.SelectedItem.ToString())))
             {
-                MessageBox.Show("Seleccione una categoria");
+                MessageBox.Show("Seleccione una categoría");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(comboMarca.SelectedItem.ToString()))
+            if (comboMarca.SelectedItem == null || string.IsNullOrWhiteSpace(comboMarca.SelectedItem.ToString()))
             {
                 MessageBox.Show("Seleccione una marca");
                 return;

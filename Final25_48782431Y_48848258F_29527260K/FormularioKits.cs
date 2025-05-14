@@ -53,14 +53,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             this.Close();
         }
 
-        private void FormularioKits_Load(object sender, EventArgs e)
-        {
-            // TODO: esta línea de código .productosTableAdapter.Fill(this.pAYAVISOLARDataSet.Productos);
-            
 
-        }
-
-        //ARREGLAR
         private void cbCatalogo_SelectedIndexChanged(object sender, EventArgs e)
         {
             var kitSeleccionado = cbCatalogo.SelectedItem.ToString();
@@ -100,7 +93,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             {
                 if (cbCatalogo.SelectedItem != null)
                 {
-                    var producto = _kits.First(x => x.Codigo == cbCatalogo.SelectedItem);
+                    var producto = _kits.First(x => x.Codigo == cbCatalogo.SelectedItem.ToString());
                     BaseDeDatos.EliminarKit(producto.Id);
 
                     CargaComboKits();
@@ -124,7 +117,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                     BaseDeDatos.EliminarProductoDeUnKit(kitSeleccionado.Id, idProducto);
 
                     // Consulto el Id del producto kit
-                    var idDelKit = _kits.First(x => x.Codigo == cbCatalogo.SelectedItem).Id;
+                    var idDelKit = _kits.First(x => x.Codigo == cbCatalogo.SelectedItem.ToString()).Id;
 
                     // Consulto los productos incluidos en el kit
                     var productosDelKit = BaseDeDatos.LeerProductosDeUnKit(idDelKit);
@@ -156,7 +149,7 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btnAñadirProducto_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(cbCatalogo.SelectedItem.ToString()))
+            if (cbCatalogo.SelectedItem == null || string.IsNullOrWhiteSpace(cbCatalogo.SelectedItem.ToString()))
             {
                 MessageBox.Show("Seleccione un kit");
                 return;
@@ -247,7 +240,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             {
                 if (cbCatalogo.SelectedItem != null)
                 {
-                    var productoKit = _kits.First(x => x.Codigo == cbCatalogo.SelectedItem);
+                    var productoKit = _kits.First(x => x.Codigo == cbCatalogo.SelectedItem.ToString());
 
                     var frmNuevoProducto = new FormularioNuevoProducto(true, productoKit);
                     if (frmNuevoProducto.ShowDialog() == DialogResult.OK)
