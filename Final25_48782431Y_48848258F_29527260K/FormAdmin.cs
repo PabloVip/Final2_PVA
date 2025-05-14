@@ -66,5 +66,10 @@ namespace Final25_48782431Y_48848258F_29527260K
             AdministrarUsuarios formularioUsuarios = new AdministrarUsuarios();
             formularioUsuarios.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

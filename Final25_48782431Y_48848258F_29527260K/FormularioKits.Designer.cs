@@ -303,9 +303,9 @@
             this.lblDescripcion.Location = new System.Drawing.Point(132, 54);
             this.lblDescripcion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(70, 25);
+            this.lblDescripcion.Size = new System.Drawing.Size(125, 25);
             this.lblDescripcion.TabIndex = 18;
-            this.lblDescripcion.Text = "label6";
+            this.lblDescripcion.Text = "Descripcion";
             // 
             // label7
             // 
