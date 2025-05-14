@@ -192,7 +192,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
             catch (Exception ex)
             {
-                MessageBox.Show("La factura puede haberse guardado, pero ocurrió un error interno al confirmar el Id.\nDetalles: " + ex.Message,
+                MessageBox.Show("Ocurrió un error.\nDetalles: " + ex.Message,
                                 "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
