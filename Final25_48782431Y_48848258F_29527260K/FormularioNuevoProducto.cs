@@ -50,9 +50,26 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btnAceptar_Click(object sender, System.EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(comboCategoria.SelectedItem.ToString()))
+            {
+                MessageBox.Show("Seleccione una categoria");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(comboMarca.SelectedItem.ToString()))
+            {
+                MessageBox.Show("Seleccione una marca");
+                return;
+            }
+
             try
             {
-                Producto.Id = int.Parse(txtId.Text);
+                // Si es un nuevo producto, el campo de Id esta vacio. Si estamos editando, tendria valor
+                if (string.IsNullOrWhiteSpace(txtId.Text))
+                    Producto.Id = 0;
+                else
+                    Producto.Id = Int32.Parse(txtId.Text);
+                
                 Producto.Codigo = txtCodigo.Text;
                 Producto.Descripcion = txtDescripcion.Text;
                 Producto.Categoria = comboCategoria.SelectedItem.ToString();
@@ -61,6 +78,9 @@ namespace Final25_48782431Y_48848258F_29527260K
                 // Convert devuelve cero si no hay valor. Parse da error.
                 // Cambio el punto decimal por coma para que se guarde bien
                 Producto.Precio = Convert.ToDecimal(txtPrecio.Text.Replace('.',','));
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (Exception ex)
             {

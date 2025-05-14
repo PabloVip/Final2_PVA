@@ -108,7 +108,6 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAceptar.Location = new System.Drawing.Point(658, 282);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(96, 41);
@@ -154,7 +153,7 @@
             this.txtPrecio.Location = new System.Drawing.Point(145, 224);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(121, 26);
-            this.txtPrecio.TabIndex = 11;
+            this.txtPrecio.TabIndex = 5;
             // 
             // label7
             // 

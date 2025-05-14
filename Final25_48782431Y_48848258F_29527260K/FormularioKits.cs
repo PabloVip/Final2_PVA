@@ -138,24 +138,14 @@ namespace Final25_48782431Y_48848258F_29527260K
             string codigoProducto = null;
             decimal cantidad = 0;
 
-            if (fProducto.ShowDialog() == DialogResult.OK)
-            {
-                codigoProducto = fProducto.codigoProducto;
+            if (fProducto.ShowDialog() != DialogResult.OK)
+                return;
 
-                if (!decimal.TryParse(fProducto.cantidad, out cantidad))
-                {
-                    MessageBox.Show("Cantidad inválida");
-                    return;
-                }
-            }
-            else
-            {
-                return; // El usuario canceló el formulario
-            }
+            codigoProducto = fProducto.codigoProducto;
+            cantidad = Decimal.Parse(fProducto.cantidad); // Compruebo en el otro formulario si es una cantidad valida
 
             try
             {
-                listView1.Clear();
 
                 if (cbCatalogo.SelectedValue is string codigoKitSeleccionado)
                 {
