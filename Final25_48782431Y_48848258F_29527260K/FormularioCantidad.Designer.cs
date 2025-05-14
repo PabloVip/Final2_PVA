@@ -55,7 +55,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(98, 73);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(166, 20);
+            this.label1.Size = new System.Drawing.Size(169, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Introduzca la Cantidad";
             // 
@@ -70,6 +70,7 @@
             this.Name = "FormularioCantidad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormularioCantidad";
+            this.Load += new System.EventHandler(this.FormularioCantidad_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

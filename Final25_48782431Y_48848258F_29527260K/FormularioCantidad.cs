@@ -17,6 +17,7 @@ namespace Final25_48782431Y_48848258F_29527260K
         public FormularioCantidad()
         {
             InitializeComponent();
+            this.AcceptButton = btnAceptar;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -31,6 +32,11 @@ namespace Final25_48782431Y_48848258F_29527260K
             {
                 MessageBox.Show("Por favor, ingrese un número válido mayor que 0.");
             }
+        }
+
+        private void FormularioCantidad_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
