@@ -123,6 +123,7 @@
             this.btnMarcas.TabIndex = 9;
             this.btnMarcas.Text = "Marcas";
             this.btnMarcas.UseVisualStyleBackColor = true;
+            this.btnMarcas.Click += new System.EventHandler(this.btnMarcas_Click);
             // 
             // btnCategorias
             // 
@@ -132,6 +133,7 @@
             this.btnCategorias.TabIndex = 10;
             this.btnCategorias.Text = "Categorias";
             this.btnCategorias.UseVisualStyleBackColor = true;
+            this.btnCategorias.Click += new System.EventHandler(this.btnCategorias_Click);
             // 
             // btnProductos
             // 
@@ -141,6 +143,7 @@
             this.btnProductos.TabIndex = 11;
             this.btnProductos.Text = "Productos";
             this.btnProductos.UseVisualStyleBackColor = true;
+            this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
             // 
             // btnKits
             // 

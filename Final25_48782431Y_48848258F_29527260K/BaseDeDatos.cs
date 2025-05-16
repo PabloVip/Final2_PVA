@@ -1090,8 +1090,9 @@ namespace Final25_48782431Y_48848258F_29527260K
         /// <summary>
         /// Metodo para guardar una nueva marca
         /// </summary>
-        /// <param name="marca"></param>
-        public static void GuardarMarca(Marca marca)
+        /// <param name="id"></param>
+        /// <param name="descripcion"></param>
+        public static void GuardarMarca(string id, string descripcion)
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             using (SqlCommand command = new SqlCommand())
@@ -1101,8 +1102,8 @@ namespace Final25_48782431Y_48848258F_29527260K
                     conexion.Open();
                     command.Connection = conexion;
                     command.CommandText = "INSERT INTO Marcas(Id, Descripcion) VALUES (@Id, @Descripcion)";
-                    command.Parameters.AddWithValue("@Id", marca.Id);
-                    command.Parameters.AddWithValue("@Descripcion", marca.Descripcion);
+                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@Descripcion", descripcion);
                     command.ExecuteNonQuery();
                 }
                 finally
@@ -1164,6 +1165,30 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
         }
 
+        public static bool CompruebaMarcaUtilizada(string marcaId)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "SELECT 1 FROM Productos WHERE Marca=@MarcaId";
+                    command.Parameters.AddWithValue("@MarcaId", marcaId);
+                    var resultado = command.ExecuteScalar();
+
+                    if (resultado == null)
+                        return false;
+                    return true;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
 
         #endregion
 
@@ -1208,8 +1233,9 @@ namespace Final25_48782431Y_48848258F_29527260K
         /// <summary>
         /// Metodo para guardar una nueva categoria
         /// </summary>
-        /// <param name="categoria"></param>
-        public static void GuardarCategoria(Categoria categoria)
+        /// <param name="id"></param>
+        /// <param name="descripcion"></param>
+        public static void GuardarCategoria(string id, string descripcion)
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             using (SqlCommand command = new SqlCommand())
@@ -1219,8 +1245,8 @@ namespace Final25_48782431Y_48848258F_29527260K
                     conexion.Open();
                     command.Connection = conexion;
                     command.CommandText = "INSERT INTO CATEGORIAS(Id, Descripcion) VALUES (@Id, @Descripcion)";
-                    command.Parameters.AddWithValue("@Id", categoria.Id);
-                    command.Parameters.AddWithValue("@Descripcion", categoria.Descripcion);
+                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@Descripcion", descripcion);
                     command.ExecuteNonQuery();
                 }
                 finally
@@ -1272,6 +1298,31 @@ namespace Final25_48782431Y_48848258F_29527260K
                     command.Parameters.AddWithValue("@CategoriaId", categoriaId);
                     command.Parameters.AddWithValue("@Descripcion", descripcion);
                     command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Para saber si una categoria se esta usando en algun producto
+        /// </summary>
+        /// <param name="marcaId"></param>
+        /// <returns></returns>
+        public static bool CompruebaCategoriaUtilizada(string categoriaId)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "SELECT 1 FROM Productos WHERE Categoria=@CategoriaId";
+                    command.Parameters.AddWithValue("@CagegoriaId", categoriaId);
+                    return command.ExecuteScalar().ToString() == "1";
                 }
                 finally
                 {

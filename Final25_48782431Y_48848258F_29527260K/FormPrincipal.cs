@@ -63,5 +63,23 @@ namespace Final25_48782431Y_48848258F_29527260K
             var fkits = new FormularioKits(false);
             fkits.Show();
         }
+
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+            var form = new FormularioProductos();
+            form.Show();
+        }
+
+        private void btnMarcas_Click(object sender, EventArgs e)
+        {
+            var form = new FormularioMarcas();
+            form.Show();
+        }
+
+        private void btnCategorias_Click(object sender, EventArgs e)
+        {
+            var form = new FormularioCategorias();
+            form.Show();
+        }
     }
 }

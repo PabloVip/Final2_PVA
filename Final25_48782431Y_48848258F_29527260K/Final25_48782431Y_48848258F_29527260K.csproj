@@ -98,6 +98,18 @@
     <Compile Include="FormularioCantidad.Designer.cs">
       <DependentUpon>FormularioCantidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioCategoria.Designer.cs">
+      <DependentUpon>FormularioCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioCategorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioCategorias.Designer.cs">
+      <DependentUpon>FormularioCategorias.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioFactura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +121,18 @@
     </Compile>
     <Compile Include="FormularioKits.Designer.cs">
       <DependentUpon>FormularioKits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioMarca.Designer.cs">
+      <DependentUpon>FormularioMarca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioMarcas.Designer.cs">
+      <DependentUpon>FormularioMarcas.cs</DependentUpon>
     </Compile>
     <Compile Include="FormularioNuevoProducto.cs">
       <SubType>Form</SubType>
@@ -151,11 +175,23 @@
     <EmbeddedResource Include="FormularioCantidad.resx">
       <DependentUpon>FormularioCantidad.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormularioCategoria.resx">
+      <DependentUpon>FormularioCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioCategorias.resx">
+      <DependentUpon>FormularioCategorias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioFactura.resx">
       <DependentUpon>FormularioFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioKits.resx">
       <DependentUpon>FormularioKits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioMarca.resx">
+      <DependentUpon>FormularioMarca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioMarcas.resx">
+      <DependentUpon>FormularioMarcas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioNuevoProducto.resx">
       <DependentUpon>FormularioNuevoProducto.cs</DependentUpon>
