@@ -205,13 +205,10 @@ namespace Final25_48782431Y_48848258F_29527260K
             dataGridcarrito.Rows.Clear();
         }
 
+        private void dataGridproductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
-
-
-
-
-
-
+        }
     }
 }
 
