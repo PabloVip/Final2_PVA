@@ -51,7 +51,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error editando la marca: " + ex, "Error", MessageBoxButtons.OK,
+                MessageBox.Show("Error creando la marca: " + ex, "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
         }

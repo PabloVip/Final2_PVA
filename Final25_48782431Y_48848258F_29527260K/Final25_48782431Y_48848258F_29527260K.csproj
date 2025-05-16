@@ -146,6 +146,12 @@
     <Compile Include="FormularioProductos.Designer.cs">
       <DependentUpon>FormularioProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioProductos2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioProductos2.Designer.cs">
+      <DependentUpon>FormularioProductos2.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAYAVISOLARDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioProductos.resx">
       <DependentUpon>FormularioProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioProductos2.resx">
+      <DependentUpon>FormularioProductos2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

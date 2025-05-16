@@ -133,7 +133,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                     conexion.Open();
                     command.Connection = conexion;
                     command.CommandText = @"INSERT INTO PRODUCTOS (Codigo, Descripcion, Categoria, Marca, Precio, EsKit) 
-                            VALUES (@Codigo, Descripcion, Categoria, Marca, Precio, EsKit)";
+                            VALUES (@Codigo, @Descripcion, @Categoria, @Marca, @Precio, @EsKit)";
                     command.Parameters.AddWithValue("@Codigo", producto.Codigo);
                     command.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
                     command.Parameters.AddWithValue("@Categoria", producto.Categoria);
@@ -150,6 +150,29 @@ namespace Final25_48782431Y_48848258F_29527260K
             }
         }
 
+        public static bool CompruebaProductoUtilizadoEnKit(int productoId)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "SELECT 1 FROM ProductoKits WHERE ProductoId=@ProductoId OR Id=@ProductoId";
+                    command.Parameters.AddWithValue("@ProductoId", productoId);
+                    var resultado = command.ExecuteScalar();
+
+                    if (resultado == null)
+                        return false;
+                    return true;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
 
         #endregion
 

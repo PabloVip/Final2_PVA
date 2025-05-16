@@ -66,7 +66,7 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btnProductos_Click(object sender, EventArgs e)
         {
-            var form = new FormularioProductos();
+            var form = new FormularioProductos2();
             form.Show();
         }
 
