@@ -69,8 +69,26 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void button1_Click(object sender, EventArgs e)
         {
-            formEditarProducto formularioProductos = new formEditarProducto();
-            formularioProductos.Show();
+            var form = new FormularioProductos2();
+            form.Show();
+        }
+
+        private void btnMarcas_Click(object sender, EventArgs e)
+        {
+            var form = new FormularioMarcas();
+            form.Show();
+        }
+
+        private void btnCategorias_Click(object sender, EventArgs e)
+        {
+            var form = new FormularioCategorias();
+            form.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var form = new FormularioFacturas();
+            form.Show();
         }
     }
 }
