@@ -81,5 +81,11 @@ namespace Final25_48782431Y_48848258F_29527260K
             var form = new FormularioCategorias();
             form.Show();
         }
+
+        private void btnPedidos_Click(object sender, EventArgs e)
+        {
+            var form = new FormularioFacturas();
+            form.Show();
+        }
     }
 }

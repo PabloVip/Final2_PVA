@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="BaseDeDatos.cs" />
     <Compile Include="Clases\Categoria.cs" />
+    <Compile Include="Clases\Factura.cs" />
     <Compile Include="Clases\FacturaCabecera.cs" />
     <Compile Include="Clases\FacturaLinea.cs" />
     <Compile Include="Clases\Marca.cs" />
@@ -115,6 +116,12 @@
     </Compile>
     <Compile Include="FormularioFactura.Designer.cs">
       <DependentUpon>FormularioFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioFacturas.Designer.cs">
+      <DependentUpon>FormularioFacturas.cs</DependentUpon>
     </Compile>
     <Compile Include="FormularioKits.cs">
       <SubType>Form</SubType>
@@ -189,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioFactura.resx">
       <DependentUpon>FormularioFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioFacturas.resx">
+      <DependentUpon>FormularioFacturas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioKits.resx">
       <DependentUpon>FormularioKits.cs</DependentUpon>

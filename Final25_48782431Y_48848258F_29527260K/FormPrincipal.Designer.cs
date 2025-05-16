@@ -163,6 +163,7 @@
             this.btnPedidos.TabIndex = 13;
             this.btnPedidos.Text = "Pedidos";
             this.btnPedidos.UseVisualStyleBackColor = true;
+            this.btnPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
             // 
             // FormPrincipal
             // 

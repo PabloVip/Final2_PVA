@@ -894,7 +894,7 @@ namespace Final25_48782431Y_48848258F_29527260K
         /// Metodo para leer las cabeceras de las facturas
         /// </summary>
         /// <returns></returns>
-        public static List<FacturaCabecera> LeerFacturas()
+        public static List<FacturaCabecera> LeerCabecerasFactura()
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             using (SqlCommand command = new SqlCommand())
@@ -914,6 +914,53 @@ namespace Final25_48782431Y_48848258F_29527260K
                         factura.Id = dt.GetInt32(0);
                         factura.ClienteId = dt.GetInt32(1);
                         factura.FechaCreacion = dt.GetDateTime(2);
+                        facturas.Add(factura);
+                    }
+
+                    return facturas;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para leer las facturas con sus totales
+        /// </summary>
+        /// <returns></returns>
+        public static List<Factura> LeerFacturas()
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = @"
+                            SELECT
+                              c.Id, c.ClienteId, u.Empresa, u.Nombre, c.FechaCreacion,
+                              SUM(l.Total) AS Total
+                            FROM FacturaCabeceras c
+                            INNER JOIN FacturaLineas l ON l.FacturaId = c.Id
+                            INNER JOIN Usuarios u ON u.Id = c.ClienteId
+                            GROUP BY c.Id, c.ClienteId, u.Empresa, u.Nombre, c.FechaCreacion
+                            ";
+                    var dt = command.ExecuteReader();
+
+                    var facturas = new List<Factura>();
+
+                    while (dt.Read())
+                    {
+                        var factura = new Factura();
+                        factura.Id = dt.GetInt32(0);
+                        factura.ClienteId = dt.GetInt32(1);
+                        factura.Empresa = dt.GetString(2);
+                        factura.NombreCliente = dt.GetString(3);
+                        factura.FechaCreacion = dt.GetDateTime(4);
+                        factura.Total = dt.GetDecimal(5);
                         facturas.Add(factura);
                     }
 
