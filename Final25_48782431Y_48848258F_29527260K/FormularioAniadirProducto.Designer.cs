@@ -45,19 +45,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(15, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(461, 25);
+            this.label1.Size = new System.Drawing.Size(574, 31);
             this.label1.TabIndex = 0;
             this.label1.Text = "Seleccione el producto que desee añadir al kit:";
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(1232, 709);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAceptar.Location = new System.Drawing.Point(1643, 886);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(171, 54);
+            this.btnAceptar.Size = new System.Drawing.Size(228, 68);
             this.btnAceptar.TabIndex = 2;
             this.btnAceptar.Text = "Añadir";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -67,19 +66,18 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(11, 722);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(15, 902);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(367, 25);
+            this.label2.Size = new System.Drawing.Size(460, 31);
             this.label2.TabIndex = 3;
             this.label2.Text = "Ingrese la cantidad de este producto:";
             // 
             // tbCantidad
             // 
-            this.tbCantidad.Location = new System.Drawing.Point(397, 723);
-            this.tbCantidad.Margin = new System.Windows.Forms.Padding(2);
+            this.tbCantidad.Location = new System.Drawing.Point(529, 904);
+            this.tbCantidad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbCantidad.Name = "tbCantidad";
-            this.tbCantidad.Size = new System.Drawing.Size(247, 26);
+            this.tbCantidad.Size = new System.Drawing.Size(328, 31);
             this.tbCantidad.TabIndex = 4;
             // 
             // lvProductos
@@ -96,11 +94,11 @@
             this.Precio});
             this.lvProductos.FullRowSelect = true;
             this.lvProductos.HideSelection = false;
-            this.lvProductos.Location = new System.Drawing.Point(16, 49);
-            this.lvProductos.Margin = new System.Windows.Forms.Padding(2);
+            this.lvProductos.Location = new System.Drawing.Point(21, 61);
+            this.lvProductos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lvProductos.MultiSelect = false;
             this.lvProductos.Name = "lvProductos";
-            this.lvProductos.Size = new System.Drawing.Size(1387, 638);
+            this.lvProductos.Size = new System.Drawing.Size(1848, 796);
             this.lvProductos.TabIndex = 8;
             this.lvProductos.UseCompatibleStateImageBehavior = false;
             this.lvProductos.View = System.Windows.Forms.View.Details;
@@ -136,16 +134,17 @@
             // 
             // FormularioAniadirProducto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1414, 783);
+            this.ClientSize = new System.Drawing.Size(1885, 979);
             this.Controls.Add(this.lvProductos);
             this.Controls.Add(this.tbCantidad);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormularioAniadirProducto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Añadir producto";
             this.Load += new System.EventHandler(this.FormularioAniadirProducto_Load);
             this.ResumeLayout(false);

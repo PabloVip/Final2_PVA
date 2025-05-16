@@ -128,7 +128,9 @@
             this.Controls.Add(this.btncerrarsesion);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FormAdmin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAdmin";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormAdmin_Load);
             this.ResumeLayout(false);
 

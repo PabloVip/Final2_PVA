@@ -32,18 +32,19 @@
             this.lvFacturas = new System.Windows.Forms.ListView();
             this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NumeroCliente = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Empresa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NombreCliente = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Fecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Total = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Empresa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnVolver
             // 
             this.btnVolver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVolver.Location = new System.Drawing.Point(1463, 973);
+            this.btnVolver.Location = new System.Drawing.Point(1951, 1216);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(91, 36);
+            this.btnVolver.Size = new System.Drawing.Size(121, 45);
             this.btnVolver.TabIndex = 6;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
@@ -63,9 +64,10 @@
             this.Total});
             this.lvFacturas.FullRowSelect = true;
             this.lvFacturas.HideSelection = false;
-            this.lvFacturas.Location = new System.Drawing.Point(9, 50);
+            this.lvFacturas.Location = new System.Drawing.Point(12, 62);
+            this.lvFacturas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lvFacturas.Name = "lvFacturas";
-            this.lvFacturas.Size = new System.Drawing.Size(1545, 917);
+            this.lvFacturas.Size = new System.Drawing.Size(2059, 1145);
             this.lvFacturas.TabIndex = 5;
             this.lvFacturas.UseCompatibleStateImageBehavior = false;
             this.lvFacturas.View = System.Windows.Forms.View.Details;
@@ -79,6 +81,11 @@
             // 
             this.NumeroCliente.Text = "Nº CLIENTE";
             this.NumeroCliente.Width = 100;
+            // 
+            // Empresa
+            // 
+            this.Empresa.Text = "EMPRESA";
+            this.Empresa.Width = 200;
             // 
             // NombreCliente
             // 
@@ -96,19 +103,16 @@
             this.Total.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Total.Width = 100;
             // 
-            // Empresa
-            // 
-            this.Empresa.Text = "EMPRESA";
-            this.Empresa.Width = 200;
-            // 
             // FormularioFacturas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1566, 1021);
+            this.ClientSize = new System.Drawing.Size(2088, 1276);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.lvFacturas);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormularioFacturas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facturas";
             this.Load += new System.EventHandler(this.FormularioFacturas_Load);
             this.ResumeLayout(false);

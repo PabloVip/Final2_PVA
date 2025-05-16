@@ -37,9 +37,10 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(699, 138);
+            this.btnAceptar.Location = new System.Drawing.Point(932, 172);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(87, 34);
+            this.btnAceptar.Size = new System.Drawing.Size(116, 42);
             this.btnAceptar.TabIndex = 9;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -48,28 +49,31 @@
             // txtDescripcion
             // 
             this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtDescripcion.Location = new System.Drawing.Point(136, 84);
+            this.txtDescripcion.Location = new System.Drawing.Point(181, 105);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDescripcion.MaxLength = 80;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(650, 30);
+            this.txtDescripcion.Size = new System.Drawing.Size(865, 38);
             this.txtDescripcion.TabIndex = 8;
             // 
             // txtId
             // 
             this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtId.Location = new System.Drawing.Point(136, 25);
+            this.txtId.Location = new System.Drawing.Point(181, 31);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtId.MaxLength = 40;
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(650, 30);
+            this.txtId.Size = new System.Drawing.Size(865, 38);
             this.txtId.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label2.Location = new System.Drawing.Point(10, 89);
+            this.label2.Location = new System.Drawing.Point(13, 111);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 25);
+            this.label2.Size = new System.Drawing.Size(165, 31);
             this.label2.TabIndex = 6;
             this.label2.Text = "Descripción:";
             // 
@@ -77,23 +81,26 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label1.Location = new System.Drawing.Point(10, 28);
+            this.label1.Location = new System.Drawing.Point(13, 35);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 25);
+            this.label1.Size = new System.Drawing.Size(50, 31);
             this.label1.TabIndex = 5;
             this.label1.Text = "ID:";
             // 
             // FormularioCategoria
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(811, 189);
+            this.ClientSize = new System.Drawing.Size(1081, 236);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormularioCategoria";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Categoria";
             this.ResumeLayout(false);
             this.PerformLayout();
