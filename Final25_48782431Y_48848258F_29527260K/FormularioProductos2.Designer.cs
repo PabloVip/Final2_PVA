@@ -45,7 +45,7 @@
             // 
             this.btnVolver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVolver.Location = new System.Drawing.Point(1767, 992);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(121, 45);
             this.btnVolver.TabIndex = 9;
@@ -56,7 +56,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(143, 20);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(113, 51);
             this.btnEliminar.TabIndex = 8;
@@ -67,7 +67,7 @@
             // btnEditar
             // 
             this.btnEditar.Location = new System.Drawing.Point(264, 20);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(109, 51);
             this.btnEditar.TabIndex = 7;
@@ -78,7 +78,7 @@
             // btnNueva
             // 
             this.btnNueva.Location = new System.Drawing.Point(16, 20);
-            this.btnNueva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNueva.Margin = new System.Windows.Forms.Padding(4);
             this.btnNueva.Name = "btnNueva";
             this.btnNueva.Size = new System.Drawing.Size(119, 51);
             this.btnNueva.TabIndex = 6;
@@ -101,7 +101,7 @@
             this.lvProductos.FullRowSelect = true;
             this.lvProductos.HideSelection = false;
             this.lvProductos.Location = new System.Drawing.Point(16, 79);
-            this.lvProductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lvProductos.Margin = new System.Windows.Forms.Padding(4);
             this.lvProductos.Name = "lvProductos";
             this.lvProductos.Size = new System.Drawing.Size(1871, 905);
             this.lvProductos.TabIndex = 5;
@@ -116,7 +116,7 @@
             // Codigo
             // 
             this.Codigo.Text = "Codigo";
-            this.Codigo.Width = 300;
+            this.Codigo.Width = 250;
             // 
             // Descripción
             // 
@@ -145,7 +145,7 @@
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnNueva);
             this.Controls.Add(this.lvProductos);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormularioProductos2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Productos";

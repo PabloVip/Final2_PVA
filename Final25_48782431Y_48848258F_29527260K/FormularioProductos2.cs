@@ -18,6 +18,10 @@ namespace Final25_48782431Y_48848258F_29527260K
                 btnEditar.Enabled = false;
                 btnEliminar.Enabled = false;
                 btnNueva.Enabled = false;
+
+                btnEditar.Visible = false;
+                btnEliminar.Visible = false;
+                btnNueva.Visible = false;
             }
         }
 
