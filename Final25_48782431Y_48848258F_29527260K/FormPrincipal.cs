@@ -21,11 +21,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             // label_usuario.Text = "Bienvenid@ " + usuario;
         }
 
-        private void btn_vercatalogo_Click(object sender, EventArgs e)
-        {
-            FormularioKits nuevoFormulario = new FormularioKits(false);
-            nuevoFormulario.Show();
-        }
+        
 
         private void btn_crearkit_Click(object sender, EventArgs e)
         {
@@ -33,14 +29,7 @@ namespace Final25_48782431Y_48848258F_29527260K
             nuevoFormulario.Show();
         }
 
-        private void btncerrarsesion_Click(object sender, EventArgs e)
-        {
-            BaseDeDatos.Logout(); // Pongo a null la informacion del usuario activo.
-            cerrandoSesion = true;
-            this.Close();
-            Form1 nuevoFormulario = new Form1();
-            nuevoFormulario.Show();
-        }
+       
 
         private void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -60,11 +49,7 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         }
 
-        private void btnKits_Click(object sender, EventArgs e)
-        {
-            var fkits = new FormularioKits(false);
-            fkits.Show();
-        }
+       
 
         private void btnProductos_Click(object sender, EventArgs e)
         {
@@ -88,6 +73,27 @@ namespace Final25_48782431Y_48848258F_29527260K
         {
             var form = new FormularioFacturas();
             form.Show();
+        }
+
+        private void btn_vercatalogo_Click_1(object sender, EventArgs e)
+        {
+            FormularioKits nuevoFormulario = new FormularioKits(false);
+            nuevoFormulario.Show();
+        }
+
+        private void btn_crearkit_Click_1(object sender, EventArgs e)
+        {
+            FormularioKits nuevoFormulario = new FormularioKits(false);
+            nuevoFormulario.Show();
+        }
+
+        private void btncerrarsesion_Click_1(object sender, EventArgs e)
+        {
+            BaseDeDatos.Logout(); // Pongo a null la informacion del usuario activo.
+            cerrandoSesion = true;
+            this.Close();
+            Form1 nuevoFormulario = new Form1();
+            nuevoFormulario.Show();
         }
     }
 }

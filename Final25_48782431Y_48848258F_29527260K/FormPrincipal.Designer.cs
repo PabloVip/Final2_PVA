@@ -88,6 +88,7 @@
             this.btn_vercatalogo.TabIndex = 10;
             this.btn_vercatalogo.Text = "Consulta nuestro cátalogo";
             this.btn_vercatalogo.UseVisualStyleBackColor = true;
+            this.btn_vercatalogo.Click += new System.EventHandler(this.btn_vercatalogo_Click_1);
             // 
             // btn_crearkit
             // 
@@ -97,6 +98,7 @@
             this.btn_crearkit.TabIndex = 12;
             this.btn_crearkit.Text = "Crea tu propio kit";
             this.btn_crearkit.UseVisualStyleBackColor = true;
+            this.btn_crearkit.Click += new System.EventHandler(this.btn_crearkit_Click_1);
             // 
             // btncerrarsesion
             // 
@@ -106,6 +108,7 @@
             this.btncerrarsesion.TabIndex = 13;
             this.btncerrarsesion.Text = "Cerrar sesion";
             this.btncerrarsesion.UseVisualStyleBackColor = true;
+            this.btncerrarsesion.Click += new System.EventHandler(this.btncerrarsesion_Click_1);
             // 
             // FormPrincipal
             // 
