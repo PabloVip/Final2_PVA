@@ -19,7 +19,46 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         #region PRODUCTOS
 
-        
+        /// <summary>
+        /// Metodo para leer todos los productos, incluidos kits, para poder añadirlos a los pedidos
+        /// </summary>
+        /// <returns></returns>
+        public static List<Producto> LeerProductosYKits()
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    conexion.Open();
+                    command.Connection = conexion;
+                    command.CommandText = "SELECT * FROM PRODUCTOS";
+                    var dt = command.ExecuteReader();
+
+                    var productos = new List<Producto>();
+
+                    while (dt.Read())
+                    {
+                        var pt = new Producto();
+                        pt.Id = dt.GetInt32(0);
+                        pt.Codigo = dt.GetString(1);
+                        pt.Descripcion = dt.GetString(2);
+                        pt.Categoria = dt.GetString(3);
+                        pt.Marca = dt.GetString(4);
+                        pt.Precio = dt.GetDecimal(5);
+                        pt.EsKit = dt.GetBoolean(6);
+                        productos.Add(pt);
+                    }
+
+                    return productos;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
         /// <summary>
         /// Metodo para leer todos los productos que no son kit
         /// </summary>

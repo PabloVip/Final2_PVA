@@ -90,5 +90,35 @@ namespace Final25_48782431Y_48848258F_29527260K
             var form = new FormularioFacturas();
             form.Show();
         }
+
+        private void btn_vercatalogo_Click_1(object sender, EventArgs e)
+        {
+            var form = new FormularioKits(true);
+            form.Show();
+        }
+
+        private void btnMarcas_Click_1(object sender, EventArgs e)
+        {
+            var form = new FormularioMarcas();
+            form.Show();
+        }
+
+        private void btnCategorias_Click_1(object sender, EventArgs e)
+        {
+            var form = new FormularioCategorias();
+            form.Show();
+        }
+
+        private void btn_usuario_Click_1(object sender, EventArgs e)
+        {
+            var form = new AdministrarUsuarios();
+            form.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            var form = new FormularioProductos2();
+            form.Show();
+        }
     }
 }

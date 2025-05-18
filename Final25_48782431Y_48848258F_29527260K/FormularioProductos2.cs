@@ -12,6 +12,13 @@ namespace Final25_48782431Y_48848258F_29527260K
         public FormularioProductos2()
         {
             InitializeComponent();
+
+            if (BaseDeDatos.UsuarioActivo.RollId != "ADMINISTRADOR")
+            {
+                btnEditar.Enabled = false;
+                btnEliminar.Enabled = false;
+                btnNueva.Enabled = false;
+            }
         }
 
         private void CargaProductos()

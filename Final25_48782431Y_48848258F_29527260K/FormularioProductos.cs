@@ -37,10 +37,10 @@ namespace Final25_48782431Y_48848258F_29527260K
             dataGridproductos.Rows.Clear();
 
             // Cargar productos una sola vez
-            foreach (var p in BaseDeDatos.LeerProductos())
+            foreach (var p in BaseDeDatos.LeerProductosYKits())
             {
-                if (!p.EsKit)
-                    dataGridproductos.Rows.Add(p.Id, p.Codigo, p.Descripcion, p.Categoria, p.Marca, p.Precio);
+                // if (!p.EsKit)
+                dataGridproductos.Rows.Add(p.Id, p.Codigo, p.Descripcion, p.Categoria, p.Marca, p.Precio);
             }
 
             // Suscribir el evento CellClick solo una vez

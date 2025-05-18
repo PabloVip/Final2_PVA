@@ -63,6 +63,7 @@
     <Compile Include="Clases\ProductoKit.cs" />
     <Compile Include="Clases\Rol.cs" />
     <Compile Include="Clases\Usuario.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
