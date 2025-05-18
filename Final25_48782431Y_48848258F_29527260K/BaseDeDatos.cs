@@ -8,8 +8,8 @@ namespace Final25_48782431Y_48848258F_29527260K
 {
     public class BaseDeDatos
     {
-        private const string CadenaConexion = "server=(local)\\SQLEXPRESS;database=PAYAVISOLAR; Integrated Security=SSPI";
-        // private const string CadenaConexion = "server=localhost;database=PAYAVISOLAR; Integrated Security=SSPI";
+        // private const string CadenaConexion = "server=(local)\\SQLEXPRESS;database=PAYAVISOLAR; Integrated Security=SSPI";
+        private const string CadenaConexion = "server=localhost;database=PAYAVISOLAR; Integrated Security=SSPI";
 
         /// <summary>
         /// Propiedad para guardar el usuario que ha hecho login en la aplicacion
@@ -1042,22 +1042,20 @@ namespace Final25_48782431Y_48848258F_29527260K
                 try
                 {
                     conn.Open();
-                    var query = @"INSERT INTO FacturaCabeceras(ClienteId, FechaCreacion) VALUES
-                            (@ClienteId, @FechaCreacion)";
+                    var query = @"INSERT INTO FacturaCabeceras(ClienteId, FechaCreacion) 
+                        VALUES (@ClienteId, @FechaCreacion);
+
+                        SELECT TOP 1 Id FROM FacturaCabeceras ORDER BY Id DESC";
 
                     command.CommandText = query;
                     command.Connection = conn;
                     command.Parameters.AddWithValue("@ClienteId", factura.ClienteId);
                     command.Parameters.AddWithValue("@FechaCreacion", fechaCreacion);
 
-                    command.ExecuteNonQuery();
+                    var idFactura = command.ExecuteScalar();
 
-                    //CONSULTO EL ID DE LA CABECERA DE FACTURA QUE ACABO DE GRABAR PARA PONERLO EN LAS LINEAS
-                    query = "SELECT Id FROM FacturaCabeceras WHERE FechaCreacion=@FechaCreacion";
-                    var cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@FechaCreacion", fechaCreacion);
-                    var id = (int)cmd.ExecuteScalar();
-                    cmd.Dispose();
+                    if (idFactura == null)
+                        throw new Exception("Error guardando la cabecera de la factura");
 
                     var query2 = @"INSERT INTO FacturaLineas(FacturaId, Linea, ProductoId, CodigoProducto,
                         Descripcion, Cantidad, Precio, Total) 
@@ -1069,7 +1067,7 @@ namespace Final25_48782431Y_48848258F_29527260K
                     foreach (var linea in factura.Lineas)
                     {
                         var cmd2 = new SqlCommand(query2, conn);
-                        cmd2.Parameters.AddWithValue("@FacturaId", id);
+                        cmd2.Parameters.AddWithValue("@FacturaId", idFactura);
                         cmd2.Parameters.AddWithValue("@Linea", contadorLinea);
                         cmd2.Parameters.AddWithValue("@ProductoId", linea.ProductoId);
                         cmd2.Parameters.AddWithValue("@CodigoProducto", linea.CodigoProducto);

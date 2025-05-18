@@ -159,7 +159,7 @@ namespace Final25_48782431Y_48848258F_29527260K
 
             var factura = new FacturaCabecera
             {
-                ClienteId = 1,
+                ClienteId = BaseDeDatos.UsuarioActivo.Id,
                 FechaCreacion = fechaCreacion,
                 Lineas = new List<FacturaLinea>()
             };
