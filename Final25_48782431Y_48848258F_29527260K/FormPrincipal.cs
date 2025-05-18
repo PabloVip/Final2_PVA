@@ -63,13 +63,13 @@ namespace Final25_48782431Y_48848258F_29527260K
 
         private void btn_vercatalogo_Click_1(object sender, EventArgs e)
         {
-            FormularioKits nuevoFormulario = new FormularioKits(false);
+            var nuevoFormulario = new FormularioProductos2();
             nuevoFormulario.Show();
         }
 
         private void btn_crearkit_Click_1(object sender, EventArgs e)
         {
-            FormularioKits nuevoFormulario = new FormularioKits(false);
+            var nuevoFormulario = new FormularioProductos();
             nuevoFormulario.Show();
         }
 

@@ -24,7 +24,10 @@ namespace Final25_48782431Y_48848258F_29527260K
         private void CargaProductos()
         {
             lvProductos.Items.Clear();
-            _productos = BaseDeDatos.LeerProductos();
+            if (BaseDeDatos.UsuarioActivo.RollId == "ADMINISTRADOR")
+                _productos = BaseDeDatos.LeerProductos();
+            else
+                _productos = BaseDeDatos.LeerProductosYKits();
 
             foreach (var producto in _productos)
             {
