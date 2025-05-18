@@ -36,15 +36,22 @@
             this.NombreCliente = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Fecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Total = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvLineas = new System.Windows.Forms.ListView();
+            this.Linea = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ProductoId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.CodigoProducto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Descipcion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Cantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Precio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Importe = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnVolver
             // 
             this.btnVolver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVolver.Location = new System.Drawing.Point(1951, 1216);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVolver.Location = new System.Drawing.Point(1463, 973);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(121, 45);
+            this.btnVolver.Size = new System.Drawing.Size(91, 36);
             this.btnVolver.TabIndex = 6;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
@@ -52,8 +59,7 @@
             // 
             // lvFacturas
             // 
-            this.lvFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.lvFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvFacturas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Id,
@@ -64,13 +70,14 @@
             this.Total});
             this.lvFacturas.FullRowSelect = true;
             this.lvFacturas.HideSelection = false;
-            this.lvFacturas.Location = new System.Drawing.Point(12, 62);
-            this.lvFacturas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lvFacturas.Location = new System.Drawing.Point(9, 50);
+            this.lvFacturas.MultiSelect = false;
             this.lvFacturas.Name = "lvFacturas";
-            this.lvFacturas.Size = new System.Drawing.Size(2059, 1145);
+            this.lvFacturas.Size = new System.Drawing.Size(1545, 309);
             this.lvFacturas.TabIndex = 5;
             this.lvFacturas.UseCompatibleStateImageBehavior = false;
             this.lvFacturas.View = System.Windows.Forms.View.Details;
+            this.lvFacturas.SelectedIndexChanged += new System.EventHandler(this.lvFacturas_SelectedIndexChanged);
             // 
             // Id
             // 
@@ -103,14 +110,71 @@
             this.Total.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Total.Width = 100;
             // 
+            // lvLineas
+            // 
+            this.lvLineas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvLineas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Linea,
+            this.ProductoId,
+            this.CodigoProducto,
+            this.Descipcion,
+            this.Cantidad,
+            this.Precio,
+            this.Importe});
+            this.lvLineas.FullRowSelect = true;
+            this.lvLineas.HideSelection = false;
+            this.lvLineas.Location = new System.Drawing.Point(9, 377);
+            this.lvLineas.Name = "lvLineas";
+            this.lvLineas.Size = new System.Drawing.Size(1545, 578);
+            this.lvLineas.TabIndex = 7;
+            this.lvLineas.UseCompatibleStateImageBehavior = false;
+            this.lvLineas.View = System.Windows.Forms.View.Details;
+            // 
+            // Linea
+            // 
+            this.Linea.Text = "Linea";
+            this.Linea.Width = 61;
+            // 
+            // ProductoId
+            // 
+            this.ProductoId.Text = "Producto";
+            this.ProductoId.Width = 97;
+            // 
+            // CodigoProducto
+            // 
+            this.CodigoProducto.Text = "Codigo";
+            this.CodigoProducto.Width = 123;
+            // 
+            // Descipcion
+            // 
+            this.Descipcion.Text = "Descripción";
+            this.Descipcion.Width = 480;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.Text = "Cantidad";
+            this.Cantidad.Width = 85;
+            // 
+            // Precio
+            // 
+            this.Precio.Text = "Precio";
+            this.Precio.Width = 102;
+            // 
+            // Importe
+            // 
+            this.Importe.Text = "Total";
+            this.Importe.Width = 107;
+            // 
             // FormularioFacturas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2088, 1276);
+            this.ClientSize = new System.Drawing.Size(1566, 1021);
+            this.Controls.Add(this.lvLineas);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.lvFacturas);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormularioFacturas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facturas";
@@ -129,5 +193,13 @@
         private System.Windows.Forms.ColumnHeader Fecha;
         private System.Windows.Forms.ColumnHeader Total;
         private System.Windows.Forms.ColumnHeader Empresa;
+        private System.Windows.Forms.ListView lvLineas;
+        private System.Windows.Forms.ColumnHeader Linea;
+        private System.Windows.Forms.ColumnHeader ProductoId;
+        private System.Windows.Forms.ColumnHeader CodigoProducto;
+        private System.Windows.Forms.ColumnHeader Descipcion;
+        private System.Windows.Forms.ColumnHeader Cantidad;
+        private System.Windows.Forms.ColumnHeader Precio;
+        private System.Windows.Forms.ColumnHeader Importe;
     }
 }

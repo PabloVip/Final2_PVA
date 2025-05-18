@@ -8,8 +8,8 @@ namespace Final25_48782431Y_48848258F_29527260K
 {
     public class BaseDeDatos
     {
-        //private const string CadenaConexion = "server=(local)\\SQLEXPRESS;database=PAYAVISOLAR; Integrated Security=SSPI";
-        private const string CadenaConexion = "server=localhost;database=PAYAVISOLAR; Integrated Security=SSPI";
+        private const string CadenaConexion = "server=(local)\\SQLEXPRESS;database=PAYAVISOLAR; Integrated Security=SSPI";
+        // private const string CadenaConexion = "server=localhost;database=PAYAVISOLAR; Integrated Security=SSPI";
 
         /// <summary>
         /// Propiedad para guardar el usuario que ha hecho login en la aplicacion
@@ -1022,6 +1022,7 @@ namespace Final25_48782431Y_48848258F_29527260K
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             using (SqlCommand command = new SqlCommand())
+            using (SqlCommand command2 = new SqlCommand())
             {
                 try
                 {
@@ -1031,18 +1032,21 @@ namespace Final25_48782431Y_48848258F_29527260K
                     command.Parameters.AddWithValue("@FacturaId", facturaId);
 
                     var dt = command.ExecuteReader();
+                    dt.Read();
 
                     var factura = new FacturaCabecera();
                     factura.Id = dt.GetInt32(0);
                     factura.ClienteId = dt.GetInt32(1);
                     factura.FechaCreacion = dt.GetDateTime(2);
                     factura.Lineas = new List<FacturaLinea>(); // Inicializo la lista de lineas vacia
+                    dt.Close();
 
                     // Leemos las lineas
-                    command.CommandText = "SELECT * FROM FacturaLineas WHERE FacturaId=@FacturaId";
-                    command.Parameters.AddWithValue("@FacturaId", facturaId);
+                    command2.Connection = conexion;
+                    command2.CommandText = "SELECT * FROM FacturaLineas WHERE FacturaId=@FacturaId";
+                    command2.Parameters.AddWithValue("@FacturaId", facturaId);
 
-                    var dt2 = command.ExecuteReader();
+                    var dt2 = command2.ExecuteReader();
                     while (dt2.Read())
                     {
                         var linea = new FacturaLinea();
