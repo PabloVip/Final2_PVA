@@ -13,6 +13,8 @@ namespace Final25_48782431Y_48848258F_29527260K
             InitializeComponent();
             this.FormClosed += FormPrincipal_FormClosed;
 
+            
+
             lblEmpresa.Text = BaseDeDatos.UsuarioActivo.Empresa;
             lblUsuario.Text = BaseDeDatos.UsuarioActivo.Nombre;
 
